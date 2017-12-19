@@ -1,0 +1,12 @@
+%body
+  %h4
+    - @items.each do |item|
+      %p
+        = item.name
+        = image_tag(item.image)
+        = item.detail
+        = item.maker
+        = item.unit_cost
+        = item.quantity
+        = item.sell_price
+        = item.shipping_cost

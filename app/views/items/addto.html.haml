@@ -1,0 +1,13 @@
+= form_for @item do |f|
+  = f.label :item_id, "商品ID"
+  = f.text_field :item_id, placeholder: "商品IDを入力してください"
+
+  = f.label :unit_cost, "仕入単価"
+  = f.text_field :unit_cost, placeholder: "仕入単価を入力してください"
+
+  = f.label :quantity, "仕入数量"
+  = f.text_field :quantity, placeholder: "仕入数量を入力してください"
+
+  = f.hidden_field :item_flg, value:1
+
+  = f.submit value: "Send"
