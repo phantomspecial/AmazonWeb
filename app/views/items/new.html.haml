@@ -1,0 +1,28 @@
+= form_for @item do |f|
+  = f.label :name, "商品名"
+  = f.text_field :name, placeholder: "商品名を入力してください"
+
+  = f.label :image, "商品画像"
+  = f.file_field :image
+
+  = f.label :detail, "商品詳細"
+  = f.text_field :detail, placeholder: "商品説明を入力してください"
+
+  = f.label :maker, "メーカー"
+  = f.text_field :maker, placeholder: "メーカーを入力してください"
+
+  = f.label :unit_cost, "仕入単価"
+  = f.text_field :unit_cost, placeholder: "仕入単価を入力してください"
+
+  = f.label :quantity, "仕入数量"
+  = f.text_field :quantity, placeholder: "仕入数量を入力してください"
+
+  = f.label :sell_price, "販売価格"
+  = f.text_field :sell_price, placeholder: "販売価格を入力してください"
+
+  = f.label :shipping_cost, "送料"
+  = f.text_field :shipping_cost, placeholder: "送料を入力してください"
+
+  = f.hidden_field :item_flg, value:0
+
+  = f.submit value: "Send"
