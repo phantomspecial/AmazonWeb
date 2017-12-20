@@ -29,8 +29,14 @@ ActiveRecord::Schema.define(version: 20171218094829) do
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id",       null: false
+    t.string   "name",          null: false
+    t.string   "image",         null: false
+    t.string   "detail",        null: false
+    t.string   "maker",         null: false
     t.integer  "avg_unit_cost", null: false
     t.integer  "current_stock", null: false
+    t.integer  "sell_price",    null: false
+    t.integer  "shipping_cost", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

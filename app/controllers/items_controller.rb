@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
       @item.item_id = @item.id
       @item.save
 
-      Stock.create(item_id: @item.item_id, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity)
+      Stock.create(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
 
     else
       # 既存商品のときの処理(action: :addtoから来た場合)
@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
       # 新在庫算出
       new_stock = @stocktarget.current_stock + @item.quantity
 
-      @stocktarget.update(item_id: @item.item_id, avg_unit_cost: avg_cost, current_stock: new_stock)
+      @stocktarget.update(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
 
     end
 

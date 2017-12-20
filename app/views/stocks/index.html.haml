@@ -3,5 +3,6 @@
     - @stocks.each do |stock|
       %p
         = stock.item_id
+        = image_tag stock.image
         = stock.avg_unit_cost
         = stock.current_stock
