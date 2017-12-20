@@ -33,3 +33,23 @@
         = stock.shipping_cost
       %td
         = link_to "削除", "/stocks/#{stock.id}", method: :delete
+
+
+%h3
+  User Session Control
+
+%h4
+  - if current_user.admin_flg == true
+    = link_to "AdminTop" , "/admin/"
+
+%h4
+  = link_to "ログイン" , new_user_session_path
+  / ログイン中は表示しないようにする
+
+%h4
+  = link_to "新規登録" , new_user_registration_path
+  / ログイン中は表示しないようにする
+
+%h4
+  = link_to "ログアウト" , destroy_user_session_path, method: :delete
+  / ログアウト中は表示しないようにする
