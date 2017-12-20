@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
       @item.item_id = @item.id
       @item.save
 
-      binding.pry
 
       Stock.create(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
 
