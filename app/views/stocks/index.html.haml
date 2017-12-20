@@ -1,8 +1,35 @@
-%body
-  %h4
-    - @stocks.each do |stock|
-      %p
+%table
+  %caption 在庫一覧
+  %tr
+    %th item_id
+    %th name
+    %th image
+    %th detail
+    %th maker
+    %th avg_unit_cost
+    %th current_stock
+    %th sell_price
+    %th shipping_cost
+    %th CRUD
+  - @stocks.each do |stock|
+    %tr
+      %td
         = stock.item_id
-        = image_tag stock.image
+      %td
+        = stock.name
+      %td
+        = image_tag stock.image, width:32, height:24
+      %td
+        = stock.detail
+      %td
+        = stock.maker
+      %td
         = stock.avg_unit_cost
+      %td
         = stock.current_stock
+      %td
+        = stock.sell_price
+      %td
+        = stock.shipping_cost
+      %td
+        = link_to "削除", "/stocks/#{stock.id}", method: :delete

@@ -1,12 +1,42 @@
-%body
-  %h4
-    - @items.each do |item|
-      %p
+%table
+  %caption 仕入履歴
+  %tr
+    %th id
+    %th item_id
+    %th name
+    %th image
+    %th detail
+    %th maker
+    %th unit_cost
+    %th quantity
+    %th sell_price
+    %th shipping_cost
+  - @items.each do |item|
+    %tr
+      %td
+        = item.id
+      %td
+        = item.item_id
+      %td
         = item.name
-        = image_tag(item.image)
+      %td
+        = image_tag item.image, width:30, height:24
+      %td
         = item.detail
+      %td
         = item.maker
+      %td
         = item.unit_cost
+      %td
         = item.quantity
+      %td
         = item.sell_price
+      %td
         = item.shipping_cost
+      %td
+        = link_to "編集", "/items/#{item.id}/edit", method: :get
+
+%h4
+  = link_to "新規商品を仕入" , "/items/new", method: :get
+%h4
+  = link_to "既存商品を仕入" , "/items/addto", method: :get
