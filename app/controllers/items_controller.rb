@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
       @item.item_id = @item.id
       @item.save
 
+
       Stock.create(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
 
     else
@@ -78,12 +79,37 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    @@old_item_dataset = Item.find(params[:id])
   end
 
   def update
-  end
+    item = Item.find(params[:id])
+    #Itemテーブルの編集対象レコードを更新
+    item.update(new_item_params)
 
-  def destroy
+    # new_item_paramsでもらって来た更新内容で、stockテーブルを更新する。
+    # Stockテーブルからそのitem_idを持ったインスタンスを取得
+    @stocktargets =  Stock.where(item_id: item.item_id)
+    @stocktarget = @stocktargets[0]
+
+    # 総仕入金額・総仕入数量の算出
+    totalcost = 0
+    totalstock = 0
+    @targetitems = Item.where(item_id: item.item_id)
+    @targetitems.each do |targetitem|
+      totalcost = totalcost + targetitem.unit_cost * targetitem.quantity
+      totalstock = totalstock + targetitem.quantity
+    end
+    # 平均単価算出
+    avg_cost = (totalcost/totalstock).round
+    # 新在庫算出
+
+    # データupdate
+    new_stock = @stocktarget.current_stock + item.quantity - @@old_item_dataset.quantity
+    @stocktarget.update(item_id: item.item_id, name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost)
+
+    redirect_to action: :index
   end
 
   private
