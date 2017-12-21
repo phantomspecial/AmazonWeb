@@ -36,7 +36,33 @@
       %td
         = link_to "編集", "/items/#{item.id}/edit", method: :get
 
+%h3
+  Item Control
+
 %h4
   = link_to "新規商品を仕入" , "/items/new", method: :get
 %h4
   = link_to "既存商品を仕入" , "/items/addto", method: :get
+
+%h3
+  User Session Control
+
+%h4
+  - if user_signed_in?
+    - if current_user.admin_flg == true
+      = link_to "AdminTop" , "/admin/"
+
+%h4
+  = link_to "ログイン" , new_user_session_path
+  / ログイン中は表示しないようにする
+
+%h4
+  = link_to "新規登録" , new_user_registration_path
+  / ログイン中は表示しないようにする
+
+%h4
+  = link_to "ユーザ情報変更" , edit_user_registration_path
+
+%h4
+  = link_to "ログアウト" , destroy_user_session_path, method: :delete
+  / ログアウト中は表示しないようにする
