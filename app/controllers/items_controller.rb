@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  before_action :permission_check
+
   def index
     @items = Item.all
   end
@@ -116,5 +118,16 @@ class ItemsController < ApplicationController
   def new_item_params
     params.require(:item).permit(:item_id,:name,:image,:detail,:maker,:unit_cost, :quantity, :sell_price,:shipping_cost, :item_flg)
   end
+
+
+  def permission_check
+
+    # #権限制御 トップページが出来上がってから動作させる。
+    # if current_user.admin_flg == false
+    #   render "errors/forbidden"
+    # end
+
+  end
+
 
 end

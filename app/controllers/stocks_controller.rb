@@ -1,5 +1,7 @@
 class StocksController < ApplicationController
 
+  before_action :permission_check, except: :index
+
   def index
     @stocks = Stock.all
   end
@@ -14,6 +16,17 @@ class StocksController < ApplicationController
       # 在庫が０でないため、削除できませんのアラートを出す
     end
     redirect_to action: :index
+  end
+
+
+  private
+  def permission_check
+
+    # #権限制御 トップページが出来上がってから動作させる。
+    # if current_user.admin_flg == false
+    #   render "errors/forbidden"
+    # end
+
   end
 
 
