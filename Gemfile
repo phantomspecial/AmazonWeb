@@ -64,8 +64,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'devise'
-gem 'cancancan'
-gem 'rails_admin'
-
 
 

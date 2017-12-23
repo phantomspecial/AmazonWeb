@@ -12,7 +12,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :city,               null: false, defalut: ""
       t.string :street,             null: false, defalut: ""
       t.string :apartment_roomnumber,            defalut: ""
-      t.integer :telnumber,          null: false, defalut: ""
+      t.string :telnumber,          null: false, defalut: ""
+      t.boolean :admin_flg,                      defalut: ""
 
 
       ## Recoverable

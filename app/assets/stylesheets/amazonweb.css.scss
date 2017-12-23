@@ -240,3 +240,22 @@
   }
 }
 
+
+// エラー画面
+.errorwindow{
+  padding-top: 300px;
+  text-align: center;
+  &__main-message{
+    font-size: 64px;
+    color: #FF0000;
+    font-family: fantasy;
+  }
+  &__sub-message{
+    font-size: 32px;
+    font-family: san-serif;
+  }
+  &__toplink{
+    font-size: 24px;
+    font-family: san-serif;
+  }
+}
