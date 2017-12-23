@@ -1,28 +1,35 @@
-= form_for @item do |f|
-  = f.label :name, "商品名"
-  = f.text_field :name, placeholder: "商品名を修正してください"
-
-  = f.label :image, "商品画像"
-  = f.file_field :image , value: @item.image
-
-  = f.label :detail, "商品詳細"
-  = f.text_field :detail, placeholder: "商品修正を入力してください"
-
-  = f.label :maker, "メーカー"
-  = f.text_field :maker, placeholder: "メーカーを修正してください"
-
-  = f.label :unit_cost, "仕入単価"
-  = f.text_field :unit_cost, placeholder: "仕入単価を修正してください"
-
-  = f.label :quantity, "仕入数量"
-  = f.text_field :quantity, placeholder: "仕入数量を修正してください"
-
-  = f.label :sell_price, "販売価格"
-  = f.text_field :sell_price, placeholder: "販売価格を修正してください"
-
-  = f.label :shipping_cost, "送料"
-  = f.text_field :shipping_cost, placeholder: "送料を修正してください"
-
-  = f.hidden_field :item_flg, value:0
-
-  = f.submit value: "Update"
+= render "shared/adminheader"
+= render "shared/leftsidebar"
+.adminmainwindow
+  .adminmainwindow__title
+    [商品情報編集]
+    = form_for @item do |f|
+      .adminmainwindow__fields
+        = f.label :name, "商品名"
+        = f.text_field :name, placeholder: "商品名を修正してください"
+      .adminmainwindow__fields
+        = f.label :image, "商品画像"
+        = f.file_field :image , value: @item.image
+      .adminmainwindow__fields
+        = f.label :detail, "商品詳細"
+        = f.text_field :detail, placeholder: "商品修正を入力してください"
+      .adminmainwindow__fields
+        = f.label :maker, "メーカー"
+        = f.text_field :maker, placeholder: "メーカーを修正してください"
+      .adminmainwindow__fields
+        = f.label :unit_cost, "仕入単価"
+        = f.text_field :unit_cost, placeholder: "仕入単価を修正してください"
+      .adminmainwindow__fields
+        = f.label :quantity, "仕入数量"
+        = f.text_field :quantity, placeholder: "仕入数量を修正してください"
+      .adminmainwindow__fields
+        = f.label :sell_price, "販売価格"
+        = f.text_field :sell_price, placeholder: "販売価格を修正してください"
+      .adminmainwindow__fields
+        = f.label :shipping_cost, "送料"
+        = f.text_field :shipping_cost, placeholder: "送料を修正してください"
+      .adminmainwindow__fields
+        = f.hidden_field :item_flg, value:0
+      .adminmainwindow__fields
+        = f.submit value: "Update" , class: "SendButton"
+= render "shared/adminfooter"
