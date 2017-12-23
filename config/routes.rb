@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     end
   end
   resources :orders
+  resources :admin, only: [:index]
 
 end

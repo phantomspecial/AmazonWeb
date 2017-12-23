@@ -240,6 +240,151 @@
   }
 }
 
+// 管理者ページ
+// ヘッダー
+.adminheader{
+  height: 50px;
+  width: 100%;
+  background-color: #232f3e;
+  border: 2px;
+  border-bottom:solid;
+  border-style: medium;
+  border-color: #a2a2a2;
+  color: #FFFFFF;
+  &__title{
+    float: left;
+    padding-top: 15px;
+    padding-left: 30px;
+  }
+  &__username{
+    float: left;
+    padding-left: 100px;
+  }
+  &__buttons{
+    float: left;
+    padding-left: 100px;
+    &__sitebutton{
+      float: left;
+    }
+    &__logoutbutton{
+      float: left;
+    }
+  }
+}
+
+// ボタン類
+.adminheader__buttons__sitebutton{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFFFFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+    margin-left: 30px;
+}
+
+.adminheader__buttons__logoutbutton{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFFFFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+    margin-left: 30px;
+}
+.adminheader__buttons:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.adminheader__buttons a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+// 本体部分
+// 左サイドバー
+.adminleftwindow{
+  float: left;
+  &__linkbox{
+    width: 200px;
+    height: 800px;
+    background-color: #f5f5f5;
+    padding-left: 10px;
+    &__title{
+      font-size: 20px;
+      padding-top: 10px;
+    }
+    &__links{
+      font-size: 16px;
+      padding-left: 10px;
+    }
+  }
+}
+
+.adminleftwindow__linkbox__links a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+// メインウィンドウ
+.adminmainwindow{
+  width: 100%;
+  padding-left: 200px;
+  height: 800px;
+  background-color: #cccccc;
+  &__boxes{
+    &__orders{
+      padding-top: 20px;
+    }
+    &__stocks{
+      padding-top: 300px;
+    }
+  }
+  &__title{
+    padding-left: 20px;
+    font-size: 24px;
+  }
+  &__fields{
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+}
+
+.SendButton{
+    display: inline-block;
+    padding: 0.5em 1em;
+    width: 100px;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFFFFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+
+
+// フッター部分
+.adminfooter{
+  clear: both;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  background-color: #232f3e;
+  color: #FFFFFF;
+  &__title{
+
+  }
+  &__message{
+
+  }
+}
+
 
 // エラー画面
 .errorwindow{

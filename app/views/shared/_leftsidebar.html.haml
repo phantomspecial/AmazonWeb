@@ -1,0 +1,24 @@
+.adminleftwindow
+  .adminleftwindow__linkbox
+    .adminleftwindow__linkbox__title
+      [商品仕入管理]
+    .adminleftwindow__linkbox__links
+      = link_to "仕入一覧ページ", items_path
+    .adminleftwindow__linkbox__links
+      = link_to "新規商品を仕入" , new_item_path
+    .adminleftwindow__linkbox__links
+      = link_to "既存商品を仕入" , addto_items_path
+    .adminleftwindow__linkbox__title
+      [在庫状況管理]
+    .adminleftwindow__linkbox__links
+      = link_to "商品一覧ページ", stocks_path
+    .adminleftwindow__linkbox__title
+      [ユーザ管理]
+    .adminleftwindow__linkbox__links
+      = link_to "管理者ページ", admin_index_path
+    .adminleftwindow__linkbox__links
+      = link_to "管理者情報変更" , edit_user_registration_path
+    .adminleftwindow__linkbox__links
+      = link_to "権限変更", ""
+    .adminleftwindow__linkbox__links
+      = link_to "ログアウト" , destroy_user_session_path, method: :delete
