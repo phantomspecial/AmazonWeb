@@ -1,0 +1,34 @@
+= render "shared/adminheader"
+= render "shared/leftsidebar"
+.adminmainwindow
+  .adminmainwindow__boxes
+    .adminmainwindow__boxes__users
+      [ユーザ一覧]
+      %table
+        %tr
+          %th email
+          %th first_name
+          %th last_name
+          %th nickname
+          %th admin_flg
+          %th permission_cont
+        - @users.each do |user|
+          %tr
+            %td
+              = user.email
+            %td
+              = user.first_name
+            %td
+              = user.last_name
+            %td
+              = user.nickname
+            %td
+              = user.admin_flg
+            %td
+              - if user.id != current_user.id
+                - if user.admin_flg == true
+                  = link_to "権限降格", userpermission_path(user.id), method: :patch
+                - else
+                  = link_to "権限昇格", userpermission_path(user.id), method: :patch
+
+= render "shared/adminfooter"
