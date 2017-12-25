@@ -13,7 +13,7 @@
     .signupline__box__item
       = f.label :password, "パスワード ※", class: "form"
       - if @minimum_password_length
-        %em
+        .br
           (#{@minimum_password_length}文字以上必要です)
     .signupline__box__field
       = f.password_field :password, autocomplete: "off", class: "form"
