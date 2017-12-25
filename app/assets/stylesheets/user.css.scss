@@ -1,0 +1,140 @@
+// ヘッダー部分
+.header{
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  &__logo{
+    margin-top: 10px;
+  }
+}
+
+// ログイン画面
+.loginoutline{
+  width: 350px;
+  margin: 0 auto;
+  border: 1px solid;
+  border-color: #dddddd;
+  padding-left: 40px;
+  &__box{
+    font-size: 24px;
+    padding: 10px 0 10px 0;
+    &__item{
+      font-size: 16px;
+    }
+    &__field{
+    }
+    &__newcustomer{
+      &__line{
+        padding: 20px 0 0 65px;
+        color: #767676;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.form{
+  height: 20px;
+  width: 300px;
+}
+
+.forgotpassword{
+  font-size: 14px;
+  padding-left: 60px;
+  text-decoration: none;
+}
+
+.button{
+    display: inline-block;
+    margin: 30px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 305px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.newuserbutton{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 275px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 14px;
+}
+
+// アカウント作成画面
+.signupline{
+  width: 350px;
+  margin: 0 auto;
+  border: 1px solid;
+  border-color: #dddddd;
+  padding-left: 40px;
+  &__box{
+    font-size: 24px;
+    padding: 10px 0 10px 0;
+    &__item{
+      font-size: 14px;
+      padding-top: 10px;
+    }
+    &__field{
+    }
+  }
+  &__message{
+    font-size: 14px;
+    color: #FF0000;
+    padding-bottom: 20px;
+  }
+  &__rulemessage{
+    font-size: 12px;
+    padding-bottom: 20px;
+  }
+  &__borderline{
+    border-top: 1px solid;
+    width: 300px;
+    color: #dddddd;
+    padding-bottom:20px;
+  }
+  &__loginlink{
+    font-size: 12px;
+    padding-bottom: 20px;
+  }
+}
+
+.signupline a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+// フッター部分
+.footer{
+  padding-top: 30px;
+  &__line{
+    border-top: 1px solid;
+    border-color: #e5e5e5;
+  }
+  &__links{
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px;
+  }
+  &__copyrights{
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color:  #565656;
+  }
+}
+
+// フッターリンク
+.footer__links a{
+  color: #0000FF;
+  text-decoration: none;
+}
