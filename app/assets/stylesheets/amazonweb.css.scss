@@ -165,7 +165,7 @@
 
 .navLeftFooter{
   clear: both;
-  width: 1500px;
+  width: 100vw;
   color: #FFFFFF;
   &__navFooterBackToTop{
     background-color: #4b5767;
@@ -181,48 +181,66 @@
       padding: 30px 250px 30px 250px;
       &__tr1{
         float: left;
+        padding-right: 50px;
         &_title{
           font-size: 18px;
         }
         &_record{
-          font-size: 14px;
+          font-size: 12px;
         }
       }
       &__tr2{
         float: left;
+        padding-right: 50px;
         &_title{
           font-size: 18px;
         }
         &_record{
-          font-size: 14px;
+          font-size: 12px;
         }
       }
       &__tr3{
         float: left;
+        padding-right: 50px;
         &_title{
           font-size: 18px;
         }
         &_record{
-          font-size: 14px;
+          font-size: 12px;
         }
       }
       &__tr4{
         float: left;
+        padding-right: 50px;
         &_title{
           font-size: 18px;
         }
         &_record{
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
   }
 }
 
+.navLeftFooter__navFooterBackToTop__navFooterBackToTopText a{
+      color: #FFFFFF;
+      text-decoration: none;
+}
+
+.ul{
+  list-style: none;
+}
+
+.ul a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 .navFooterLine{
   clear:both;
   text-align: center;
-  width: 1500px;
+  width: 100vw;
   height: 100px;
   background-color: #262f3d;
   border-top: 1px solid;
@@ -232,7 +250,7 @@
 .navFooterLine_navFooterLinkLine_navFooterDescLine{
   padding: 10px 0 10px 0;
   background-color: #141a22;
-  width: 1500px;
+  width: 100vw;
   &__list{
     color: #ffffff;
     font-size: 10px;

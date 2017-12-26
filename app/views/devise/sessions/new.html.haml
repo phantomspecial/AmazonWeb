@@ -1,17 +1,27 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
+= render "devise/shared/userheader"
+.loginoutline
+  .loginoutline__box
+    ログイン
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .loginoutline__box__item
+      =f.label :email ,"Eメールもしくは携帯電話番号"
+    .loginoutline__box__field
+      =f.email_field :email, autofocus: true, class: "form"
+    .loginoutline__box__item
+      = f.label :password, "パスワード"
+      = link_to "パスワードを忘れた場合", new_password_path(resource_name), class: "forgotpassword"
+    .loginoutline__box__field
+      = f.password_field :password, autocomplete: "off", class: "form"
+    .loginoutline__box__loginbutton
+      = f.submit "ログイン", class: "button"
+    .loginoutline__box__chkbox
+      .loginoutline__box__chkbox__text
       = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+      = f.label :remember_me , "ログインしたままにする"
+      = link_to "詳細", ""
+    .loginoutline__box__newcustomer
+      .loginoutline__box__newcustomer__line
+        Amazonの新しいお客様ですか？
+      .loginoutline__box__newcustomer__button
+        = link_to "Amazonのアカウントを作成",new_user_registration_path, class: "graybutton"
+= render "devise/shared/userfooter"
