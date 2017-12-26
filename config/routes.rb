@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :admin, only: [:index]
   resources :userpermissions, only: [:index, :update]
+  resources :users, only: [:index, :show]
 
 end
