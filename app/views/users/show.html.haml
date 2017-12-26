@@ -1,0 +1,59 @@
+= render "shared/header"
+.mystorefirstheader
+  .ul
+    .li
+      マイストア
+    .li
+      表示履歴
+    .li
+      お客様へのおすすめ
+    .li
+      おすすめ商品を正確にする
+    .li
+      プロフィール
+    .li
+      詳しくはこちら
+.mystoresecondheader
+  .mystoresecondheader__avatar
+    = image_tag "face_icon.png", width: 80, height: 80
+  .mystoresecondheader__name
+    = @user.first_name
+    = @user.last_name
+    .br
+    さんのストア
+  .mystoresecondheader__recentorder
+    お客様のご注文
+    .br
+    n件の最近のご注文
+    .br
+    = link_to "詳細を表示",""
+  .mystoresecondheader__prime
+    プライム会員の特典
+    .bt
+    無制限のフォトストレージ
+    .br
+    = link_to "詳細を表示",""
+  .mystoresecondheader__audible
+    AUDIBLE：無料体験で聴こう
+    .br
+    M-1グランプリ爆笑ネタ配信中
+    .br
+    = link_to "今すぐチェック",""
+  .mystoresecondheader__starting
+    ご利用開始年度
+    .br
+    = @user.created_at.in_time_zone('Tokyo').strftime("%Y")
+.mystoremainwindow
+  .mystoremainwindow__recommendtitle
+    = @user.first_name
+    = @user.last_name
+    さんへのおすすめ
+  - 21.times do |i|
+    .mystoremainwindow__recommenditems
+      .mystoremainwindow__recommenditems__images
+        = image_tag "recommenditems.png", width: 300, height:300
+      .mystoremainwindow__recommenditems__title
+        TESTTEST
+      .mystoremainwindow__recommenditems__count
+        n商品
+= render "shared/footer"
