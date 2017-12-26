@@ -1,0 +1,458 @@
+.add-to-cart {
+  padding-top: 100px;
+  width: 100%;
+  &__box {
+    width: 1150px;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    &__left {
+      background-color: #fafafa;
+      width: 260px;
+      height: 60px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #cccccc;
+      float: left;
+      &__checkmark {
+        height: 50px;
+        width: 50px;
+        float: left;
+        &__icon {
+          color: #099700;
+          font-size: 20px;
+          margin-left: 15px;
+          margin-top: 20px;
+        }
+      }
+      &__image {
+        border-color: #099700;
+        border-style: solid;
+        border-width: 1px;
+        width: 60px;
+        height: 46px;
+        margin-top: 5px;
+        float: left;
+        &__outer {
+          // background-color: blue;
+          width: 50px;
+          height: 46px;
+          float: left;
+          &__checkicon {
+            height: 45px;
+            width: 49px;
+          }
+        }
+        &__inner {
+          width: 10px;
+          height: 46px;
+          float: left;
+        }
+      }
+      &__textbox {
+        width: 140px;
+        height: 60px;
+        float: left;
+        &__text{
+          color: #099700;
+          font-size: 17px!important;
+          font-weight: 700!important;
+          height: 20px;
+          width: 120px;
+          text-align: center;
+          padding: 20px 0;
+          margin: 0 auto;
+        }
+      }
+    }
+    &__center {
+      background-color: #f3f3f3;
+      width: 540px;
+      height: 60px;
+      float: left;
+      border-top-color: #cccccc;
+      border-bottom-color: #cccccc;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-top-style: solid;
+      border-bottom-style: solid;
+      &__text {
+        height: 60px;
+        padding-top: 5px;
+        padding-left: 20px;
+        &__over {
+          height: 30px;
+        }
+        &__under {
+          height: 30px;
+        }
+      }
+    }
+    &__right {
+      background-color: #f3f3f3;
+      width: 340px;
+      height: 60px;
+      border-top-color: #cccccc;
+      border-bottom-color: #cccccc;
+      border-right-color: #cccccc;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+      border-top-style: solid;
+      border-bottom-style: solid;
+      border-right-style: solid;
+      float: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__box {
+        height: 40px;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.showbtn{
+  background-color: #e7e9ec;
+  border-color: #a2a6ac;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  width: 100px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+  margin-right: 10px;
+  &__link {
+    text-decoration: none;
+    &__btn {
+      font-size: 14px;
+      color: #111;
+    }
+  }
+}
+
+.showbtn__mini{
+  background-color: #e7e9ec;
+  border-color: #a2a6ac;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  width: 120px;
+  height: 20px;
+  float: left;
+  text-align: center;
+  padding-top: 5px;
+  margin-right: 10px;
+  &__link {
+    text-decoration: none;
+    &__btn {
+      font-size: 12px;
+      color: #111;
+    }
+  }
+}
+
+.registerbtn{
+  background-color: #f5bc17;
+  border-color: #9b7e31;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 190px;
+  height: 30px;
+  text-align: center;
+  float: left;
+  vertical-align: center;
+  padding-top: 10px;
+  &__link {
+    text-decoration: none;
+    &__btn {
+      font-size: 14px;
+      color: #111;
+    }
+  }
+}
+
+.showbtn a{
+  color: #000000;
+  text-decoration: none;
+}
+
+.showbtn__mini a{
+  color: #000000;
+  text-decoration: none;
+}
+.registerbtn a{
+  color: #000000;
+  text-decoration: none;
+}
+
+
+.recommends{
+  padding-left: 100px;
+  font-size: 20px;
+  &__one{
+    padding-bottom: 20px;
+  }
+  &__two{
+    padding-bottom: 20px;
+  }
+  &__three{
+    padding-bottom: 20px;
+  }
+  &__four{
+    padding-bottom: 20px;
+  }
+}
+
+.carttotal{
+  margin: 0 auto;
+  width: 700px;
+  height: 50px;
+  border: 1px solid;
+  border-color: #CCCCCC;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  padding-top: 10px;
+  padding-left: 40px;
+  &__text{
+    float: left;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+  &__itemcount{
+    float: left;
+    padding-top: 10px;
+  }
+  &__price{
+    float: left;
+    padding-right: 50px;
+    padding-top: 10px;
+  }
+}
+
+
+.cartleftwindow{
+  padding-top: 120px;
+  float: left;
+  width: 1200px;
+  &__ad{
+    width: 1100px;
+    height: 150px;
+    border: 1px solid;
+    border-color: #d8d8d8;
+  }
+  &__title{
+    padding-top: 10px;
+    &__left{
+      font-size: 20px;
+      float: left;
+    }
+    &__right{
+      float: right;
+      padding-right: 100px;
+      font-size: 12px;
+
+    }
+
+  }
+  &__topborder{
+    clear: both;
+    padding-top: 10px;
+    padding-right: 100px;
+    &__pricetext{
+      float: left;
+      padding-left: 800px;
+    }
+    &__quantitytext{
+      float: left;
+      padding-left: 200px;
+    }
+    &__line{
+      clear: both;
+      padding-top: 10px;
+      border-bottom:  1px solid;
+      border-color: #d8d8d8;
+    }
+
+  }
+  &__goodslist{
+    padding-top: 10px;
+    &__detail{
+      width: 700px;
+      float: left;
+      &__image{
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      &__title{
+        float: left;
+        padding-right: 10px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      &__maker{
+        font-size: 14px;
+      }
+      &__stockcheck{
+        font-size: 10px;
+      }
+      &__primemark{
+
+      }
+      &__giftbox{
+        font-size: 12px;
+      }
+      &__destroy{
+        font-size: 12px;
+        float: left;
+        padding-right: 10px;
+      }
+      &__buylater{
+        font-size: 12px;
+
+      }
+    }
+    &__pricespace{
+      float: left;
+      padding-left: 70px;
+      &__price{
+        width: 150px;
+        float: left;
+        font-size: 20px;
+        color: #A82207;
+        font-weight: bold;
+        padding-top: 20px;
+      }
+    }
+    &__quantityspace{
+      float: left;
+      width: 150px;
+      padding-left: 100px;
+      &__quantity{
+      }
+    }
+  }
+  &__bottomborder{
+    clear: both;
+    width: 1100px;
+    border-bottom: 1px solid;
+    border-color: #d8d8d8;
+    padding-top: 20px;
+  }
+  &__subtotal{
+    float: right;
+    padding-right: 120px;
+    font-weight: bold;
+    &__items{
+      float: left;
+    }
+    &__total{
+      float: left;
+      color:  #A82207;
+
+    }
+  }
+  &__points{
+    clear: both;
+    text-align: right;
+    padding-right: 120px;
+    padding-top: 10px;
+    font-size: 12px;
+  }
+  &__message{
+    padding-top: 20px;
+    font-size: 12px;
+  }
+}
+
+.cartrightwindow{
+  padding-top: 120px;
+  float: left;
+  &__totalbox{
+    width: 300px;
+    height: 250px;
+    background-color: #f1f1f1;
+    border: 1px solid;
+    border-color: #d8d8d8;
+    border-radius: 8px;
+    &__subtotaltext{
+      padding: 10px 0 10px 20px;
+      font-weight: bold;
+    }
+    &__points{
+      font-size: 12px;
+      padding-left:20px;
+    }
+    &__giftsettings{
+      font-size: 12px;
+      padding-left:20px;
+    }
+    &__registarbtn{
+      padding: 20px 0 20px 60px;
+    }
+    &__bordertext{
+      clear: both;
+      font-size: 12px;
+      padding-top: 20px;
+      text-align: center;
+    }
+    &__oneclicklinks{
+      font-size: 12px;
+      padding-top: 20px;
+      text-align: center;
+    }
+  }
+  &__sponsoredgoodslink{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 500px;
+    border: 1px solid;
+    border-color: #d8d8d8;
+    border-radius: 8px;
+    &__title{
+      padding: 10px 20px 20px 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    &__items{
+      font-size: 12px;
+      &__image{
+        float: left;
+      }
+      &__goodsname{
+        // font-size: 12px;
+      }
+      &__rate{
+
+      }
+      &__price{
+        float: left;
+        font-weight: bold;
+        color: #A82207;
+      }
+      &__primemark{
+
+      }
+      &__allitems{
+
+
+      }
+    }
+  }
+}
+
+.cartleftwindow a{
+  color: #0000FF;
+  text-decoration: none;
+}
