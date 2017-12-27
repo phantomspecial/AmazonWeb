@@ -1,0 +1,15 @@
+= render "shared/adminheader"
+= render "shared/leftsidebar"
+.adminmainwindow
+  .adminmainwindow__title
+    [カテゴリー登録]
+    = form_for @category do |f|
+      .adminmainwindow__fields
+        = f.label :name, "カテゴリー名"
+        = f.text_field :name, placeholder: "カテゴリーを入力してください"
+      .adminmainwindow__fields
+        = f.label :description, "カテゴリー説明"
+        = f.text_field :description, placeholder: "カテゴリー説明を入力してください"
+      .adminmainwindow__fields
+        = f.submit value: "Send", class: "SendButton"
+= render "shared/adminfooter"
