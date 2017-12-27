@@ -191,15 +191,22 @@
   border-color: #3c4551;
 }
 
-.navFooterLine_navFooterLinkLine_navFooterDescLine{
+.admin{
   padding: 10px 0 10px 0;
   background-color: #141a22;
   width: 100vw;
-  &__list{
-    color: #ffffff;
-    font-size: 10px;
-    padding-left: 250px;
-  }
+  height: 30px;
+  a {
+    text-decoration: none;
+    color: white;
+    margin: 50%;
+    font-family: arial;
+    }
+  // &__admin{
+  //   color: #ffffff;
+  //   font-size: 10px;
+  //   padding-left: 250px;
+  // }
 }
 
 // 管理者ページ
@@ -286,6 +293,8 @@
       font-size: 16px;
       padding-left: 10px;
     }
+    a{text-decoration: none;
+      color: blue;}
   }
 }
 

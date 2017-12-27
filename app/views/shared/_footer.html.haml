@@ -97,13 +97,8 @@
   .icp-button#icp-touch-link-country
   .icp-button#icp-touch-link-language
 
-.navFooterLine_navFooterLinkLine_navFooterDescLine
-  .navFooterLine_navFooterLinkLine_navFooterDescLine__list
-    .ul
-      %li<>
-        = link_to "Audible（オーディブル" ""
-        .br
-        = link_to "本は「朗読」で聴こう", ""
+.admin
+  - if user_signed_in?
+    - if current_user.admin_flg == true
+      = link_to 'admin', admin_index_path
 
-
-.navFooterLine_navFooterLinkLine_navFooterPadItemLine_navFooterCopyright_navFooterLineDivider
