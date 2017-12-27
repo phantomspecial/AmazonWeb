@@ -5,7 +5,28 @@ class OrdersController < ApplicationController
   def show
   end
 
+
+  def delivery
+    # 配送先の選択画面
+    @user = current_user
+  end
+
+  def gift
+    # 決済方法の選択画面
+    @user = current_user
+  end
+
+  def new
+    # 購入確認画面
+    @user = current_user
+    @carts = current_user.carts
+    @carts_user_id = 1
+    @carts_stock_id = 1
+    @carts_quantity = 10
+  end
+
   def create
+    # 購入完了画面
     # カートテーブルから、そのユーザのレコードを持ってくる
     @currentorder = current_user.carts
 

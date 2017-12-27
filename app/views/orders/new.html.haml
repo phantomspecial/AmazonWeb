@@ -1,0 +1,35 @@
+.h2
+  注文内容を確認・変更する
+
+.h4
+  - @carts.each do |cart|
+    - @stock = Stock.find(cart.stock_id)
+      = @stock.name
+      = @stock.sell_price
+      = cart.quantity
+      - total += cart.quantity * @stock.sell_price
+      - totalshipphingcost += cart.quantity * @stock.shipping_cost
+
+
+.h4
+  = @carts_stock_id
+  .br
+  = @carts_quantity
+  .br
+  = @carts_user_id
+
+.h4
+  = link_to "注文を確定する", orders_path, method: :create
+
+.h4
+  注文内容
+
+.h4
+  商品の小計
+  .br
+  / = total
+  .br
+  配送料・手数料
+  .br
+  / = totalshipphingcost
+

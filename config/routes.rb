@@ -9,7 +9,12 @@ Rails.application.routes.draw do
       get 'addto'
     end
   end
-  resources :orders
+  resources :orders do
+    collection do
+      get 'delivery'
+      get 'gift'
+    end
+  end
   resources :admin, only: [:index]
   resources :userpermissions, only: [:index, :update]
   resources :users, only: [:index, :show, :new]
