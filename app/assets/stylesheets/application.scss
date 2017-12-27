@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+@import "_reset";
+@import "header";
+@import "items";
+@import "stocks";
+@import "font-awesome";
+@import "amazonweb";
+@import "user";
+@import "carts";
+@import "order"
+

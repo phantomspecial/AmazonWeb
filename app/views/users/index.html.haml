@@ -1,0 +1,139 @@
+= render "shared/header"
+.mainwindow
+  .mainwindow__title
+    アカウントサービス
+  .mainwindow__topboxleft
+    .unit1
+      .unit1__boximage
+        =image_tag "orders.png", width: 96 , height: 54
+      .unit1__boxname
+        注文履歴
+      .unit1__boxdetail
+        配送状況の確認・返品手続き
+    .unit2
+      .unit2__boximage
+        =image_tag "addresses.png", width: 96 , height: 72
+      .unit2__boxname
+        アドレス帳
+      .unit2__boxdetail
+        登録住所の追加・変更
+  .mainwindow__topboxcenter
+    .unit1
+      .unit1__boximage
+        =image_tag "security.png", width: 96 , height: 72
+      .unit1__boxname
+        サインインとセキュリティ
+      .unit1__boxdetail
+        アカウント情報の変更
+    .unit2
+      .unit2__boximage
+        =image_tag "payments.png", width: 96 , height: 54
+      .unit2__boxname
+        お支払い方法
+      .unit2__boxdetail
+        お支払い方法の追加・変更
+  .mainwindow__topboxright
+    .unit1
+      .unit1__boximage
+        =image_tag "prime.png", width: 96 , height: 72
+      .unit1__boxname
+        プライム
+      .unit1__boxdetail
+        会員特典とお支払い方法の確認
+    .unit2
+      .unit2__boximage
+        =image_tag "giftcard.png", width: 96 , height: 54
+      .unit2__boxname
+        Amazonギフト券
+      .unit2__boxdetail
+        残高の確認・ギフト券の登録
+  .mainwindow__borderline
+  .mainwindow__middleboxleft
+    .unit3
+      .unit3__boxtitle
+        デジタルコンテンツとデバイス
+      .unit3__boxlinks
+        = link_to "Amazon Driveの管理", ""
+      .unit3__boxlinks
+        = link_to "アプリライブラリと端末の管理", ""
+      .unit3__boxlinks
+        = link_to "コンテンツと端末の管理", ""
+      .unit3__boxlinks
+        = link_to "ゲーム&PCソフトダウンロードライブラリ", ""
+      .unit3__boxlinks
+        = link_to "Amazon Musicの設定", ""
+      .unit3__boxlinks
+        = link_to "Amazon ビデオの設定", ""
+    .unit4
+      .unit4__boxtitle
+        お買い物設定
+      .unit4__boxlinks
+        = link_to "非表示にした注文の表示",""
+      .unit4__boxlinks
+        = link_to "言語設定の変更",""
+      .unit4__boxlinks
+        = link_to "マイリスト",""
+      .unit4__boxlinks
+        = link_to "プロフィール",""
+      .unit4__boxlinks
+        = link_to "ソーシャル設定",""
+    .unit5
+      .unit5__boxtitle
+        メールマガジン
+      .unit5__boxlinks
+        = link_to "デリバーズ(購読Eメール)の設定",""
+  .mainwindow__middleboxmiddle
+    .unit3
+      .unit3__boxtitle
+        Eメールとメッセージ
+      .unit3__boxlinks
+        = link_to "広告表示の設定",""
+      .unit3__boxlinks
+        = link_to "情報配信サービスの設定",""
+      .unit3__boxlinks
+        = link_to "メッセージセンター",""
+      .unit3__boxlinks
+        = link_to "Amazon.co.jp お知らせEメール",""
+    .unit4
+      .unit4__boxtitle
+        その他のアカウント
+      .unit4__boxlinks
+        = link_to "出品用アカウント",""
+      .unit4__boxlinks
+        = link_to "Amazon Webサービスアカウント",""
+      .unit4__boxlinks
+        = link_to "Audibleアカウント",""
+      .unit4__boxlinks
+        = link_to "Amazonログインの設定",""
+      .unit4__boxlinks
+        = link_to "Amazon Business",""
+      .unit4__boxlinks
+        = link_to "Twitch アカウント設定の管理",""
+  .mainwindow__middleboxright
+    .unit3
+      .unit3__boxtitle
+        その他の支払い方法
+      .unit3__boxlinks
+        = link_to "1-Click 設定",""
+      .unit3__boxlinks
+        = link_to "各種クレジットカードの紹介・入会情報",""
+      .unit3__boxlinks
+        = link_to "Amazonコインの獲得・利用履歴の確認",""
+      .unit3__boxlinks
+        = link_to "Amazon Payの購入履歴の確認",""
+      .unit3__boxlinks
+        = link_to "クーポン",""
+      .unit3__boxlinks
+        = link_to "Amazonポイントの獲得・利用履歴の確認",""
+      .unit3__boxlinks
+        = link_to "パートナーポイントの管理",""
+    .unit4
+      .unit4__boxtitle
+        お買い物プログラム
+      .unit4__boxlinks
+        = link_to "バーチャルダッシュ",""
+      .unit4__boxlinks
+        = link_to "Amazon定期おトク便情報の管理",""
+.historybox
+  ここに閲覧履歴とおすすめを表示します。
+= render "shared/footer"

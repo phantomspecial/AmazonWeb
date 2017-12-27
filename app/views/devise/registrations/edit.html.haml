@@ -1,73 +1,80 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      %br/
-      %em
-        = @minimum_password_length
-        characters minimum
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name, autofocus: true
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name, autofocus: true
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname, autofocus: true
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code, autofocus: true
-  .field
-    = f.label :pref
-    %br/
-    = f.text_field :pref, autofocus: true
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city, autofocus: true
-  .field
-    = f.label :street
-    %br/
-    = f.text_field :street, autofocus: true
-  .field
-    = f.label :apartment_roomnumber
-    %br/
-    = f.text_field :apartment_roomnumber, autofocus: true
-  .field
-    = f.label :telnumber
-    %br/
-    = f.text_field :telnumber, autofocus: true
+= render "devise/shared/userheader"
+.signupline
+  .signupline__box
+    ユーザー情報編集
+  .signupline__message
+    ※ 必須項目
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    .signupline__box__item
+      = f.label :email, "Eメールアドレス"
+    .signupline__box__field
+      = f.email_field :email, autofocus: true, class: "form"
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+    .signupline__box__item
+      = f.label :password, "新しいパスワード"
+      .br
+        パスワードを変更しない場合は
+      .br
+        空白のままにしてください
+    .signupline__box__field
+      = f.password_field :password, autocomplete: "off", class: "form"
+      - if @minimum_password_length
+        .p
+          = @minimum_password_length
+          文字以上必要です
+    .signupline__box__item
+      = f.label :password_confirmation, "新しいパスワード(再入力)"
+    .signupline__box__field
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form"
+    .signupline__box__item
+      = f.label :current_password, "現在のパスワード ※"
+      .br
+        情報を変更する場合、現在のパスワードを
+      .br
+        入力する必要があります
+    .signupline__box__field
+      = f.password_field :current_password, autocomplete: "off", class: "form"
+    .signupline__box__item
+      = f.label :first_name, "苗字"
+    .signupline__box__field
+      = f.text_field :first_name, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :last_name, "名前"
+    .signupline__box__field
+      = f.text_field :last_name, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :nickname, "ニックネーム"
+    .signupline__box__field
+      = f.text_field :nickname, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :postal_code, "郵便番号"
+    .signupline__box__field
+      = f.text_field :postal_code, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :pref, "都道府県"
+    .signupline__box__field
+      = f.text_field :pref, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :city, "市区町村"
+    .signupline__box__field
+      = f.text_field :city, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :street, "町名番地"
+    .signupline__box__field
+      = f.text_field :street, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :apartment_roomnumber, "建物・電話番号"
+    .signupline__box__field
+      = f.text_field :apartment_roomnumber, autofocus: true, class: "form"
+    .signupline__box__item
+      = f.label :telnumber , "電話番号"
+    .signupline__box__field
+      = f.text_field :telnumber, autofocus: true, class: "form"
+    .signupline__box__button
+      = f.submit "更新", class: "button"
+    .signupline__box__backbutton
+      = link_to "前の画面に戻る", :back, class: "graybutton"
 
-  .actions
-    = f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+= render "devise/shared/userfooter"

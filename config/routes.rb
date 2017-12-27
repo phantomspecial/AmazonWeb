@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :orders
   resources :admin, only: [:index]
   resources :userpermissions, only: [:index, :update]
+  resources :users, only: [:index, :show, :new]
+  resources :carts
+  resources :categories
 
   resources :carts, only: [:index, :show, :destroy, :edit, :update, :create]
 

@@ -22,3 +22,9 @@
       = link_to "権限変更", "/userpermissions"
     .adminleftwindow__linkbox__links
       = link_to "ログアウト" , destroy_user_session_path, method: :delete
+    .adminleftwindow__linkbox__title
+      [カテゴリー管理]
+    .adminleftwindow__linkbox__links
+    = link_to "カテゴリ一覧ページ", categories_path
+    .adminleftwindow__linkbox__links
+    = link_to "カテゴリーを作成", new_category_path
