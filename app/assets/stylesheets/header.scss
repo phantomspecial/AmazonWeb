@@ -98,9 +98,12 @@
       color: #DADADA;
       padding-left: 100px;
       padding-top: 20px;
+
       &__mystore{
       float: left;
       padding-left: 10px;
+      a.link{text-decoration: none;
+              color: #DADADA;}
       }
       &__timesale{
       float: left;

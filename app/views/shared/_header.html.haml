@@ -105,15 +105,16 @@
           %option{:value => "search-alias=warehouse-deals"} Amazonアウトレット
 
       .nav-below__amazonpoint
-        .nav-below__amazonpoint__mystore マイストア
+        .nav-below__amazonpoint__mystore
+          =link_to "マイストア", users_path, :class => "link"
         .nav-below__amazonpoint__timesale タイムセール
         .nav-below__amazonpoint__gift     ギフト券
 
       .nav-below__tools
         .nav-below__tools__account
-          %select.nav-below__tools__account__searchselect
-            %option{:selected => "selected", :value => "search-alias=aps", :style => "background-color:"} アカウント&リスト
-            %option{:value => "search-alias=account"} アカウントサービス
+          %select{ onChange: "location.href=value;", class: "nav-below__tools__account__searchselect"}
+            %option{:selected => "selected", :value => "users"} アカウント&リスト
+            %option{:value => "users"} アカウントサービス
             %option{:value => "search-alias=orderhistory"} 注文履歴
             %option{:value => "search-alias=vertualdash"} バーチャルダッシュ
             %option{:value => "search-alias=wishlist"} ほしい物リスト
