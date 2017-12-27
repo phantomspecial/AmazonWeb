@@ -1,0 +1,71 @@
+= render "shared/header"
+.add-to-cart
+  .add-to-cart__box
+    .add-to-cart__box__left
+      .add-to-cart__box__left__checkmark
+        %i.fa.fa-check.add-to-cart__box__left__checkmark__icon.fa-fw.fa-2x
+      .add-to-cart__box__left__image
+        .add-to-cart__box__left__image__outer
+        .add-to-cart__box__left__image__inner
+      .add-to-cart__box__left__textbox
+        .add-to-cart__box__left__textbox__text
+          追加されました
+    .add-to-cart__box__center
+      .add-to-cart__box__center__text
+        .add-to-cart__box__center__text__over
+          %span.add-to-cart__box__center__text__over__total
+            %b カートの小計（商品4点）:
+          %span.add-to-cart__box__center__text__over__price
+            %b{style: "color: red;"} ￥ 11,502
+        .add-to-cart__box__center__text__under
+          この注文での獲得ポイント: 0pt
+    .add-to-cart__box__rig
+      .add-to-cart__box__right__box
+        .showbtn
+          = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
+            %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
+        .registerbtn
+          = link_to root_path class: "add-to-cart__box__right__box__registerbtn__link" do
+            %btn.add-to-cart__box__right__box__registerbtn__link__btn レジに進む
+.recommends
+  .recommends__one
+    .recommends__one__title
+      この商品に関するスポンサーの商品
+    .recommends__one__images
+      - 4.times do |i|
+        = image_tag "recommenditems.png", width: 250 ,height: 250
+  .recommends__two
+    .recommends__two__title
+      もう一度買う
+    .recommends__two__images
+      - 4.times do |i|
+        = image_tag "wintersale.jpg", width: 250 ,height: 250
+  .recommends__three
+    .recommends__three__title
+      この商品を買った人は、こちらの商品も買っています
+    .recommends__three__images
+      - 4.times do |i|
+        = image_tag "camera.png", width: 250 ,height: 250
+  .recommends__four
+    .recommends__four__title
+      この商品をチェックした人は、こちらの商品もチェックしています
+    .recommends__four__images
+      - 4.times do |i|
+        = image_tag "audio_visuals.png", width: 250 ,height: 250
+.carttotal
+  .carttotal__text
+    カートの小計
+  .carttotal__itemcount
+    (商品
+    n
+    点)：
+  .carttotal__price
+    %b{style: "color: red;"} ￥ 11,502
+  .showbtn
+    = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
+      %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
+  .registerbtn
+    = link_to root_path class: "add-to-cart__box__right__box__registerbtn__link" do
+      %btn.add-to-cart__box__right__box__registerbtn__link__btn レジに進む
+
+= render "shared/footer"

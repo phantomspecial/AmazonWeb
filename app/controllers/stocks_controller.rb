@@ -6,6 +6,15 @@ class StocksController < ApplicationController
     @stocks = Stock.all
   end
 
+  def show
+    @stock = Stock.find(params[:id])
+    @cart = Cart.new
+  end
+
+  def create
+
+  end
+
   def destroy
     stock = Stock.find(params[:id])
     # nameを削除しますか？この操作は元に戻せませんのアラート
@@ -29,5 +38,8 @@ class StocksController < ApplicationController
     end
   end
 
+  # def stock_cart_params
+  #   params.require(:stock).permit(:name, :image, :maker, :sell_price, carts_attributes: [:quantity])
+  # end
 
 end

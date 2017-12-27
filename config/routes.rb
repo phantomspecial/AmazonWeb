@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :admin, only: [:index]
   resources :userpermissions, only: [:index, :update]
 
+  resources :carts, only: [:index, :show, :destroy, :edit, :update, :create]
+
 end
