@@ -80,6 +80,7 @@ class OrdersController < ApplicationController
       currentorder.destroy
     end
 
+    # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)
     @orderviews.each do |orderview|
       @orderstocknames = Stock.find(orderview.stock_id).name
