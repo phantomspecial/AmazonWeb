@@ -7,12 +7,10 @@ class CartsController < ApplicationController
 
   def show
     @carts = current_user.carts.all
-    # @stock = Stock.find(params[:id])
-    # @order = order.new
   end
 
   def create
-    @cart = Cart.new(cart_params)
+    @cart = current_user.carts.new(cart_params)
     @cart.save
   end
 
@@ -31,7 +29,7 @@ class CartsController < ApplicationController
 
   private
   def cart_params
-    params.require(:cart).permit(:quantity, :user_id, :stock_id)
+    params.require(:cart).permit(:quantity, :stock_id)
   end
 
 end

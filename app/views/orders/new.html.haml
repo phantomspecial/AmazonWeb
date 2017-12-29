@@ -4,13 +4,11 @@
 .h4
   - @carts.each do |cart|
     - @stock = Stock.find(cart.stock_id)
-      = @stock.name
-      = @stock.sell_price
-      = cart.quantity
-      - total += cart.quantity * @stock.sell_price
-      - totalshipphingcost += cart.quantity * @stock.shipping_cost
-
-
+    = @stock.name
+    = @stock.sell_price
+    = cart.quantity
+    / - total = total +cart.quantity * @stock.sell_price
+    / - totalshipphingcost += cart.quantity * @stock.shipping_cost
 .h4
   = @carts_stock_id
   .br

@@ -4,7 +4,6 @@
       .show__cart__quantity
         = f.label :quantity, "数量"
         = f.text_field :quantity, placeholder: "数量入力"
-        = f.hidden_field :user_id, value: params[:id]
         = f.hidden_field :stock_id, value: params[:id]
       .show__cart__data
         = f.submit value: "カートに入れる", class: "SendButton"

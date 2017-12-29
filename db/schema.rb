@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20171226070914) do
+ActiveRecord::Schema.define(version: 20171227052322) do
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity",   null: false
@@ -21,16 +20,13 @@ ActiveRecord::Schema.define(version: 20171226070914) do
     t.datetime "updated_at", null: false
     t.index ["stock_id"], name: "index_carts_on_stock_id", using: :btree
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
-
-
-ActiveRecord::Schema.define(version: 20171227023751) do
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.text     "description", limit: 65535
+    t.string   "name",                      null: false
+    t.text     "description", limit: 65535, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,15 +67,17 @@ ActiveRecord::Schema.define(version: 20171227023751) do
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "unique_item_id", null: false
-    t.string   "name",           null: false
-    t.string   "maker",          null: false
-    t.integer  "avg_unit_cost",  null: false
-    t.integer  "current_stock",  null: false
-    t.integer  "sell_price",     null: false
-    t.integer  "shipping_cost",  null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "item_id",       null: false
+    t.string   "name",          null: false
+    t.string   "image",         null: false
+    t.string   "detail",        null: false
+    t.string   "maker",         null: false
+    t.integer  "avg_unit_cost", null: false
+    t.integer  "current_stock", null: false
+    t.integer  "sell_price",    null: false
+    t.integer  "shipping_cost", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -93,7 +91,8 @@ ActiveRecord::Schema.define(version: 20171227023751) do
     t.string   "city",                                null: false
     t.string   "street",                              null: false
     t.string   "apartment_roomnumber"
-    t.integer  "telnumber",                           null: false
+    t.string   "telnumber",                           null: false
+    t.boolean  "admin_flg"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -104,7 +103,6 @@ ActiveRecord::Schema.define(version: 20171227023751) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.boolean  "admin_flg"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
