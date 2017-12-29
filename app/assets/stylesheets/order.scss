@@ -7,11 +7,127 @@
 
 
 // 注文完了画面 create
-.ordermessages{
+.orderheader{
   padding-top: 100px;
+}
+.ordermessages{
+  border: 2px solid;
+  margin: 10px 10px 10px 10px;
+  height: 200px;
+  border-radius: 8px;
+  border-color: #baddb5;
+  &__checkicon{
+    padding: 20px 20px 20px;
+    font-size: 24px;
+    color: #369011;
+    float: left;
+  }
+  &__messagebox{
+    float: left;
+    padding-top: 20px;
+    &__title{
+      font-size: 20px;
+      color:  #369011;
+      font-weight: bold;
+    }
+    &__sendemail{
+      font-size: 12px;
+    }
+    &__orderid{
+      padding-top: 10px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    &__itemtext{
+      font-size: 12px;
+    }
+    &__deliverdate{
+      font-size: 12px;
+    }
+    &__links{
+      font-size: 12px;
+    }
+  }
+  &__snsbox{
+    float: left;
+    padding-top: 20px;
+    padding-left: 200px;
+    width: 500px;
+    height: 200px;
+    &__snstitle{
+
+    }
+    &__itemimage{
+      float: left;
+      padding-right: 20px;
+    }
+    &__itemtitle{
+      font-size: 12px;
+      font-weight: bold;
+    }
+    &__itemmessage{
+      font-size: 12px;
+    }
+    &__sharebutton{
+      text-align: right;
+    }
+  }
+}
+
+
+
+// SNSタブ領域
+.tab{
+  overflow:hidden;
+  background-color: #f3f3f3;
+}
+.tab li{
+  background:#ccc;
+  padding:5px 25px;
+  float:left;
+  margin-right:1px;
+}
+.tab li.select{
+  background:#FFFFFF;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right:  1px solid;
+  border-color: #e6e6e6;
+}
+.content li{
+  background:#FFFFFF;
+  padding:20px;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right:  1px solid;
+  border-color: #e6e6e6;
+}
+.hide {
+  display:none;
+}
+
+// シェアボタン
+.sharebutton{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #000000;
+}
+
+
+
+// リンク文字装飾
+.ordermessages__messagebox__links a{
+  color: #0000FF;
+  text-decoration: none;
 }
 
 .recommends{
+  clear: both;
   padding-left: 100px;
   font-size: 20px;
   &__one{

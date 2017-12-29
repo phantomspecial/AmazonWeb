@@ -1,35 +1,77 @@
 = render "shared/header"
+.orderheader
 .ordermessages
   .ordermessages__checkicon
+    %i.fa.fa-check
   .ordermessages__messagebox
     .ordermessages__messagebox__title
       ありがとうございます。注文が確定されました。
     .ordermessages__messagebox__sendemail
       確認のEメールを送信しました。
     .ordermessages__messagebox__orderid
-      注文番号
-      111111
+      注文番号：
+      = @order.id
     .ordermessages__messagebox__itemtext
-      メロンパン
-      を次のお届け先へ発送します。
-      USERNAME
+      / - @orderstocknames.each do |orderstockname|
+      /   ・
+      /   = orderstockname
+      を次のお届け先へ発送します
+      = @user.first_name
+      = @user.last_name
       発送元：Amazon Japan G.K.
     .ordermessages__messagebox__deliverdate
-      お届け日：2018年1月1日
+      お届け日：
+      = @deliverydate.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
     .ordermessages__messagebox__links
-      =link_to "注文詳細を見る（注文内容の変更・領収証の印刷）"
-      =link_to "購入についてのよくある質問"
-      =link_to "Amazonポイントを確認する。"
+      =link_to "注文詳細を見る（注文内容の変更・領収証の印刷）","/"
+      |
+      =link_to "購入についてのよくある質問","/"
+      |
+      =link_to "Amazonポイントを確認する","/"
   .ordermessages__snsbox
-    .ordermessages__snstitle
-      Facebook
-    .ordermessages__itemimage
-      = image_tag "prime.png", width:50, height:50
-    .ordermessages__itemtitle
-      次の商品を購入しました：
-      Stock_Name
-    .ordermessages__itemmessage
-      Stock_Detail
+    %ul.tab
+      %li.select
+        %i.fa.fa-facebook-official
+        Facebook
+      %li
+        %i.fa.fa-twitter
+        Twitter
+      %li
+        %i.fa.fa-envelope-o
+        Eメール
+    %ul.content
+      %li
+        .ordermessages__snsbox__itemimage
+          / 商品画像
+          = image_tag "prime.png", width:50, height:50
+        .ordermessages__snsbox__itemtitle
+          次の商品を購入しました：
+          / 商品名
+        .ordermessages__snsbox__itemmessage
+          / 商品詳細
+          Stock_Detail
+        .ordermessages__snsbox__sharebutton
+          = link_to "この商品をシェアする", "/" , class: "sharebutton"
+      %li.hide
+        .ordermessages__snsbox__itemimage
+          = image_tag "prime.png", width:50, height:50
+        .ordermessages__snsbox__itemtitle
+          次の商品を購入しました：
+          Stock_Name
+        .ordermessages__snsbox__itemmessage
+          Stock_Detail
+        .ordermessages__snsbox__sharebutton
+          = link_to "この商品をシェアする", "/" , class: "sharebutton"
+      %li.hide
+        .ordermessages__snsbox__itemimage
+          = image_tag "prime.png", width:50, height:50
+        .ordermessages__snsbox__itemtitle
+          次の商品を購入しました：
+          Stock_Name
+        .ordermessages__snsbox__itemmessage
+          Stock_Detail
+        .ordermessages__snsbox__sharebutton
+          = link_to "この商品をシェアする", "/" , class: "sharebutton"
 .recommends
   .recommends__one
     .recommends__one__title

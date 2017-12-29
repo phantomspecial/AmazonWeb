@@ -79,6 +79,13 @@ class OrdersController < ApplicationController
     @currentorder.each do |currentorder|
       currentorder.destroy
     end
+
+    @orderviews = Orderdetail.where(order_id: @order.id)
+    @orderviews.each do |orderview|
+      @orderstocknames = Stock.find(orderview.stock_id).name
+    end
+    @user = current_user
+    @deliverydate = Order.find(@order.id).created_at.since(2.days)
   end
 
 end

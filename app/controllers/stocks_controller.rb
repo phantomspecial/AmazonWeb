@@ -38,8 +38,4 @@ class StocksController < ApplicationController
     end
   end
 
-  # def stock_cart_params
-  #   params.require(:stock).permit(:name, :image, :maker, :sell_price, carts_attributes: [:quantity])
-  # end
-
 end
