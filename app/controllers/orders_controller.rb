@@ -82,8 +82,9 @@ class OrdersController < ApplicationController
 
     # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)
+    @orderstocknames = []
     @orderviews.each do |orderview|
-      @orderstocknames = Stock.find(orderview.stock_id).name
+      @orderstocks << Stock.find(orderview.stock_id)
     end
     @user = current_user
     @deliverydate = Order.find(@order.id).created_at.since(2.days)

@@ -1,3 +1,416 @@
-// Place all the styles related to the Stocks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.topadlink{
+  padding-top: 100px;
+  text-align: center;
+}
+
+.topcategory{
+  font-size: 12px;
+}
+
+.goodsbox{
+  padding-top: 20px;
+  padding-left: 20px;
+  &__images{
+    float: left;
+    &__imagethumbnail{
+      float: left;
+      width: 80px;
+      &__imgtag{
+        border: 1px solid;
+        border-color: #989ca2;
+        float: left;
+      }
+    }
+    &__topimagebox{
+      float: left;
+      width: 420px;
+      &__imgtag{
+
+      }
+      &__imagemessage{
+        text-align: center;
+      }
+    }
+  }
+  &__textbox{
+    width: 700px;
+    float: left;
+    &__title{
+      font-size: 20px;
+    }
+    &__maker{
+      font-size: 14px;
+    }
+    &__reviewlink{
+      font-size: 14px;
+    }
+    &__referenceprice{
+      padding-top: 20px;
+      font-size: 14px;
+      color: #4c4c4c;
+    }
+    &__price{
+      font-size: 14px;
+      color: #4c4c4c;
+    }
+    &__off{
+      font-size: 14px;
+      color: #4c4c4c;
+    }
+    &__creditcardlink{
+      padding-top: 20px;
+      font-size: 12px;
+    }
+    &__stockbox{
+      padding-top: 20px;
+      &__stock-status{
+        font-size: 16px;
+        float: left;
+      }
+      &__stock-notice{
+        font-size: 12px;
+      }
+    }
+    &__primedelivery{
+      clear: both;
+      padding-top: 10px;
+      font-size: 14px;
+
+    }
+    &__seller-shipping{
+      padding-top: 10px;
+      font-size: 14px;
+    }
+    &__markets{
+      padding-top: 10px;
+      font-size: 14px;
+    }
+    &__detail{
+      padding-top: 10px;
+      font-size: 14px;
+    }
+    &__opinionform{
+      padding-top: 10px;
+      font-size: 14px;
+    }
+    &__adbox{
+      padding-top: 20px;
+      &__image{
+        float: left;
+        padding-right: 20px;
+      }
+      &__text{
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.status-green{
+  color: #007f00;
+}
+
+.status-red{
+  color: #a82207;
+}
+
+
+.rightbox{
+  float: left;
+  width: 300px;
+  padding-left: 40px;
+  &__snsbox{
+    font-size: 14px;
+    text-align: center;
+    padding-bottom:10px;
+  }
+  &__cartbox{
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #d8d8d8;
+    &__quantity{
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+    &__addcartbutton{
+      text-align: center;
+    }
+    &__oneclickorder{
+      text-align: center;
+      font-size: 12px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    &__delivery{
+      padding: 10px 20px 10px 20px;
+      font-size: 14px;
+    }
+    &__wantbutton{
+      text-align: center;
+    }
+    &__virtualdashlink{
+      text-align: center;
+      font-size: 12px;
+      padding-bottom: 20px;
+    }
+  }
+  &__marketplacebox{
+    margin-top: 10px;
+    border: 1px solid;
+    border-color: #d8d8d8;
+    &__label{
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      border-bottom:1px solid;
+      border-color: #d8d8d8;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    &__shoplist{
+      &__price{
+        padding-left: 10px;
+        padding-top: 5px;
+        color: #a82207;
+        font-size: 18px;
+        float: left;
+      }
+      &__addcartbuttonmini{
+        float: right;
+      }
+      &__shipping-cost{
+        padding-left: 10px;
+        clear: both;
+        font-size: 12px;
+      }
+      &__seller{
+        padding-left: 10px;
+        font-size: 12px;
+        border-bottom: 1px solid;
+        border-color: #d8d8d8;
+      }
+    }
+    &__sellerlist{
+      padding: 10px 0 10px 15px;
+      font-size: 12px;
+    }
+  }
+  &__bottommessage{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &__text{
+      font-size: 12px;
+      padding-left: 10px;
+    }
+    &__marketplacebutton{
+      font-size: 12px;
+      text-align: right;
+
+    }
+  }
+}
+
+.AddCartButton{
+    display: inline-block;
+    margin: 20px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 250px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.AddCartButtonMini{
+    display: inline-block;
+    margin: 5px 5px 0 0;
+    padding: 0.5em 1em;
+    width: 80px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.wantbutton{
+    display: inline-block;
+    margin: 30px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 220px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 14px;
+}
+
+.marketplacebutton{
+    display: inline-block;
+    width: 220px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 12px;
+}
+
+.sponsoredproduct{
+  &__images{
+  padding-left: 40px;
+  }
+}
+
+.borderline{
+  clear: both;
+}
+
+.campaignbox{
+  clear: both;
+  &__title{
+  }
+  &__links{
+    padding-left: 40px;
+    font-size: 14px;
+  }
+}
+
+.title{
+  color:  #d07500;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+
+.iteminfomation{
+  &__leftbox{
+    width: 400px;
+    float: left;
+    &__detailbox{
+      padding-left: 20px;
+      &__title{
+        padding-bottom: 10px;
+      }
+      &__table{
+        padding-top: 10px;
+      }
+    }
+  }
+  &__rightbox{
+    width: 400px;
+    padding-left: 40px;
+    float: left;
+    &__registinfo{
+      &__title{
+        padding-bottom: 10px;
+      }
+      &__table{
+        padding-top: 10px;
+      }
+    }
+    &__opinion{
+      padding-top: 20px;
+      &__title{
+        padding-bottom: 10px;
+      }
+      &__link{
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
+
+.afterview{
+  padding-bottom: 20px;
+  &__items{
+    padding-left: 40px;
+    padding-top: 20px;
+    &__image{
+      float: left;
+    }
+    &__title{
+      font-size: 12px;
+    }
+    &__rate{
+      font-size: 12px;
+    }
+    &__price{
+      float: left;
+      font-size: 12px;
+    }
+    &__primemark{
+    }
+  }
+}
+
+.itemdetailbox{
+  padding-bottom: 20px;
+  &__detailtext{
+    padding-left: 40px;
+    padding-top: 20px;
+    font-size: 14px;
+
+  }
+}
+
+
+
+.borderline{
+  border-top: 1px solid;
+  border-color: #e4e3e4;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+// aタグ処理
+.goodsbox a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.rightbox a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.campaignbox a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.sponsoredproduct a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.iteminfomation a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.afterview a{
+  color: #0000FF;
+  text-decoration: none;
+}
+
+
+.rightbox__cartbox__wantbutton a{
+  color: #000000;
+}
+
+.rightbox__marketplacebox__shoplist__addcartbuttonmini a{
+  color: #000000;
+}
+
+.rightbox__bottommessage__marketplacebutton a{
+  color: #000000;
+}

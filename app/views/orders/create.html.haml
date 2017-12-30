@@ -12,9 +12,9 @@
       注文番号：
       = @order.id
     .ordermessages__messagebox__itemtext
-      / - @orderstocknames.each do |orderstockname|
-      /   ・
-      /   = orderstockname
+      - @orderstocks.each do |orderstock|
+        ・
+        = orderstock.name
       を次のお届け先へ発送します
       = @user.first_name
       = @user.last_name

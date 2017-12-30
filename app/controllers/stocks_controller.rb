@@ -9,6 +9,7 @@ class StocksController < ApplicationController
   def show
     @stock = Stock.find(params[:id])
     @cart = current_user.carts.new
+    @user = current_user
   end
 
   def create
