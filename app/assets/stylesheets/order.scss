@@ -397,6 +397,442 @@
 
 
 
+
+// 注文確認画面 new
+.orderbox{
+  padding-left:300px;
+  width: 1200px;
+  &__title{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  &__message{
+    font-size: 12px;
+  }
+  &__leftwindow{
+    padding-top: 10px;
+    float: left;
+    &__notice{
+      width: 800px;
+      height: 70px;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #b2cdd9;
+      background-color: #f9f9f9;
+      font-size: 14px;
+      padding-top: 20px;
+      &__icon{
+        float: left;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      &__title{
+
+      }
+      &__checkbox{
+        padding-left: 40px;
+      }
+    }
+    &__confirmbox{
+      width: 800px;
+      height: 250px;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #d8d8d8;
+      margin-top: 10px;
+      &__deliverybox{
+        width: 250px;
+        padding: 10px 20px 0 20px;
+        float: left;
+      }
+      &__payment-demandbox{
+        width: 200px;
+        padding-top: 10px;
+        padding-left: 20px;
+        float: left;
+      }
+      &__point-giftbox{
+        float: left;
+        width: 200px;
+        padding-top: 10px;
+        padding-left: 20px;
+      }
+    }
+    &__itembox{
+      clear: both;
+      width: 800px;
+      margin-top: 10px;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #d8d8d8;
+      padding: 10px 0 10px 0;
+      &__delivery{
+        padding-left: 10px;
+        &__date{
+          font-size: 18px;
+          font-weight: bold;
+          color: #008e00;
+          float: left;
+        }
+        &__ordertime{
+          padding-left: 10px;
+          padding-top: 5px;
+          font-size: 14px;
+          float: left;
+        }
+        &__detail{
+          padding-left: 10px;
+          padding-top: 5px;
+          font-size: 14px;
+        }
+      }
+      &__leftbox{
+        clear: both;
+        width: 400px;
+        float: left;
+        &__items{
+          padding-left: 10px;
+          &__image{
+            padding-top: 10px;
+            padding-right: 10px;
+            float: left;
+          }
+          &__name{
+            font-size: 14px;
+            font-weight: bold;
+          }
+          &__sellprice{
+            font-size: 14px;
+            color: #a82207;
+            font-weight: bold;
+          }
+          &__stock{
+            font-size: 14px;
+          }
+          &__quantity{
+            font-size: 14px;
+          }
+          &__seller{
+            font-size: 14px;
+            padding-left: 110px;
+          }
+          &__gift{
+            font-size: 14px;
+            padding-left: 110px;
+            padding-bottom: 10px;
+          }
+        }
+      }
+      &__rightbox{
+        float: left;
+        width: 300px;
+        &__primeoption{
+          &__title{
+            font-size: 14px;
+            font-weight: bold;
+          }
+          &__togglebuttons{
+            font-size: 14px;
+          }
+          &__timebtn{
+            font-size: 14px;
+          }
+        }
+        &__deliveryoption{
+          float: left;
+          width: 300px;
+          &__title{
+            font-size: 14px;
+            font-weight: bold;
+          }
+          &__togglebuttons{
+            font-size: 14px;
+          }
+        }
+        &__bottom{
+          clear: both;
+        }
+      }
+    }
+  }
+  &__rightwindow{
+    padding-top: 10px;
+    padding-left: 810px;
+    width: 300px;
+    &__orderbox{
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #d8d8d8;
+      &__orderbtn{
+        text-align: center;
+      }
+      &__title{
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 10px;
+      }
+      &__itemtotal{
+        padding-left: 10px;
+        font-size: 14px;
+        &__label{
+          float: left;
+        }
+        &__yen{
+          text-align: right;
+          padding-right: 15px;
+        }
+      }
+      &__shiptotal{
+        font-size: 14px;
+        &__label{
+          padding-left: 10px;
+          padding-bottom: 5px;
+          float: left;
+        }
+        &__yen{
+          text-align: right;
+          padding-right: 15px;
+        }
+        &__line{
+          border-top: 1px solid;
+          border-color: #d8d8d8;
+          padding-bottom: 5px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+      &__total{
+        &__label{
+          padding-left: 10px;
+          float: left;
+          padding-bottom: 10px;
+          font-weight: bold;
+          color: #a82207;
+        }
+        &__yen{
+          text-align: right;
+          padding-right: 15px;
+          padding-bottom: 10px;
+          font-weight: bold;
+          color: #a82207;
+        }
+        &__line{
+          border-top: 1px solid;
+          border-color: #d8d8d8;
+        }
+      }
+      &__textbox{
+        background-color: #f6f6f6;
+        padding-top: 5px;
+        &__toptext{
+          font-size: 12px;
+          padding-left: 10px;
+          padding-top: 10px;
+        }
+        &__link{
+          font-size: 12px;
+          padding-left: 10px;
+          padding-top: 10px;
+        }
+        &__bottomtext{
+          font-size: 12px;
+          padding: 10px 10px 10px 10px;
+        }
+      }
+    }
+    &__bottomorderbox{
+      margin-top: 300px;
+      width: 300px;
+      height: 60px;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #d8d8d8;
+      &__orderbtn{
+        text-align: center;
+      }
+    }
+  }
+}
+
+.bottommessage{
+  clear: both;
+  padding-top: 10px;
+  padding-left: 300px;
+  width: 1200px;
+  &__text{
+    font-size:12px;
+  }
+}
+
+.delbox{
+  &__title{
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    padding-right: 10px;
+  }
+  &__editlink{
+    font-size: 12px;
+  }
+  &__text{
+    clear: both;
+    font-size: 14px;
+  }
+  &__link{
+    font-size: 12px;
+  }
+  &__shopdelbox{
+    padding-top: 20px;
+    font-size: 12px;
+    &__icon{
+      float: left;
+    }
+    &__message{
+      color: #e06e14;
+    }
+    &__shoplist{
+      float: left;
+    }
+    &__link{
+    }
+  }
+}
+
+.paybox{
+  &__title{
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    padding-right: 10px;
+  }
+  &__editlink{
+    font-size: 12px;
+    // clear: both;
+  }
+  &__creditmark{
+    clear: both;
+    float: left;
+  }
+  &__text{
+    font-size: 14px;
+    float: left;
+  }
+}
+
+.dembox{
+  padding-top: 20px;
+  clear: both;
+  &__title{
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    padding-right: 10px;
+  }
+  &__editlink{
+    font-size: 12px;
+  }
+  &__text{
+    font-size: 14px;
+    clear: both;
+  }
+}
+
+.pobox{
+  &__title{
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  &__text{
+    font-size: 14px;
+  }
+  &__textfield{
+    float: left;
+  }
+  &__apply{
+    font-size: 14px;
+  }
+}
+
+.gibox{
+  padding-top: 20px;
+  clear: both;
+  &__textfield{
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &__apply{
+    font-size: 14px;
+  }
+}
+
+.orderbtn{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 200px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.timebutton{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 200px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 14px;
+}
+
+.applybuttonmini{
+    display: inline-block;
+    width: 50px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 14px;
+}
+
+// aタグ処理
+.orderbox a{
+  text-decoration: none;
+  color: #0000FF;
+}
+
+.bottommessage a{
+  text-decoration: none;
+  color: #0000FF;
+}
+
+.orderbox{
+  &__rightwindow{
+    &__orderbox{
+      &__orderbtn a{
+        color: #000000;
+      }
+    }
+    &__bottomorderbox{
+      &__orderbtn a{
+        color: #000000;
+      }
+    }
+  }
+}
+
+
+
 // 注文完了画面 create
 .orderheader{
   padding-top: 100px;

@@ -1,33 +1,212 @@
-.h2
-  注文内容を確認・変更する
+.headlogo
+  = image_tag "loginlogo.png"
+.orderbox
+  .orderbox__title
+    注文内容を確認・変更する
+  .orderbox__message
+    下の「注文を確定する」ボタンを押してご注文いただくことで、お客様は当サイトの
+    = link_to "プライバシー規約",""
+    および
+    = link_to "利用規約",""
+    に同意の上、商品をご注文されたことになります。
+    .br
+    Amazonマーケットプレイスの商品をご注文された場合、お客様は出品者の返品・交換の条件およびプライバシーポリシー、その他の販売条件、および一部の出品者から商品やサービスのご案内が届くことについても同意されたことになります。国内外の出品者の会社情報および所在並びに各条件・ポリシーの詳細は、出品者のページでご確認ください。
+    .br
+    Amazonマーケットプレイスの商品を購入する場合は、所定の
+    = link_to "配送料",""
+    がかかります。「注文を確定する」ボタンをクリックする前に、
+    = link_to "配送料",""
+    と注文合計をご確認ください。
+  .orderbox__leftwindow
+    .orderbox__leftwindow__notice
+      .orderbox__leftwindow__notice__icon
+        %i.fa.fa-info
+      .orderbox__leftwindow__notice__title
+        重要なお知らせ
+      .orderbox__leftwindow__notice__checkbox
+        選択したお届け先住所と支払い方法を初期設定にする場合は、チェックを入れてください。
+    .orderbox__leftwindow__confirmbox
+      .orderbox__leftwindow__confirmbox__deliverybox
+        .delbox
+          .delbox__title
+            お届け先住所
+          .delbox__editlink
+            =link_to "変更",""
+          .delbox__text
+            =@user.last_name
+            =@user.first_name
+            .br
+            〒
+            =@user.postal_code
+            .br
+            =@user.pref
+            =@user.city
+            =@user.street
+            .br
+            =@user.apartment_roomnumber
+            .br
+            =@user.telnumber
+          .delbox__link
+            =link_to "複数のお届け先を指定する",""
+          .delbox__shopdelbox
+            .delbox__shopdelbox__icon
+              = image_tag "shopdeliveryicon.png", width:50
+            .delbox__shopdelbox__message
+              店頭受取もご利用いただけます
+            .delbox__shopdelbox__shoplist
+              n
+              店舗が近くにあります。
+            .delbox__shopdelbox__link
+              = link_to "選択",""
+      .orderbox__leftwindow__confirmbox__payment-demandbox
+        .paybox
+          .paybox__title
+            支払い方法
+          .paybox__editlink
+            =link_to "変更",""
+          .paybox__creditmark
+            = image_tag "visa_mark.gif"
+          .paybox__text
+            下4桁 0000
+        .dembox
+          .dembox__title
+            請求先住所
+          .dembox__editlink
+            =link_to "変更",""
+          .dembox__text
+            発送先住所と同じ
+      .orderbox__leftwindow__confirmbox__point-giftbox
+        .pobox
+          .pobox__title
+            Amazonポイント：
+          .pobox__text
+            n
+            pt( ¥
+            n
+            相当)利用可能
+          .pobox__textfield
+            %input
+          .pobox__apply
+            = link_to "適用","", class: "applybuttonmini"
+        .gibox
+          .gibox__textfield
+            Amazonギフト券・Amazonショッピングカードまたはクーポン：
+            %input
+          .gibox__apply
+            = link_to "適用","", class: "applybuttonmini"
+    .orderbox__leftwindow__itembox
+      .orderbox__leftwindow__itembox__delivery
+        .orderbox__leftwindow__itembox__delivery__date
+          お届け日：
+          = Time.current.since(1.days).in_time_zone('Tokyo').strftime("%Y年%m月%d日")
+        .orderbox__leftwindow__itembox__delivery__ordertime
+          12 時間 と 38 分以内に確定されたご注文が対象です。
+        .orderbox__leftwindow__itembox__delivery__detail
+          (
+          =link_to "詳細",""
+          )
+      .orderbox__leftwindow__itembox__leftbox
+        - @carts.each do |cart|
+          .orderbox__leftwindow__itembox__leftbox__items
+            .orderbox__leftwindow__itembox__leftbox__items__image
+              = image_tag Stock.find(cart.stock_id).image, width: 100
+            .orderbox__leftwindow__itembox__leftbox__items__name
+              = Stock.find(cart.stock_id).name
+            .orderbox__leftwindow__itembox__leftbox__items__sellprice
+              ¥
+              = Stock.find(cart.stock_id).sell_price
+            .orderbox__leftwindow__itembox__leftbox__items__stock
+              = Stock.find(cart.stock_id).current_stock
+              点在庫あり。
+            .orderbox__leftwindow__itembox__leftbox__items__quantity
+              数量：
+              = cart.quantity
+              = link_to "変更",""
+            .orderbox__leftwindow__itembox__leftbox__items__seller
+              販売：
+              Amazon Japan G.K.
+            .orderbox__leftwindow__itembox__leftbox__items__gift
+              =link_to "ギフトの設定(贈り主名の表示に必要です)",""
+      .orderbox__leftwindow__itembox__rightbox
+        .orderbox__leftwindow__itembox__rightbox__primeoption
+          .orderbox__leftwindow__itembox__rightbox__primeoption__title
+            プライムのお得な配送オプション
+          .orderbox__leftwindow__itembox__rightbox__primeoption__togglebuttons
+            通常配送 無料 ※コンビニ・ATM・ネットバンキング・電子マネー払いの場合は、通常配送を選択してください。
+          .orderbox__leftwindow__itembox__rightbox__primeoption__timebtn
+            = link_to "時間を選択","", class: "timebutton"
+        .orderbox__leftwindow__itembox__rightbox__deliveryoption
+          .orderbox__leftwindow__itembox__rightbox__deliveryoption__title
+            発送オプションの選択
+          .orderbox__leftwindow__itembox__rightbox__deliveryoption__togglebuttons
+            できる限り商品をまとめて発送（最小限の配送料・手数料がかかります）
+      .orderbox__leftwindow__itembox__rightbox__bottom
+  .orderbox__rightwindow
+    .orderbox__rightwindow__orderbox
+      .orderbox__rightwindow__orderbox__orderbtn
+        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+      .orderbox__rightwindow__orderbox__title
+        注文内容
+      .orderbox__rightwindow__orderbox__itemtotal
+        .orderbox__rightwindow__orderbox__itemtotal__label
+          商品の小計：
+        .orderbox__rightwindow__orderbox__itemtotal__yen
+          ¥
+          = @totalitemyen
+      .orderbox__rightwindow__orderbox__shiptotal
+        .orderbox__rightwindow__orderbox__shiptotal__label
+          配送料・手数料：
+        .orderbox__rightwindow__orderbox__shiptotal__yen
+          ¥
+          = @totalshipyen
+        .orderbox__rightwindow__orderbox__shiptotal__line
+      .orderbox__rightwindow__orderbox__total
+        .orderbox__rightwindow__orderbox__total__label
+          ご請求額：
+        .orderbox__rightwindow__orderbox__total__yen
+          ¥
+          = @totalitemyen + @totalshipyen
+        .orderbox__rightwindow__orderbox__total__line
+      .orderbox__rightwindow__orderbox__textbox
+        .orderbox__rightwindow__orderbox__textbox__toptext
+          適用された割引：
+          .br
+            ・買取金額UP
+        .orderbox__rightwindow__orderbox__textbox__link
+          =link_to "配送料・手数料について",""
+        .orderbox__rightwindow__orderbox__textbox__bottomtext
+          ご注文に含まれるAmazonプライムの特典対象商品には、Amazonプライムの配送が適用されました。
+    .orderbox__rightwindow__bottomorderbox
+      .orderbox__rightwindow__bottomorderbox__orderbtn
+        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+.bottommessage
+  .bottommessage__text
+    ご不明な点は
+    = link_to "カスタマーサービス"
+    までお問い合わせください。
+    .br
+    Amazon.co.jpに注文する商品について: [注文を確定する]ボタンをクリックすると、注文の受領を通知するEメールが送信されます。商品の購入契約は、商品の配送を通知するEメールをお送りすることで初めて完了します。
+    .br
+    【Amazon.co.jp が販売する商品の返品について】
+    .br
+    原則として、商品到着後30日以内であれば、未使用かつ未開封の商品の返品に関しては商品代金の全額をお返しします（返品不可の商品を除く）。詳しくは
+    =link_to "返品",""
+    をご覧ください。
+    .br
+    【Amazon.co.jp以外の第三者出品者が販売する商品の返品について】
+    .br
+    出品者の商品の返品および返金について詳しくは、
+    = link_to "Amazonマーケットプレイス商品の返品について",""
+    をご覧ください。
+    .br
+    = link_to "Amazon.co.jp に戻る","/"
+    （注文は確定されません）
 
-.h4
-  - @carts.each do |cart|
-    - @stock = Stock.find(cart.stock_id)
-    = @stock.name
-    = @stock.sell_price
-    = cart.quantity
-    / - total = total +cart.quantity * @stock.sell_price
-    / - totalshipphingcost += cart.quantity * @stock.shipping_cost
-.h4
-  = @carts_stock_id
-  .br
-  = @carts_quantity
-  .br
-  = @carts_user_id
-
-.h4
-  = link_to "注文を確定する", orders_path, method: :create
-
-.h4
-  注文内容
-
-.h4
-  商品の小計
-  .br
-  / = total
-  .br
-  配送料・手数料
-  .br
-  / = totalshipphingcost
+.footermessage
+  .borderline
+  .footermessage__links
+    = link_to "利用規約", ""
+    |
+    = link_to "プライバシー規約",""
+    ©1996-2017, Amazon.com, Inc.
 

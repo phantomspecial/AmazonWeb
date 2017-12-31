@@ -17,6 +17,15 @@ class OrdersController < ApplicationController
     # 購入確認画面
     @user = current_user
     @carts = current_user.carts
+    # 合計点数と合計金額の表示
+    @totalitems = 0
+    @totalitemyen = 0
+    @totalshipyen = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+      @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
+      @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
+    end
   end
 
   def create
