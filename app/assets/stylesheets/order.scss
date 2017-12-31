@@ -6,6 +6,397 @@
 
 
 
+// 注文確認画面 confirm
+.headlogo{
+  padding-top: 10px;
+  padding-left: 300px;
+}
+.deliverybox{
+  padding-left: 300px;
+  width: 1200px;
+  &__title{
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  &__message{
+    font-size: 14px;
+    padding-bottom: 10px;
+  }
+  &__show{
+    &__name{
+      padding-top: 20px;
+      font-weight: bold;
+    }
+    &__postalcode{
+      font-size: 14px;
+    }
+    &__pref-street{
+      font-size: 14px;
+    }
+    &__ap-roomnum{
+      font-size: 14px;
+    }
+    &__selectbutton{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 12px;
+    }
+    &__editbutton{
+      clear: both;
+      float: left;
+      padding-right: 20px;
+      font-size: 12px;
+    }
+    &__destroybutton{
+      float: left;
+      padding-bottom: 10px;
+      font-size: 12px;
+    }
+  }
+  &__newleft{
+    padding-top: 20px;
+    padding-right: 100px;
+    width:500px;
+    float: left;
+    &__title{
+      font-size: 20px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+    &__message{
+      font-size: 14px;
+    }
+    &__link{
+      font-size: 14px;
+    }
+    &__form{
+      padding-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      &__sendbutton{
+        text-align: right;
+        font-size: 14px;
+      }
+    }
+  }
+  &__newright{
+    padding-top: 20px;
+    &__title{
+      font-size: 20px;
+      font-weight: bold;
+    }
+    &__message{
+      font-size: 14px;
+    }
+    &__lefttogglebuttonbox{
+      font-size: 14px;
+      float: left;
+      padding-right: 40px;
+      &__togglebuttons{
+
+      }
+      &__searchbutton{
+        padding-top: 40px;
+      }
+    }
+    &__rightsearchform{
+      font-size: 14px;
+      &__pref{
+
+      }
+      &__cityname{
+
+      }
+      &__postalcode{
+      }
+    }
+  }
+}
+
+
+.paymentbox{
+  clear: both;
+  padding-top: 40px;
+  padding-left: 300px;
+  width: 1200px;
+  &__title{
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  &__leftbox{
+    width: 800px;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #d8d8d8;
+    padding: 10px 10px 10px 10px;
+    margin-right: 40px;
+    float: left;
+    &__credittitle{
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    &__credittogglelist{
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    &__nocredittitle{
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    &__nocredittogglelist{
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    &__point-giftcardtitle{
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    &__point-giftcardtogglelist{
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    &__point-giftcardmessage{
+      padding-left: 10px;
+      padding-top: 10px;
+      font-size: 14px;
+    }
+  }
+  &__rightbox{
+    float: left;
+    width: 300px;
+    height: 80px;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #d8d8d8;
+    text-align: center;
+    background-color: #f6f6f6;
+    &__button{
+      padding-top: 10px;
+      padding-left: 50px;
+    }
+    &__message{
+      clear: both;
+      font-size: 14px;
+    }
+  }
+  &__leftbottombox{
+    clear: both;
+    width: 800px;
+    padding: 40px 45px 0 15px;
+    float: left;
+    &__othertitle{
+      padding-bottom: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    &__addcreditcard{
+      padding-top: 10px;
+      &__title{
+        font-weight: bold;
+      }
+      &__message{
+        font-size: 14px;
+      }
+      &__addlink{
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      &__cardmarks{
+
+      }
+    }
+    &__addcellphone{
+      padding-top: 10px;
+      &__title{
+        font-weight: bold;
+      }
+      &__message{
+        font-size: 14px;
+      }
+      &__addlinks{
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      &__cardmarks{
+
+      }
+    }
+    &__addpoint-gift{
+      padding-top: 10px;
+      &__title{
+        font-weight: bold;
+      }
+      &__link{
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      &__marklogo{
+
+      }
+    }
+  }
+  &__rightbottombox{
+    float: left;
+    width: 300px;
+    height: 80px;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #d8d8d8;
+    text-align: center;
+    margin-top: 250px;
+    background-color: #f6f6f6;
+    &__button{
+      padding-top: 10px;
+      padding-left: 50px;
+    }
+    &__message{
+      clear: both;
+      font-size: 14px;
+    }
+  }
+}
+
+.giftbox{
+  clear: both;
+  padding: 40px 0 40px 300px;
+  width: 1200px;
+  &__title{
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  &__select{
+
+  }
+  &__package{
+
+  }
+  &__message{
+
+  }
+}
+
+.footermessage{
+  text-align: center;
+  font-size: 12px;
+  &__text-one{
+
+  }
+  &__links{
+
+  }
+}
+
+
+// aタグ処理
+.deliverybox a{
+  text-decoration: none;
+  color:  #0000FF;
+}
+
+.deliverybox{
+  &__show{
+    &__selectbutton a{
+      color: #000000;
+    }
+  }
+  &__newleft{
+    &__form{
+      &__sendbutton a{
+        color: #000000;
+      }
+    }
+  }
+  &__newright{
+    &__lefttogglebuttonbox{
+      &__searchbutton a{
+        color: #000000;
+      }
+    }
+  }
+}
+
+.paymentbox a{
+  text-decoration: none;
+  color:  #0000FF;
+}
+
+.paymentbox{
+  &__rightbox{
+    &__button a{
+      color: #000000;
+    }
+  }
+  &__rightbottombox{
+    &__button a{
+      color: #000000;
+    }
+  }
+}
+
+.giftbox a{
+  text-decoration: none;
+  color:  #0000FF;
+}
+
+.footermessage a{
+  text-decoration: none;
+  color:  #0000FF;
+}
+
+// 次に進むボタン
+.nextbtn{
+  background-color: #f5bc17;
+  border-color: #9b7e31;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 190px;
+  height: 30px;
+  text-align: center;
+  float: left;
+  vertical-align: center;
+  padding-top: 10px;
+  &__link {
+    text-decoration: none;
+    &__btn {
+      font-size: 14px;
+      color: #111;
+    }
+  }
+}
+
+.orangebtnmini{
+  background-color: #f5bc17;
+  border-color: #9b7e31;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 100px;
+  height:15px;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  &__link {
+    text-decoration: none;
+    &__btn {
+      font-size: 12px;
+      color: #111;
+    }
+  }
+}
+
+
+
 // 注文完了画面 create
 .orderheader{
   padding-top: 100px;
@@ -74,8 +465,6 @@
   }
 }
 
-
-
 // SNSタブ領域
 .tab{
   overflow:hidden;
@@ -117,7 +506,6 @@
     font-size: 12px;
     color: #000000;
 }
-
 
 
 // リンク文字装飾
