@@ -1,0 +1,212 @@
+.headlogo
+  = image_tag "loginlogo.png"
+.deliverybox
+  .deliverybox__title
+    お届け先住所の選択
+  .deliverybox__message
+    「この住所を使う」ボタンをクリックして、お届け先を選択してください。 新しいお届け先を入力する場合は、こちらから追加してください。
+    .br
+    =image_tag "shopdelivery.png", width:100
+    コンビニなどの店頭で受け取ることもできます。(
+    =link_to "詳細はこちら",""
+    )
+    / ロゴ（ローソン、ファミマ、ヤマト、ミニスト）
+    .br
+    = link_to "こちら",""
+    から利用可能な店舗を検索してください。
+  .borderline
+  .deliverybox__show
+    .deliverybox__show__name
+      =@user.last_name
+      =@user.first_name
+    .deliverybox__show__postalcode
+      〒
+      =@user.postal_code
+    .deliverybox__show__pref-street
+      =@user.pref
+      =@user.city
+      =@user.street
+    .deliverybox__show__ap-roomnum
+      =@user.apartment_roomnumber
+    .deliverybox__show__selectbutton
+      = link_to "この住所を使う", new_order_path, class: "orangebtnmini"
+    .deliverybox__show__editbutton
+      =link_to "編集",""
+    .deliverybox__show__destroybutton
+      =link_to "削除",""
+  .borderline
+  .deliverybox__newleft
+    .deliverybox__newleft__title
+      新しい住所を追加
+    .deliverybox__newleft__message
+      必要事項を入力し、「この住所を使う」ボタンをクリックしてください。
+      .br
+      %b
+        国内の住所：
+      半角、全角文字を使用できます（半角2文字で全角1文字分）
+      住所1が全角16文字を超える場合は、住所2に続きの住所をご入力ください。
+      .br
+      %b
+        国外の住所：
+      半角文字の英数字のみ使用できます。
+      .br
+      ※特殊文字は使用できません。
+      .br
+      ※確実にお届けするため、必ずフルネームを入力下さい。
+      .br
+      ※私書箱や空港内の窓口へのお届けは承っておりません。
+      .br
+      ※コンビニ、営業所、空港の宅配サービスカウンターなどの住所を入力すると商品をお受け取りいただけません。店頭受取の注文方法はこちらをご確認ください。
+    .deliverybox__newleft__link
+      =link_to "新しい国外の住所を登録する",""
+    .deliverybox__newleft__form
+      .deliverybox__newleft__form__name
+        氏名：
+      .deliverybox__newleft__form__postalcode
+        郵便番号：
+      .deliverybox__newleft__form__pref
+        都道府県：
+      .deliverybox__newleft__form__address-one
+        住所１：
+      .deliverybox__newleft__form__address-two
+        住所２：
+      .deliverybox__newleft__form__companyname
+        会社名：
+        .br
+        (オプション)
+      .deliverybox__newleft__form__tennumber
+        電話番号：  (
+        =link_to "詳細はこちら",""
+        )
+      .borderline
+      .deliverybox__newleft__form__sendbutton
+        =link_to "この住所を使う", new_order_path, class: "orangebtnmini"
+  .deliverybox__newright
+    .deliverybox__newright__title
+      店頭受取先を新しく検索する
+    .deliverybox__newright__message
+      全国のコンビニなどの店舗で商品をお受け取りいただけます。
+      .br
+      住所、郵便番号、または目印となる建物などを入力してください。
+    .deliverybox__newright__lefttogglebuttonbox
+      .deliverybox__newright__lefttogllebuttonbox__togglebutons
+        住所で検索：
+        .br
+        郵便番号で検索：
+        .br
+        目印の建物などで検索：
+      .deliverybox__newright__lefttogglebuttonbox__searchbutton
+        =link_to "検索する","", class: "orangebtnmini"
+    .deliverybox__newright__rightsearchform
+      .deliverybox__newright__rightsearchform__pref
+        都道府県名：
+      .deliverybox__newright__rightsearchform__cityname
+        (例：渋谷区道玄坂)
+      .deliverybox__newright__rightsearchform__postalcode
+        (例：152-0034)
+      .deliverybox__newright__rightsearchform__pref2
+      .deliverybox__newright__rightsearchform__cityname2
+        (例：東京タワー)
+        =link_to "目印の建物は？",""
+
+.paymentbox
+  .paymentbox__ad
+  .paymentbox__title
+    お支払い方法を選択
+  .paymentbox__leftbox
+    .paymentbox__leftbox__credittitle
+      ご登録のクレジットカード
+    .borderline
+    .paymentbox__leftbox__credittogglelist
+      Visa 下4桁 9481
+    .paymentbox__leftbox__nocredittitle
+      クレジットカード以外の支払い方法
+    .borderline
+    .paymentbox__leftbox__nocredittogglelist
+      代金引換 国内配送のみ。代引手数料がかかります。獲得したポイントは、支払い後に確定します。詳しくは
+      = link_to "こちら", ""
+      をご確認ください。
+      コンビニ・ATM・ネットバンキング・電子マネー払い この注文にはご利用いただけません。
+      = link_to "詳しくはこちら",""
+    .paymentbox__leftbox__point-giftcardtitle
+      Amazonポイント・Amazonギフト券
+    .borderline
+    .paymentbox__leftbox__point-giftcardtogglelist
+      Amazonポイント：
+      n
+      pt(
+      ¥
+      n
+      相当)
+      .br
+      今回の注文で利用可能なポイントを全て利用する：
+      n
+      (¥
+      n
+      相当)
+      .br
+      一部のポイントを利用する
+    .paymentbox__leftbox__point-giftcardmessage
+      Amazonポイント、Amazonギフト券、Amazonショッピングカード、クーポンの使用可能残高がある場合に表示されます。支払い方法について
+      = link_to "詳しくはこちら",""
+  .paymentbox__rightbox
+    .paymentbox__rightbox__button
+      = link_to "次に進む", new_order_path, class: "nextbtn"
+    .paymentbox__rightbox__message
+      (注文の最終確認ができます)
+  .paymentbox__leftbottombox
+    .paymentbox__leftbottombox__othertitle
+      その他のお支払いオプション
+    .borderline
+    .paymentbox__leftbottombox__addcreditcard
+      .paymentbox__leftbottombox__addcreditcard__title
+        クレジットカード
+      .paymentbox__leftbottombox__addcreditcard__message
+        以下のクレジットカードをご利用いただけます
+      .paymentbox__leftbottombox__addcreditcard__addlink
+        =link_to "カードを追加",""
+      .paymentbox__leftbottombox__addcreditcard__cardmarks
+      .borderline
+    .paymentbox__leftbottombox__addcellphone
+      .paymentbox__leftbottombox__addcellphone__title
+        携帯決済
+      .paymentbox__leftbottombox__addcellphone__message
+        携帯決済がご利用いただけない場合については
+        =link_to "こちら",""
+      .paymentbox__leftbottombox__addcellphone__addlinks
+        =link_to "新しいアカウントを追加",""
+      .paymentbox__leftbottombox__addcellphone__carriermark
+      .borderline
+    .paymentbox__leftbottombox__addpoint-gift
+      .paymentbox__leftbottombox__addpoint-gift__title
+        Amazonギフト券・Amazonショッピングカード またはクーポン
+      .paymentbox__leftbottombox__addpoint-gift__link
+        = link_to "ギフト券番号またはコードを入力（例：GIFT-SMPL12-XXXYYY）",""
+      .paymentbox__leftbottombox__addpoint-gift__marklogo
+  .paymentbox__rightbottombox
+    .paymentbox__rightbottombox__button
+      =link_to "次に進む" , new_order_path, class: "nextbtn"
+    .paymentbox__rightbottombox__message
+      (注文の最終確認ができます)
+
+.giftbox
+  .giftbox__title
+    ギフトの選択
+  .giftbox__select
+    ギフトを選択してください。
+  .giftbox__package
+    ギフトパッケージをお選びください
+  .giftbox__message
+    ギフトメッセージをお書きください。
+
+
+.footermessage
+  .borderline
+  .footermessage__text-one
+    Amazonギフト券またはAmazonショッピングカードを利用する場合は、注文確定のページの右側中央部分でコード（または番号）を入力してください。
+  .footermessage__links
+    = link_to "利用規約", ""
+    |
+    = link_to "プライバシー規約",""
+    ©1996-2017, Amazon.com, Inc.
+

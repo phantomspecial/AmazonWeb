@@ -6,13 +6,10 @@ class OrdersController < ApplicationController
   end
 
 
-  def delivery
+  def confirm
     # 配送先の選択画面
-    @user = current_user
-  end
-
-  def gift
     # 決済方法の選択画面
+    # ギフトの選択画面
     @user = current_user
   end
 
@@ -20,9 +17,15 @@ class OrdersController < ApplicationController
     # 購入確認画面
     @user = current_user
     @carts = current_user.carts
-    @carts_user_id = 1
-    @carts_stock_id = 1
-    @carts_quantity = 10
+    # 合計点数と合計金額の表示
+    @totalitems = 0
+    @totalitemyen = 0
+    @totalshipyen = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+      @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
+      @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
+    end
   end
 
   def create
@@ -69,20 +72,28 @@ class OrdersController < ApplicationController
       # 全カラム値を格納したので、保存する
       @ordermaking.save
 
-      # Stockテーブルから、その商品の在庫数を注文数量分減らして更新s
+      # Stockテーブルから、その商品の在庫数を注文数量分減らして更新
       @stock.current_stock -= @ordermaking.quantity
-      @stock.update
+      @stock.update(current_stock: @stock.current_stock)
+
     end
 
     # オーダーテーブルの残ったカラムへの値の書き込み
-    @order.total = total
-    @order.total_shippingcost = total_shippingcost
-    @order.update
+    @order.update(total: total, total_shippingcost: total_shippingcost)
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|
       currentorder.destroy
     end
+
+    # 注文完了画面表示用
+    @orderviews = Orderdetail.where(order_id: @order.id)
+    @orderstocknames = []
+    @orderviews.each do |orderview|
+      @orderstocks << Stock.find(orderview.stock_id)
+    end
+    @user = current_user
+    @deliverydate = Order.find(@order.id).created_at.since(2.days)
   end
 
 end

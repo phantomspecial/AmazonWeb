@@ -8,7 +8,8 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find(params[:id])
-    @cart = Cart.new
+    @cart = current_user.carts.new
+    @user = current_user
   end
 
   def create
@@ -37,9 +38,5 @@ class StocksController < ApplicationController
       end
     end
   end
-
-  # def stock_cart_params
-  #   params.require(:stock).permit(:name, :image, :maker, :sell_price, carts_attributes: [:quantity])
-  # end
 
 end
