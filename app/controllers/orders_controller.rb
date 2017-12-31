@@ -6,13 +6,10 @@ class OrdersController < ApplicationController
   end
 
 
-  def delivery
+  def confirm
     # 配送先の選択画面
-    @user = current_user
-  end
-
-  def gift
     # 決済方法の選択画面
+    # ギフトの選択画面
     @user = current_user
   end
 
