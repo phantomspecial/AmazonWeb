@@ -23,3 +23,5 @@
 # Ignore image file
 /public/uploads*
 
+# Ignore Payjp KEYS
+/config/initializers/setting.rb

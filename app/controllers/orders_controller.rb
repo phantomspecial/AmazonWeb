@@ -86,11 +86,15 @@ class OrdersController < ApplicationController
       currentorder.destroy
     end
 
+    #payjpの処理
+    Payjp.api_key = PAYJP_SECRET_KEY
+    Payjp::Charge.create(currency: 'jpy', amount: total + total_shippingcost, card: params['payjp-token'])
+
     # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)
     @orderstocknames = []
     @orderviews.each do |orderview|
-      @orderstocks << Stock.find(orderview.stock_id)
+      @orderstocknames << Stock.find(orderview.stock_id)
     end
     @user = current_user
     @deliverydate = Order.find(@order.id).created_at.since(2.days)
