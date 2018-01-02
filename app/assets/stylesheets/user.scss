@@ -244,7 +244,286 @@
   text-decoration: none;
 }
 
+// お支払い方法の追加と削除
+.payoption{
+  padding-top: 100px;
+  padding-left: 50px;
+  &__title{
+    padding-top: 20px;
+    font-size: 18px;
+  }
+  &__message{
+    font-size: 12px;
+  }
+  &__leftbox{
+    padding: 50px 50px 0 0;
+    font-size: 14px;
+    float: left;
+    width: 200px;
+  }
+  &__rightbox{
+    width: 700px;
+    padding-top: 50px;
+    float: left;
+    &__topbox{
+    }
+    &__creditlist{
+    }
+    &__toptitle{
+      padding-top: 20px;
+      font-size: 18px;
+    }
+    &__giftcardbox{
+      padding-top: 10px;
+    }
+    &__new{
+      padding-top: 30px;
+      padding-bottom: 10px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    &__credit{
+      &__leftbox{
+        float: left;
+        &__title{
+          padding-top: 10px;
+          font-weight: bold;
+        }
+        &__message{
+          font-size: 12px;
+        }
+        &__addlink{
+          clear: both;
+          font-size: 12px;
+          padding-top: 20px;
+        }
+        &__addtext{
+          padding-top: 5px;
+          padding-bottom: 10px;
+          font-size: 12px;
+        }
+        &__name{
+          float: left;
+          &__label{
+            font-weight: bold;
+            font-size: 14px;
+          }
+          &__textfield{
+            font-size: 14px;
+          }
+        }
+        &__number{
+          float: left;
+          padding-left: 10px;
+          &__label{
+            font-weight: bold;
+            font-size: 14px;
+          }
+          &__textfield{
+            font-size: 14px;
+          }
+        }
+        &__limit{
+          float: left;
+          padding-left: 10px;
+          &__label{
+            font-weight: bold;
+            font-size: 14px;
+          }
+          &__monthbox{
+            float: left;
+          }
+          &__yearbox{
+            padding-left: 5px;
+            float: left;
+          }
+        }
+        &__cvc{
+          padding-top: 10px;
+          clear: both;
+          &__label{
+            font-weight: bold;
+            font-size: 14px;
+          }
+          &__textfield{
+            font-size: 14px;
+          }
+        }
+        &__addbutton{
+          clear: both;
+          padding-top: 10px;
+          padding-bottom: 20px;
+        }
+      }
+      &__rightmarkbox{
+        padding-top: 10px;
+        float: right;
+      }
+    }
+    &__cellphone{
+      &__leftbox{
+        float: left;
+        &__title{
+          padding-top: 10px;
+          font-weight: bold;
+        }
+        &__message{
+          font-size: 12px;
+        }
+        &__addlink{
+          padding-top: 20px;
+          padding-bottom: 10px;
+          font-size: 12px;
+        }
+        &__addtext{
+          font-size: 12px;
+        }
+        &__carriername{
+          padding-top: 10px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        &__carrierbox{
+          padding-bottom: 10px;
+        }
+        &__accounttype{
+          padding-top: 10px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        &__accountbox{
+          padding-bottom: 10px;
+        }
+        &__addbutton{
+          padding-bottom: 20px;
+        }
+      }
+      &__rightboxmark{
+        float: right;
+      }
+    }
+  }
+}
 
+.top{
+  &__title{
+    font-size: 18px;
+    float: left;
+    padding-right: 200px;
+  }
+  &__limit{
+    font-size: 14px;
+  }
+}
+
+.credit{
+  clear: both;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #d8d8d8;
+  background-color: #f1f1f1;
+  width: 700px;
+  height: 50px;
+  &__mark{
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  &__text{
+    padding-top: 15px;
+    padding-left: 20px;
+    float: left;
+    font-size: 14px;
+
+  }
+  &__limit{
+    padding-top: 15px;
+    padding-left: 230px;
+    float: left;
+    font-size: 14px;
+  }
+  &__listdownmark{
+    float: right;
+    padding-top: 10px;
+    padding-right: 30px;
+    color: #575757;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.gift{
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #d8d8d8;
+  background-color: #f1f1f1;
+  width: 700px;
+  height: 80px;
+  &__mark{
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  &__text{
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+    font-size: 14px;
+  }
+  &__balance{
+    padding-top: 10px;
+    padding-right: 100px;
+    float: right;
+    font-size: 14px;
+  }
+  &__link{
+    clear: both;
+    padding-left: 60px;
+    font-size: 14px;
+  }
+}
+
+
+.addpaymentcreditbutton{
+    display: inline-block;
+    text-align: center;
+    padding-top: 5px;
+    width: 200px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.addpaymentcarrierbutton{
+    display: inline-block;
+    text-align: center;
+    padding-top: 5px;
+    width: 60px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+// aタグ処理
+.payoption a{
+  text-decoration: none;
+  color: #0000ff;
+}
+
+.payoption{
+  &__rightbox__credit__leftbox__addbutton a{
+    color: #000000;
+  }
+  &__rightbox__cellphone__leftbox__addbutton a{
+    color: #000000;
+  }
+}
+
+// マイストア
 .mystorefirstheader{
   padding-top:70px;
   width: 100%;

@@ -1,0 +1,130 @@
+=render "shared/header"
+.payoption
+  .payoption__title
+    = link_to "アカウントサービス", users_path
+    > お支払いオプションを管理
+  .payoption__message
+    こちらがお客様のAmazonアカウントに保存されているお支払い方法です。
+  .payoption__leftbox
+    =link_to "1-Click設定の管理",""
+    .br
+    =link_to "Kindleの支払い設定を管理",""
+    .br
+    =link_to "現在のご注文のお支払い方法を編集",""
+  .payoption__rightbox
+    .payoption__rightbox__topbox
+      .top
+        .top__title
+          ご登録のクレジットカード
+        .top__limit
+          有効期限
+    .payoption__rightbox__creditlist
+      - @customer_creditcards.cards.data.each do |creditcard|
+        .credit
+          .credit__mark
+            = image_tag "visa_mark.gif", width:40
+          .credit__text
+            = creditcard.brand
+            下4桁
+            = creditcard.last4
+          .credit__limit
+            = creditcard.exp_month
+            #{"/"}
+            = creditcard.exp_year
+          .credit__listdownmark
+            %i.fa.fa-angle-down
+    .payoption__rightbox__toptitle
+      残高
+    .payoption__rightbox__giftcardbox
+      .gift
+        .gift__mark
+          = image_tag "amazongiftcard.png", width:40
+        .gift__text
+          Amazonギフト券
+        .gift__balance
+          ¥0
+        .gift__link
+          =link_to "ギフト券を購入", ""
+          |
+          =link_to "ギフト券を登録",""
+    .payoption__rightbox__new
+      新しいお支払い方法を追加
+    .borderline
+    .payoption__rightbox__credit
+      .payoption__rightbox__credit__leftbox
+        .payoption__rightbox__credit__leftbox__title
+          クレジットカード
+        .payoption__rightbox__credit__leftbox__message
+          以下のクレジットカードをご利用いただけます
+        .payoption__rightbox__credit__leftbox__addlink
+          =link_to "カードを追加",""
+        .payoption__rightbox__credit__leftbox__addtext
+          カード情報を入力してください
+        = form_tag(action: :creditcard_regist, method: :post) do
+          .payoption__rightbox__credit__leftbox__name
+            .payoption__rightbox__credit__leftbox__name__label
+              カード名義人（半角ローマ字）
+            .payoption__rightbox__credit__leftbox__name__textfield
+              %input{ name: "name", size: "20", type: "text" }
+          .payoption__rightbox__credit__leftbox__number
+            .payoption__rightbox__credit__leftbox__number__label
+              カード番号
+            .payoption__rightbox__credit__leftbox__number__textfield
+              %input{ name: "number", size: "20", type: "text"}
+          .payoption__rightbox__credit__leftbox__limit
+            .payoption__rightbox__credit__leftbox__limit__label
+              有効期限
+            .payoption__rightbox__credit__leftbox__limit__monthbox
+              %select{ name: "month"}
+                - 11.times do |m|
+                  %option{ value: "#{m + 1}"} #{m + 1}
+                %option{ value: "12"} 12
+            .payoption__rightbox__credit__leftbox__limit__yearbox
+              %select{ name: "year"}
+                - 21.times do |y|
+                  %option{ value: "#{y + @year}" } #{y + @year}
+          .payoption__rightbox__credit__leftbox__cvc
+            .payoption__rightbox__credit__leftbox__cvc__label
+              CVC（セキュリティコード）
+            .payoption__rightbox__credit__leftbox__cvc__textfield
+              %input{ name: "cvc", size: "5", type: "text" }
+          .payoption__rightbox__credit__leftbox__addbutton
+            %input{ type:"submit", value:"クレジットカードを追加", class: "addpaymentcreditbutton"}
+      .payoption__rightbox__credit__rightmarkbox
+        =image_tag "card_brand.png", width:150
+    .borderline
+    .payoption__rightbox__cellphone
+      .payoption__rightbox__cellphone__leftbox
+        .payoption__rightbox__cellphone__leftbox__title
+          携帯決済
+        .payoption__rightbox__cellphone__leftbox__message
+          携帯決済がご利用いただけない場合については
+          =link_to "こちら",""
+        .payoption__rightbox__cellphone__leftbox__addlink
+          =link_to "新しいアカウントを追加",""
+        .payoption__rightbox__cellphone__leftbox__addtext
+          携帯電話会社とアカウントタイプを選択してください。
+        .payoption__rightbox__cellphone__leftbox__carriername
+          携帯電話会社（docomoまたはau）を選択
+        .payoption__rightbox__cellphone__leftbox__carrierbox
+          %select{ name: "carrier"}
+            %option{ value: "docomo" } docomo
+            %option{ value: "au" } au
+        .payoption__rightbox__cellphone__leftbox__accounttype
+          アカウントタイプ
+          =link_to "説明",""
+        .payoption__rightbox__cellphone__leftbox__accountbox
+          %select{ name: "accounttype"}
+            %option{ value: "personal" } 個人用
+            %option{ value: "work" } 仕事用
+            %option{ value: "family" } 家族用
+            %option{ value: "son" } 子供用（息子）
+            %option{ value: "daughter" } 子供用（娘）
+            %option{ value: "otherfamily" } その他家族用
+            %option{ value: "other" } その他
+        .payoption__rightbox__cellphone__leftbox__addbutton
+          =link_to "続行","" , class: "addpaymentcarrierbutton"
+      .payoption__rightbox__cellphone__rightboxmark
+        =image_tag "carrier_brand.png", width:50
+
+=render "shared/footer"

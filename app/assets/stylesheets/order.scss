@@ -831,7 +831,18 @@
   }
 }
 
-
+// payjpボタンの処理
+#payjp_checkout_box input[type=button]{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    padding: 0.5em 1em;
+    width: 200px;
+    text-decoration: none;
+    background: #eed186;/*ボタン色*/
+    border-bottom: solid 4px #eed186;
+    border-radius: 4px;
+    font-size: 14px;
+}
 
 // 注文完了画面 create
 .orderheader{
