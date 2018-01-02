@@ -91,7 +91,7 @@ class OrdersController < ApplicationController
     end
 
     #payjpの処理
-    Payjp.api_key = PAYJP_SECRET_KEY
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       currency: 'jpy',
       amount: total + total_shippingcost,
