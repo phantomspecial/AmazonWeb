@@ -88,7 +88,12 @@ class OrdersController < ApplicationController
 
     #payjpの処理
     Payjp.api_key = PAYJP_SECRET_KEY
-    Payjp::Charge.create(currency: 'jpy', amount: total + total_shippingcost, card: params['payjp-token'])
+    Payjp::Charge.create(
+      currency: 'jpy',
+      amount: total + total_shippingcost,
+      customer: current_user.id
+      # card: params['payjp-token']
+    )
 
     # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)

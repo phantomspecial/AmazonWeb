@@ -144,8 +144,7 @@
   .orderbox__rightwindow
     .orderbox__rightwindow__orderbox
       .orderbox__rightwindow__orderbox__orderbtn
-        = form_tag(action: :create, method: :post) do
-          %script.payjp-button{"data-key" => "#{PAYJP_PUBLIC_KEY}", :src => "https://checkout.pay.jp", :type => "text/javascript", "data-text" => "購入を確定する" ,:id => "payjp_checkout_box"}
+        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
       .orderbox__rightwindow__orderbox__title
         注文内容
       .orderbox__rightwindow__orderbox__itemtotal
@@ -179,8 +178,7 @@
           ご注文に含まれるAmazonプライムの特典対象商品には、Amazonプライムの配送が適用されました。
     .orderbox__rightwindow__bottomorderbox
       .orderbox__rightwindow__bottomorderbox__orderbtn
-        = form_tag(action: :create, method: :post) do
-          %script.payjp-button{"data-key" => "#{PAYJP_PUBLIC_KEY}", :src => "https://checkout.pay.jp", :type => "text/javascript", "data-text" => "購入を確定する" ,:id => "payjp_checkout_box"}
+        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
 .bottommessage
   .bottommessage__text
     ご不明な点は
