@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   end
   resources :admin, only: [:index]
   resources :userpermissions, only: [:index, :update]
-  resources :users, only: [:index, :show, :new]
+  resources :users, only: [:index, :show, :new] do
+    collection do
+      get 'payments'
+      post 'creditcard_regist'
+    end
+  end
   resources :carts
   resources :categories
 

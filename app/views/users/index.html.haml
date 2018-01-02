@@ -29,9 +29,9 @@
       .unit2__boximage
         =image_tag "payments.png", width: 96 , height: 54
       .unit2__boxname
-        お支払い方法
+        = link_to "お支払い方法", payments_users_path
       .unit2__boxdetail
-        お支払い方法の追加・変更
+        = link_to "お支払い方法の追加・変更", payments_users_path
   .mainwindow__topboxright
     .unit1
       .unit1__boximage
