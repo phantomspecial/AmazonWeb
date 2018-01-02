@@ -118,7 +118,10 @@
       ご登録のクレジットカード
     .borderline
     .paymentbox__leftbox__credittogglelist
-      Visa 下4桁 9481
+    - @customer_creditcards.cards.data.each do |creditcard|
+      = creditcard.brand
+      下4桁
+      = creditcard.last4
     .paymentbox__leftbox__nocredittitle
       クレジットカード以外の支払い方法
     .borderline

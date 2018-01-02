@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
     # 決済方法の選択画面
     # ギフトの選択画面
     @user = current_user
+    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
+    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
   end
 
   def new
@@ -26,6 +28,8 @@ class OrdersController < ApplicationController
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
       @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
     end
+    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
+    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
   end
 
   def create
@@ -92,7 +96,6 @@ class OrdersController < ApplicationController
       currency: 'jpy',
       amount: total + total_shippingcost,
       customer: current_user.id
-      # card: params['payjp-token']
     )
 
     # 注文完了画面表示用

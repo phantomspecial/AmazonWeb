@@ -67,7 +67,9 @@
           .paybox__creditmark
             = image_tag "visa_mark.gif"
           .paybox__text
-            下4桁 0000
+            - @customer_creditcards.cards.data.each do |creditcard|
+              下4桁
+              = creditcard.last4
         .dembox
           .dembox__title
             請求先住所
