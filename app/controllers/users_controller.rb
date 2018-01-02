@@ -11,13 +11,11 @@ class UsersController < ApplicationController
   def payments
   	# 支払いオプション画面
   	@user = current_user
-   	# 現在の月・年を格納する（クレジットカード情報登録用）
+   	# 現在の年を格納する（クレジットカード情報登録用）
     @year = Time.current.in_time_zone('Tokyo').strftime("%Y").to_i
 
     # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
     @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
-
-    # binding.pry
    end
 
   def creditcard_regist
