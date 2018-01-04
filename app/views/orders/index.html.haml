@@ -1,2 +1,28 @@
 / = render "shared/header"
+
+
+.h4
+  注文履歴
+
+.h4
+  - @user_orders.each do |user_order|
+    注文日
+    = user_order.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
+    合計金額
+    = user_order.total
+    お届け先
+    = User.find(user_order.user_id).first_name
+    = User.find(user_order.user_id).last_name
+    注文番号
+    = user_order.id
+    .br
+    - @user_order_details.each do |user_order_detail|
+      -if user_order.id == user_order_detail.order.id
+        = image_tag Stock.find(user_order_detail.stock_id).image, width:100
+        = Stock.find(user_order_detail.stock_id).name
+        販売: Amazon Japan G.K.
+        = user_order_detail.sell_price
+        .br
+
+
 / = render "shared/footer"

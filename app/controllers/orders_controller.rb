@@ -1,5 +1,44 @@
 class OrdersController < ApplicationController
   def index
+      # 個別ユーザ：履歴画面
+    # アソシエーションを組んでいる前提
+
+    # オーダ情報取得
+    @user_orders = current_user.orders
+    # オーダ詳細情報取得
+    @user_order_details = []
+    @user_orders.each do |user_order|
+      @user_order_details += Orderdetail.where(order_id: user_order.id)
+    end
+
+    @cu_orders_infos = []
+    Order.includes(:orderdetails).references(:orderdetails).each do |order|
+        # p order.id
+        order.orderdetails.each do |orderdetail|
+          # p orderdetail
+          @orderinfo = [order,orderdetail]
+          @cu_orders_infos += @orderinfo
+
+          # p order.id,orderdetail.stock_id
+        end
+    end
+
+
+    # Order.left_outer_joins(:orderdetails).select("orders.*, orderdetails.*").each do |order_orderdetail|
+    #   puts "#{order_orderdetail.id}: #{order_orderdetail.stock_id}"
+    # end
+
+
+    # @aaaaa = Order.left_outer_joins(:orderdetails)
+
+    # 画面表示用
+    # ユーザ登録年取得
+    @user_regist_year = current_user.created_at.in_time_zone('Tokyo').strftime("%Y").to_i
+    # 現在年取得
+    @current_year = Time.current.in_time_zone('Tokyo').strftime("%Y").to_i
+    # ループ回数変数格納
+    # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
+    @yearcount = @current_year - @user_regist_year + 1
   end
 
   def show
