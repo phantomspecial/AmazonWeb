@@ -112,6 +112,8 @@
 
       .nav-below__tools
         .nav-below__tools__account
+          %span
+            ○○○さん
           %select{ onChange: "location.href=value;", class: "nav-below__tools__account__searchselect"}
             %option{:selected => "selected", :value => "users"} アカウント&リスト
             %option{:value => "users"} アカウントサービス
@@ -131,9 +133,12 @@
             %option{:value => "search-alias=kindleunlimited"}お客様の Kindle Unlimited
             %option{:value => "search-alias=game"}ゲーム&PCソフトダウンロードライブラリ
             %option{:value => "search-alias=applibrary"}アプリライブラリとデバイスの管理
-            %option{:value => "search-alias=signout"} nさんではありませんか？サインアウト
+            %option{:value => "users/sign_out"} nさんではありませんか？サインアウト
           .nav-below__categoly
         .nav-below__tools__order
-          注文履歴
+          = link_to "注文履歴", "/"
         .nav-below__tools__cart
-          = image_tag "cart.png"
+          = link_to "/" do
+            %span
+              2
+            = image_tag "cart.png"

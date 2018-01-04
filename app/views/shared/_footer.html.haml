@@ -4,7 +4,7 @@
       = link_to "トップへ戻る" , "/"
 
   .navLeftFooter__navFooterVerticalColumn
-    .navLeftFooter__navFooterVerticalColumn__tbody
+    .navLeftFooter__navFooterVerticalColumn__tbody.clearfix
       .navLeftFooter__navFooterVerticalColumn__tbody__tr1
         .navLeftFooter__navFooterVerticalColumn__tbody__tr1_title
           Amazonについて
@@ -101,4 +101,3 @@
   - if user_signed_in?
     - if current_user.admin_flg == true
       = link_to 'admin', admin_index_path
-
