@@ -11,8 +11,13 @@ class OrdersController < ApplicationController
     # 決済方法の選択画面
     # ギフトの選択画面
     @user = current_user
-    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
-    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
+
+    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
+    @existuser_flg = cardusercheck
+    if @existuser_flg == true
+      @customer_creditcards = gets_usercardinfo
+      @default_cardid = gets_userdefaultcardid
+    end
   end
 
   def new
@@ -28,8 +33,13 @@ class OrdersController < ApplicationController
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
       @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
     end
-    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
-    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
+
+    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
+    @existuser_flg = cardusercheck
+    if @existuser_flg == true
+      @customer_creditcards = gets_usercardinfo
+      @default_cardid = gets_userdefaultcardid
+    end
   end
 
   def create
