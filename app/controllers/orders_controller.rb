@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-      # 個別ユーザ：履歴画面
+    # 個別ユーザ：履歴画面
     # アソシエーションを組んでいる前提
 
     # オーダ情報取得
@@ -10,26 +10,6 @@ class OrdersController < ApplicationController
     @user_orders.each do |user_order|
       @user_order_details += Orderdetail.where(order_id: user_order.id)
     end
-
-    @cu_orders_infos = []
-    Order.includes(:orderdetails).references(:orderdetails).each do |order|
-        # p order.id
-        order.orderdetails.each do |orderdetail|
-          # p orderdetail
-          @orderinfo = [order,orderdetail]
-          @cu_orders_infos += @orderinfo
-
-          # p order.id,orderdetail.stock_id
-        end
-    end
-
-
-    # Order.left_outer_joins(:orderdetails).select("orders.*, orderdetails.*").each do |order_orderdetail|
-    #   puts "#{order_orderdetail.id}: #{order_orderdetail.stock_id}"
-    # end
-
-
-    # @aaaaa = Order.left_outer_joins(:orderdetails)
 
     # 画面表示用
     # ユーザ登録年取得
