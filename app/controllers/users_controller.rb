@@ -14,14 +14,14 @@ class UsersController < ApplicationController
    	# 現在の年を格納する（クレジットカード情報登録用）
     @year = Time.current.in_time_zone('Tokyo').strftime("%Y").to_i
 
-    # そのユーザにカードが登録されているかを調べる(privateメソッド)
+    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
     @existuser_flg = cardusercheck
 
 
     # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
     if @existuser_flg == true
-      @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
-      @default_cardid = Payjp::Customer.retrieve(id: current_user.id.to_s).default_card
+      @customer_creditcards = gets_usercardinfo
+      @default_cardid = gets_userdefaultcardid
     end
    end
 
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     if @existuser_flg == true
       #既存顧客：すでに１枚以上カードがあり、そこに追加する場合
-      customer = Payjp::Customer.retrieve(id: current_user.id.to_s)
+      customer = gets_usercardinfo
       customer.cards.create(
         card: @token_id
       )
@@ -70,21 +70,6 @@ class UsersController < ApplicationController
   private
   def card_params
   	params.permit(:name, :number, :month, :year, :cvc)
-  end
-
-  def cardusercheck
-    #Customer情報の取得
-    # pay.jpに、current_user.idを持つユーザが登録されて入ればtrue、そうでなければfalseを返す
-    @payjpusers = Payjp::Customer.all
-    @payjpusers.each do |payjpuser|
-      if payjpuser.id.to_i == current_user.id
-        @existuser_flg = true
-        break
-      else
-        @existuser_flg = false
-      end
-    end
-    return @existuser_flg
   end
 
 end
