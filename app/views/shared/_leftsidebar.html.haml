@@ -13,6 +13,10 @@
     .adminleftwindow__linkbox__links
       = link_to "商品一覧ページ", stocks_path
     .adminleftwindow__linkbox__title
+      [売上状況管理]
+    .adminleftwindow__linkbox__links
+      = link_to "Pay.jpログイン", "https://pay.jp/login"
+    .adminleftwindow__linkbox__title
       [ユーザ管理]
     .adminleftwindow__linkbox__links
       = link_to "管理者ページ", admin_index_path
@@ -25,6 +29,6 @@
     .adminleftwindow__linkbox__title
       [カテゴリー管理]
     .adminleftwindow__linkbox__links
-    = link_to "カテゴリ一覧ページ", admin_category_categories_path
-    .adminleftwindow__linkbox__links
-    = link_to "カテゴリーを作成", new_category_path
+      = link_to "カテゴリ一覧ページ", categories_path
+   .adminleftwindow__linkbox__links
+      = link_to "カテゴリーを作成", new_category_path

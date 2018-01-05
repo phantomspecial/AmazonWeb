@@ -60,50 +60,90 @@
             %i.fa.fa-search{"aria-hidden" => "true"}
     .nav-below
       .nav-below__categoly
-        %select.nav-below__categoly__searchselect
-          %option{:selected => "selected", :value => "categories"} カテゴリー
-          %option{:value => "search-alias=digital-text"} Kindleストア
-          %option{:value => "search-alias=instant-video"} Amazonビデオ
-          %option{:value => "search-alias=digital-music"} デジタルミュージック
-          %option{:value => "search-alias=mobile-apps"} Android アプリ
-          %option{:value => "search-alias=stripbooks"} 本
-          %option{:value => "search-alias=english-books"} 洋書
-          %option{:value => "search-alias=popular"} ミュージック
-          %option{:value => "search-alias=classical"} クラシック
-          %option{:value => "search-alias=dvd"} DVD
-          %option{:value => "search-alias=videogames"} TVゲーム
-          %option{:value => "search-alias=software"} PCソフト
-          %option{:value => "search-alias=computers"} パソコン・周辺機器
-          %option{:value => "search-alias=electronics"} 家電&amp;カメラ
-          %option{:value => "search-alias=office-products"} 文房具・オフィス用品
-          %option{:value => "search-alias=kitchen"} ホーム&amp;キッチン
-          %option{:value => "search-alias=pets"} ペット用品
-          %option{:value => "search-alias=hpc"} ドラッグストア
-          %option{:value => "search-alias=beauty"} ビューティー
-          %option{:value => "search-alias=luxury-beauty"} ラグジュアリービューティー
-          %option{:value => "search-alias=food-beverage"} 食品・飲料・お酒
-          %option{:value => "search-alias=baby"} ベビー&amp;マタニティ
-          %option{:value => "search-alias=fashion"} ファッション
-          %option{:value => "search-alias=fashion-womens"}    レディース
-          %option{:value => "search-alias=fashion-mens"}    メンズ
-          %option{:value => "search-alias=fashion-baby-kids"}    キッズ＆ベビー
-          %option{:value => "search-alias=apparel"} 服＆ファッション小物
-          %option{:value => "search-alias=shoes"} シューズ＆バッグ
-          %option{:value => "search-alias=watch"} 腕時計
-          %option{:value => "search-alias=jewelry"} ジュエリー
-          %option{:value => "search-alias=toys"} おもちゃ
-          %option{:value => "search-alias=hobby"} ホビー
-          %option{:value => "search-alias=mi"} 楽器
-          %option{:value => "search-alias=sporting"} スポーツ&amp;アウトドア
-          %option{:value => "search-alias=automotive"} カー・バイク用品
-          %option{:value => "search-alias=diy"} DIY・工具
-          %option{:value => "search-alias=appliances"} 大型家電
-          %option{:value => "search-alias=financial"} クレジットカード
-          %option{:value => "search-alias=gift-cards"} ギフト券
-          %option{:value => "search-alias=industrial"} 産業・研究開発用品
-          %option{:value => "search-alias=pantry"} Amazonパントリー
-          %option{:value => "search-alias=warehouse-deals"} Amazonアウトレット
-
+        = link_to categories_path do
+          %span.nav-below__categoly__name カテゴリー
+          %span.triangle
+        %ul.nav-below__categoly__ul
+          %li.nav-below__categoly__li
+            = link_to "Kindleストア", ""
+          %li
+            = link_to "Amazonビデオ", ""
+          %li
+            = link_to "Amazon Music", ""
+          %li
+            = link_to "Android アプリストア", ""
+          %li
+            = link_to "本", ""
+          %li
+            = link_to "洋書", ""
+          %li
+            = link_to "ミュージック", ""
+          %li
+            = link_to "クラシック", ""
+          %li
+            = link_to "DVD", ""
+          %li
+            = link_to "TVゲーム", ""
+          %li
+            = link_to "PCソフト", ""
+          %li
+            = link_to "パソコン・周辺機器", ""
+          %li
+            = link_to "家電・カメラ", ""
+          %li
+            = link_to "文房具・オフィス用品", ""
+          %li
+            = link_to "ホーム・キッチン", ""
+          %li
+            = link_to "ペット用品", ""
+          %li
+            = link_to "ドラッグストア", ""
+          %li
+            = link_to "ビューティー", ""
+          %li
+            = link_to "ラグジュアリービューティー", ""
+          %li
+            = link_to "食品・飲料・お酒", ""
+          %li
+            = link_to "ベビー・マタニティ", ""
+          %li
+            = link_to "ファッション", ""
+          %li
+            = link_to "レディース", ""
+          %li
+            = link_to "メンズ", ""
+          %li
+            = link_to "キッズ＆ベビー", ""
+          %li
+            = link_to "服＆ファッション小物", ""
+          %li
+            = link_to "シューズ＆バッグ", ""
+          %li
+            = link_to "腕時計", ""
+          %li
+            = link_to "ジュエリー", ""
+          %li
+            = link_to "おもちゃ", ""
+          %li
+            = link_to "ホビー", ""
+          %li
+            = link_to "楽器", ""
+          %li
+            = link_to "スポーツ＆アウトドア", ""
+          %li
+            = link_to "カー・バイク用品", ""
+          %li
+            = link_to "DIY・工具", ""
+          %li
+            = link_to "大型家電", ""
+          %li
+            = link_to "クレジットカード", ""
+          %li
+            = link_to "ギフト券", ""
+          %li
+            = link_to "Amazonパントリー", ""
+          %li
+            = link_to "Amazonアウトレット", ""
       .nav-below__amazonpoint
         .nav-below__amazonpoint__mystore
           =link_to "マイストア", users_path, :class => "link"
@@ -112,33 +152,79 @@
 
       .nav-below__tools
         .nav-below__tools__account
-          %span
-            ○○○さん
-          %select{ onChange: "location.href=value;", class: "nav-below__tools__account__searchselect"}
-            %option{:selected => "selected", :value => "users"} アカウント&リスト
-            %option{:value => "users"} アカウントサービス
-            %option{:value => "search-alias=orderhistory"} 注文履歴
-            %option{:value => "search-alias=vertualdash"} バーチャルダッシュ
-            %option{:value => "search-alias=wishlist"} ほしい物リスト
-            %option{:value => "search-alias=recommend"} おすすめ商品
-            %option{:value => "search-alias=subscription"} Amazon定期おトク便情報
-            %option{:value => "search-alias=prime"} Amazonプライム会員情報
-            %option{:value => "search-alias=businessaccount"} ビジネスアカウントを登録
-            %option{:value => "search-alias=contents"} コンテンツと端末の管理
-            %option{:value => "search-alias=primemusic"} Prime Music
-            %option{:value => "search-alias=musiclibraly"} ミュージックライブラリにアクセス
-            %option{:value => "search-alias=amazondrive"} お客様のAmazon Drive
-            %option{:value => "search-alias=watchlist"}ウォッチリスト
-            %option{:value => "search-alias=videolibrary"}ビデオライブラリ
-            %option{:value => "search-alias=kindleunlimited"}お客様の Kindle Unlimited
-            %option{:value => "search-alias=game"}ゲーム&PCソフトダウンロードライブラリ
-            %option{:value => "search-alias=applibrary"}アプリライブラリとデバイスの管理
-            %option{:value => "users/sign_out"} nさんではありませんか？サインアウト
+          = link_to users_path, :class => "nav-below__tools__account__link" do
+            %span.nav-below__tools__account__nickname
+              = current_user.nickname
+              さん
+            %span.nav-below__tools__account__list
+              アカウント＆リスト
+            %span.triangle.triangle__account
+          %ul.nav-below__tools__ul
+            %li
+              .nav-below__tools__ul__left
+                %ul.nav-below__tools__ul__inner
+                  %li.nav-below__tools__ul__inner__title リスト
+                  %li
+                    = link_to "ほしい物リスト", ""
+                  %li
+                    = link_to "映画、DVD", ""
+                  %li
+                    = link_to "本", ""
+                %ul.nav-below__tools__ul__inner
+                  %li
+                    = link_to "ほしい物リストを作成する", ""
+                  %li
+                    = link_to "ほしい物リストを見つける", ""
+                  %li
+                    = link_to "何でもほしい物リスト", ""
+              .nav-below__tools__ul__right
+                %ul.nav-below__tools__ul__inner
+                  %li.nav-below__tools__ul__inner__title アカウントサービス
+                  %li
+                    = link_to "アカウントサービス", users_path
+                  %li
+                    = link_to "注文履歴", ""
+                  %li
+                    = link_to "バーチャルダッシュ", ""
+                  %li
+                    = link_to "ほしい物リスト", ""
+                  %li
+                    = link_to "おすすめ商品", ""
+                  %li
+                    = link_to "Amazon定期おトク便情報", ""
+                  %li
+                    = link_to "Amazonプライム会員情報", ""
+                  %li
+                    = link_to "ビジネスアカウントを登録", ""
+                %ul.nav-below__tools__ul__inner
+                  %li
+                    = link_to "コンテンツと端末の管理", ""
+                  %li
+                    = link_to "Prime Music", ""
+                  %li
+                    = link_to "ミュージックライブラリにアクセス", ""
+                  %li
+                    = link_to "お客様のAmazon Drive", ""
+                  %li
+                    = link_to "ウォッチリスト", ""
+                  %li
+                    = link_to "ビデオライブラリ", ""
+                  %li
+                    = link_to "お客様のKindle Unlimited", ""
+                  %li
+                    = link_to "ゲーム&PCソフトダウンロードライブラリ", ""
+                  %li
+                    = link_to "アプリライブラリとデバイスの管理", ""
+                %ul.nav-below__tools__ul__inner
+                  %li
+                    = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path
+
           .nav-below__categoly
         .nav-below__tools__order
-          = link_to "注文履歴", "/"
+          = link_to users_path do
+            %span 注文履歴
         .nav-below__tools__cart
-          = link_to "/" do
+          = link_to carts_path do
             %span
-              2
+              = @totalitems
             = image_tag "cart.png"

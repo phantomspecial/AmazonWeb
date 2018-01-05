@@ -3,17 +3,11 @@ class CartsController < ApplicationController
 # stockのshowからカートに追加した際の処理
   def index
     # @cart = Cart.stocks.find(params[:id])
-  end
-
-  def show
-    @carts = current_user.carts.all
     @cart = current_user.carts.new
 
-    # 合計点数と合計金額の表示
-    @totalitems = 0
+    # 合計金額の表示
     @totalyen = 0
     @carts.each do |cart|
-      @totalitems += cart.quantity
       @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end
   end
@@ -31,6 +25,15 @@ class CartsController < ApplicationController
     if update_flg == 0
       @cart = current_user.carts.new(cart_params)
       @cart.save
+    end
+
+    # 合計点数と合計金額の表示
+    @carts = current_user.carts.all
+    @totalitems = 0
+    @totalyen = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+      @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end
 
   end

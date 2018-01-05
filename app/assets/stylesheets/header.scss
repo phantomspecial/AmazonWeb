@@ -1,3 +1,22 @@
+//common
+.triangle {
+  border: 4px solid transparent;
+  border-top: 4px solid #ddd;
+  display: block;
+  position: absolute;
+  right: 22px;
+  top: 17px;
+  &__account {
+    top: 32px;
+    right: 20px;
+  }
+}
+
+// header contents
+header {
+  width: 100%;
+  height: 100px;
+}
 .navbar {
   background-color: #232f3e;
   position: absolute;
@@ -6,7 +25,7 @@
   line-height: 1em;
   display: block;
   width: 100%;
-  min-width: 1000px;
+  min-width: 1400px;
   height: 100px;
   .nav-over {
     width: 100%;
@@ -73,6 +92,13 @@
     width: 100%;
     height: 40px;
     position: relative;
+    a {
+      color: #FFF;
+      text-decoration: none;
+    }
+    li > a {
+      color: #000;
+    }
     &__categoly{
       height: 30px;
       margin-left: 20px;
@@ -80,6 +106,74 @@
       float: left;
       text-align: center;
       font-size: 20px;
+      a {
+        border: 1px solid #242f3e;
+        display: block;
+        font-size: 14px;
+        padding-left: 10px;
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 110px;
+      }
+      a:hover {
+        border: 1px solid #55606d;
+        border-radius: 2px;
+      }
+      &__name {
+        display: block;
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+      }
+      &__ul {
+        background: #FFF;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        padding: 20px;
+        position: absolute;
+        left: 20px;
+        top: 35px;
+        z-index: 9999;
+        li {
+          margin-bottom: 15px;
+        }
+        li a {
+          font-size: 14px;
+          font-weight: normal;
+          border: none;
+          width: 100%;
+          height: 100%;
+        }
+        li a:hover {
+          color: #f08804;
+          font-weight: bold;
+          border: none;
+        }
+      }
+      &__ul:before {
+        border:10px solid transparent;
+        border-bottom-color:#fff;
+        border-top-width:0;
+        top:-9px;
+        content:"";
+        display:block;
+        left: 84px;
+        position:absolute;
+        width:0;
+        z-index:1;
+      }
+      &__ul:after {
+        border:10px solid transparent;
+        border-bottom-color:#aaa;
+        border-top-width:0;
+        top:-10px;
+        content:"";
+        display:block;
+        left:84px;
+        position:absolute;
+        width:0;
+      }
       &__searchselect
         {
         font-size: 14px;
@@ -93,11 +187,10 @@
         }
     }
     &__amazonpoint{
-      width: 260px;
       height: 60px;
       float: left;
       color: #DADADA;
-      padding-left: 70px;
+      padding-left: 50px;
       padding-top: 17px;
 
       &__mystore{
@@ -117,7 +210,7 @@
     }
     &__tools {
       float: right;
-      width: 440px;
+      width: 400px;
       height: 60px;
       color: white;
       font-size: 14px;
@@ -126,41 +219,128 @@
       position: relative;
       a {
         color: #FFF;
+        display: block;
+        text-align: left;
         text-decoration: none;
       }
+      &__ul {
+        background: #FFF;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        padding: 20px;
+        position: absolute;
+        top: 44px;
+        right: -70px;
+        width: 410px;
+        z-index: 9999;
+          &__left {
+            float: left;
+          }
+          &__right {
+            width: 200px;
+            float: right;
+          }
+          &__inner {
+            li {
+              display: block;
+              margin-bottom: 15px;
+              font-weight: normal;
+              line-height: 1.5em;
+            }
+            a:hover {
+              border: none;
+              color: #f08804;
+              font-weight: bold;
+            }
+            &__title {
+              color: #000;
+              font-size: 20px;
+              font-weight: bold;
+              text-align: left;
+              margin-bottom: 10px;
+            }
+          }
+      }
+      &__ul:before {
+        border:10px solid transparent;
+        border-bottom-color:#fff;
+        border-top-width:0;
+        top:-9px;
+        content:"";
+        display:block;
+        left: 363px;
+        position:absolute;
+        width:0;
+        z-index:1;
+      }
+      &__ul:after {
+        border:10px solid transparent;
+        border-bottom-color:#aaa;
+        border-top-width:0;
+        top:-10px;
+        content:"";
+        display:block;
+        left:363px;
+        position:absolute;
+        width:0;
+      }
       &__account {
-      width: 0px;
+      width: 150px;
       text-align: center;
       float: left;
       padding: 10px;
       position: relative;
+      left: 25px;
       top: -10px;
-        &__searchselect
-        {
-        font-size: 14px;
-        font-weight: bold;
-        background-color:#232f3e;
-        border-style: none;
-        width: 200px;
-        color: white;
+        &__link:hover {
+          border: 1px solid #55606d;
+          border-radius: 2px;
         }
-        span {
+        &__link {
+          border: 1px solid #242f3e;
+          display: block;
+          font-size: 14px;
+          text-align: left;
+          top: -10px;
+          left: -10px;
+          margin-left: 10px;
+          padding: 10px 5px 0 10px;
+          position: relative;
+          width: 160px;
+          height: 36px;
+        }
+        &__list {
+          color: #FFF;
+          display: block;
+          font-size: 14px;
+          margin-top: 5px;
+        }
+        &__nickname {
           color: #ccc;
-          display: inline-block;
+          display: block;
           font-size: 12px;
-          margin-left: 7px;
           text-align: left;
           width: 200px;
         }
       }
       &__order{
-      height: 60px;
-      width: 150px;
-      text-align: center;
+      height: 35px;
+      width: 80px;
       position: absolute;
-      left: 200px;
+      left: 195px;
+      top: 9px;
       float: left;
-      margin-top: 18px;
+      margin-left: 25px;
+        a {
+          border: 1px solid #242f3e;
+          display: block;
+          height: 12px;
+          padding: 7px 10px;
+        }
+        a:hover {
+          border: 1px solid #55606d;
+          border-radius: 2px;
+        }
       }
       &__cart{
       float: right;

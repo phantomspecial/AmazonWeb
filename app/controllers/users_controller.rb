@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     # アカウントサービス画面
   end
@@ -48,9 +49,23 @@ class UsersController < ApplicationController
     if @existuser_flg == true
       #既存顧客：すでに１枚以上カードがあり、そこに追加する場合
       customer = gets_usercardinfo
-      customer.cards.create(
-        card: @token_id
-      )
+
+      #カード名義、カード番号(下4桁)、有効期限(月・年)すべてが同じものがある場合、登録できないようにする。
+      cards = customer.cards.all
+      samecard_flg = false
+      cards.each do |card|
+        if card_params[:number][-4,4] == card.last4 && card_params[:month] == card.exp_month.to_s && card_params[:year] == card.exp_year.to_s
+          samecard_flg = true
+        end
+      end
+
+      #  samecard_flgがfalseのまま：同じカードが存在しないことになるので、カードを作成する。
+      if samecard_flg == false
+        customer.cards.create(
+            card: @token_id
+          )
+      end
+
     else
       #新規顧客：１枚もカードがない場合
       # Pay.jpに顧客を作成（カード情報の保存に必要）

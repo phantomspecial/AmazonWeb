@@ -6,7 +6,7 @@
     注文日
     = user_order.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
     合計金額
-    = user_order.total
+    = user_order.total.to_s(:delimited)
     お届け先
     = User.find(user_order.user_id).first_name
     = User.find(user_order.user_id).last_name
@@ -18,5 +18,5 @@
         = image_tag Stock.find(user_order_detail.stock_id).image, width:100
         = Stock.find(user_order_detail.stock_id).name
         販売: Amazon Japan G.K.
-        = user_order_detail.sell_price
+        = user_order_detail.sell_price.to_s(:delimited)
         .br
