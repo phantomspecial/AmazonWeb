@@ -20,11 +20,11 @@
               %td
                 = recentorder.id
               %td
-                = recentorder.total
+                = recentorder.total.to_s(:delimited)
               %td
-                = recentorder.total_shippingcost
+                = recentorder.total_shippingcost.to_s(:delimited)
               %td
-                = recentorder.total + recentorder.total_shippingcost
+                = (recentorder.total + recentorder.total_shippingcost).to_s(:delimited)
     .adminmainwindow__boxes__stocks
       .adminmainwindow__boxes__stocks__title
         [在庫数 5未満の商品一覧]
@@ -49,5 +49,5 @@
             %tr
               = limitedstock.maker
             %tr
-              = limitedstock.current_stock
+              = limitedstock.current_stock.to_s(:delimited)
 = render "shared/adminfooter"

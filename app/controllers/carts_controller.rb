@@ -30,6 +30,15 @@ class CartsController < ApplicationController
       @cart.save
     end
 
+    # 合計点数と合計金額の表示
+    @carts = current_user.carts.all
+    @totalitems = 0
+    @totalyen = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+      @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
+    end
+
   end
 
   def destroy

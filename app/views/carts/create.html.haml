@@ -14,9 +14,13 @@
       .add-to-cart__box__center__text
         .add-to-cart__box__center__text__over
           %span.add-to-cart__box__center__text__over__total
-            %b カートの小計（商品4点）:
+            %b カートの小計（商品
+            = @totalitems.to_s(:delimited)
+            点）:
           %span.add-to-cart__box__center__text__over__price
-            %b{style: "color: red;"} ￥ 11,502
+            %b{style: "color: red;"} 
+              ￥
+              = @totalyen.to_s(:delimited)
         .add-to-cart__box__center__text__under
           この注文での獲得ポイント: 0pt
     .add-to-cart__box__rig
@@ -57,10 +61,12 @@
     カートの小計
   .carttotal__itemcount
     (商品
-    n
+    = @totalitems.to_s(:delimited)
     点)：
   .carttotal__price
-    %b{style: "color: red;"} ￥ 11,502
+    %b{style: "color: red;"}
+    ￥
+    = @totalyen.to_s(:delimited)
   .showbtn
     = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
       %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
