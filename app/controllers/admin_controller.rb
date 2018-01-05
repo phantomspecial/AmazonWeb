@@ -3,6 +3,16 @@ class AdminController < ApplicationController
   before_action :permission_check
 
   def index
+    # 注文履歴最新５件
+    @recentorders = Order.order(created_at: :desc).limit(10)
+    # 在庫数５未満の商品一覧
+    @limitedstocks = []
+    @stocks = Stock.all
+    @stocks.each do |stock|
+      if stock.current_stock <= 5
+        @limitedstocks += stock
+      end
+    end
   end
 
   private
