@@ -54,7 +54,7 @@
       .cartleftwindow__goodslist__pricespace
         .cartleftwindow__goodslist__pricespace__price
           ¥
-          = Stock.find(cart.stock_id).sell_price
+          = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
       .cartleftwindow__goodslist__quantityspace
         .cartleftwindow__goodslist__quantity
         = form_for @cart do |f|
@@ -69,10 +69,11 @@
   .cartleftwindow__subtotal
     .cartleftwindow__subtotal__items
       小計 (
-      = @totalitems
+      = @totalitems.to_s(:delimited)
       )点：
     .cartleftwindow__subtotal__total
-      = @totalyen
+      ¥
+      = @totalyen.to_s(:delimited)
   .cartleftwindow__points
     この注文での獲得ポイント：
     n
@@ -85,11 +86,11 @@
   .cartrightwindow__totalbox
     .cartrightwindow__totalbox__subtotaltext
       小計(
-      = @totalitems
+      = @totalitems.to_s(:delimited)
       点)：
       %b{style: "color: #A82207;"}
         ￥
-        = @totalyen
+        = @totalyen.to_s(:delimited)
     .cartrightwindow__totalbox__points
       この注文での獲得ポイント：
       n

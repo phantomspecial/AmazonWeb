@@ -24,14 +24,15 @@
     .borderline
     .goodsbox__textbox__referenceprice
       参考価格:¥
-      = @stock.sell_price
+      = @stock.sell_price.to_s(:delimited)
     .goodsbox__textbox__price
-      価格:¥
+      価格:
       %b{style: "color: #a82207;"}
-        = @stock.sell_price
+        ¥
+        = @stock.sell_price.to_s(:delimited)
     .goodsbox__textbox__off
       OFF:¥
-      = @stock.sell_price - @stock.sell_price
+      = (@stock.sell_price - @stock.sell_price).to_s(:delimited)
       (
       %b{style: "color: #a82207;"}
         0.00%
@@ -73,7 +74,8 @@
       が販売、発送します。ギフトラッピングを利用できます。
     .goodsbox__textbox__markets
       = link_to "新品の出品：1", ""
-      ¥1,600,000
+      ¥
+      = @stock.sell_price.to_s(:delimited)
       より
     .goodsbox__textbox__detail
       ・TESTTEST
@@ -131,19 +133,22 @@
       こちらからもご購入いただけます
     .rightbox__marketplacebox__shoplist
       .rightbox__marketplacebox__shoplist__price
-        ¥1,600,000
+        ¥
+        = (@stock.sell_price * 1.1).round.to_s(:delimited)
+        / 仮に、amazonの1.1倍の価格とする
       .rightbox__marketplacebox__shoplist__addcartbuttonmini
         / = f.submit value: "カートに入れる", class: "  AddCartButton"
         = link_to "カートに入れる","", class: "AddCartButtonMini"
       .rightbox__marketplacebox__shoplist__shipping-cost
-        + ¥ 3,000
+        +
+        =@stock.shipping_cost.to_s(:delimited)
         関東への配送料
       .rightbox__marketplacebox__shoplist__seller
         発売元:
         TESTSELLER
     .rightbox__marketplacebox__sellerlist
       = link_to "新品の出品：1",""
-      ¥1,600,000
+      = @stock.sell_price.to_s(:delimited)
       より
   .rightbox__bottommessage
     .rightbox__bottommessage__text
@@ -174,9 +179,9 @@
         = @stock.sell_price
         が
         - if @stock.sell_price > 5000
-          = @stock.sell_price - 5000
+          = (@stock.sell_price - 5000).to_s(:delimited)
         - else
-          = 5000 - @stock.sell_price
+          = (5000 - @stock.sell_price).to_s(:delimited)
         円に ！
         = link_to "Amazonクラシックカード",""
         新規ご入会で、
