@@ -4,7 +4,6 @@ class CartsController < ApplicationController
 
 # stockのshowからカートに追加した際の処理
   def index
-    # @cart = Cart.stocks.find(params[:id])
     @cart = current_user.carts.new
 
     # 表示用変数
@@ -17,7 +16,7 @@ class CartsController < ApplicationController
   end
 
   def create
-    @carts = current_user.carts.all
+    @carts = gets_cart_items
     update_flg = 0
     @carts.each do |cartitem|
       if cartitem.stock_id == cart_params[:stock_id].to_i
@@ -29,6 +28,8 @@ class CartsController < ApplicationController
     if update_flg == 0
       @cart = current_user.carts.new(cart_params)
       @cart.save
+    else
+      @cart = current_user.carts.where(stock_id: cart_params[:stock_id])[0]
     end
 
     # 合計点数と合計金額の表示
