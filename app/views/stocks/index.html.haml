@@ -12,7 +12,9 @@
     .hud-dashboard__a-section1
       =image_tag "face_icon.png", width:50, height:50
       .hud-dashboard__a-section1__a
-        こんにちは、User1 さん
+        こんにちは、
+        = current_user.nickname
+        さん
     .hud-dashboard__a-section2
       .hud-dashboard__a-section2__a
         = link_to "/users" do
@@ -80,8 +82,7 @@
         商品ラインアップ
       .btfContent1__uber-widget-ns-images
         - @stocks.each do |stock|
-          = link_to image_tag(stock.image), "/", width:200, height:200
-          -# = image_tag stock.image,width:200, height:200
+          = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
       .btfContent1__desktop-billboard1
       .btfContent1__desktop-billboard2
 
