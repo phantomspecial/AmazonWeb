@@ -1,15 +1,16 @@
 class CartsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :gets_cart_number
 
 # stockのshowからカートに追加した際の処理
   def index
     # @cart = Cart.stocks.find(params[:id])
     @cart = current_user.carts.new
 
-    # 合計金額の表示
+    # 表示用変数
     @totalyen = 0
+    @carts = gets_cart_items
+    @totalitems = gets_cart_itemcount
     @carts.each do |cart|
       @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end

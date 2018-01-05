@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!,  only: [:cardusercheck, :gets_usercardinfo, :gets_userdefaultcardid, :gets_cart_number]
 
+  helper_method :gets_cart_items, :gets_cart_itemcount
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :postal_code, :pref, :city, :street, :apartment_roomnumber, :telnumber])
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nickname, :postal_code, :pref, :city, :street, :apartment_roomnumber, :telnumber])
@@ -24,8 +26,7 @@ class ApplicationController < ActionController::Base
 
 
   # pay.jpのapi_keyの設定
-  # Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-  Payjp.api_key = 'sk_test_00c4ccbccd33ff791722b9f2'
+  Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
   # 顧客-クレジットカード情報
   def cardusercheck
@@ -52,12 +53,17 @@ class ApplicationController < ActionController::Base
       @default_cardid = Payjp::Customer.retrieve(id: current_user.id.to_s).default_card
   end
 
-  # # カートの数を取得
-  # def gets_cart_number
-  #   @carts = current_user.carts.all
-  #   @totalitems = 0
-  #   @carts.each do |cart|
-  #     @totalitems += cart.quantity
-  #   end
-  # end
+  # カート内の商品を取得
+  def gets_cart_items
+    return current_user.carts.all
+  end
+  # カート内の商品の合計数を取得
+  def gets_cart_itemcount
+    @carts = gets_cart_items
+    @totalitems = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+    end
+    return @totalitems
+  end
 end

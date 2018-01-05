@@ -231,7 +231,7 @@
           = link_to carts_path do
             - if user_signed_in?
               %span
-                = @totalitems
+                = gets_cart_itemcount
             - else
               %span
                 0
