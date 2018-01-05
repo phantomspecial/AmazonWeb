@@ -1,10 +1,9 @@
 // Top page
 .wrapper {
-  min-width: 1000px;
+  min-width: 1400px;
 }
 
 .a-carousel-col{
-  padding-top: 100px;
   height: 300px;
   width: 100%;
     .goto-prevpage{
@@ -101,6 +100,9 @@
       max-height: 200px;
       width: auto;
       height: auto;
+    }
+    a {
+      margin-right: 20px;
     }
   }
 }
