@@ -12,9 +12,12 @@
     .hud-dashboard__a-section1
       =image_tag "face_icon.png", width:50, height:50
       .hud-dashboard__a-section1__a
+      - if user_signed_in?
         こんにちは、
         = current_user.nickname
         さん
+      - else
+        ログインしていません
     .hud-dashboard__a-section2
       .hud-dashboard__a-section2__a
         = link_to "/users" do
