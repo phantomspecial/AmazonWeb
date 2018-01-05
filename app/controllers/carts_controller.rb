@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :gets_cart_number
 
 # stockのshowからカートに追加した際の処理
   def index

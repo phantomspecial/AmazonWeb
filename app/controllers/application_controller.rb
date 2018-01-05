@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
 
 
   # pay.jpのapi_keyの設定
-  Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+  # Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+  Payjp.api_key = 'sk_test_00c4ccbccd33ff791722b9f2'
 
   # 顧客-クレジットカード情報
   def cardusercheck
