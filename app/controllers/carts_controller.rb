@@ -3,9 +3,6 @@ class CartsController < ApplicationController
 # stockのshowからカートに追加した際の処理
   def index
     # @cart = Cart.stocks.find(params[:id])
-  end
-
-  def show
     @carts = current_user.carts.all
     @cart = current_user.carts.new
 
