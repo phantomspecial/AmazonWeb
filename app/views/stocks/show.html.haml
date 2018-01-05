@@ -132,19 +132,25 @@
     - else
       .rightbox__cartbox__quantity
         数量
-        / = %select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+        %select
+          - 10.times do |i|
+            %option{ value: "#{i+1}"}#{i+1}
       .rightbox__cartbox__addcartbutton
-        / = f.hidden_field :stock_id, value: params[:id]
         = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
-        / = f.submit value: "カートに入れる", class: "AddCartButton"
         / カートのマークをボタン左側に表示する
       .borderline
       .rightbox__cartbox__oneclickorder
-        = link_to "1-Click 注文を有効にしてください。",""
+        = link_to new_user_session_path do
+          1-Click 注文を有効にするためには
+          .br
+          ログインしてください。
       .borderline
       .rightbox__cartbox__delivery
         %b
-          お届け先住所を表示するためにはログインしてください
+          お届け先住所を表示するためには
+          .br
+          = link_to "ログイン", new_user_session_path
+          してください
       .borderline
       .rightbox__cartbox__wantbutton
         = link_to "ほしい物リストに追加する","", class: "wantbutton"
