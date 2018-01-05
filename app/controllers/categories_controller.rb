@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @sub_categories = Sub_category.all
   end
 
   def new
