@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     # アカウントサービス画面
   end

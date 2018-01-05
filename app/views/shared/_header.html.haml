@@ -218,34 +218,14 @@
                     = link_to "アプリライブラリとデバイスの管理", ""
                 %ul.nav-below__tools__ul__inner
                   %li
-                    = link_to "伊藤沙也香さんではありませんか？サインアウト", destroy_user_session_path
+                    = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path
 
-          -# %select{ onChange: "location.href=value;", class: "nav-below__tools__account__searchselect"}
-          -#   %option{:selected => "selected", :value => "users"} アカウント&リスト
-          -#   %option{:value => "users"} アカウントサービス
-          -#   %option{:value => "search-alias=orderhistory"} 注文履歴
-          -#   %option{:value => "search-alias=vertualdash"} バーチャルダッシュ
-          -#   %option{:value => "search-alias=wishlist"} ほしい物リスト
-          -#   %option{:value => "search-alias=recommend"} おすすめ商品
-          -#   %option{:value => "search-alias=subscription"} Amazon定期おトク便情報
-          -#   %option{:value => "search-alias=prime"} Amazonプライム会員情報
-          -#   %option{:value => "search-alias=businessaccount"} ビジネスアカウントを登録
-          -#   %option{:value => "search-alias=contents"} コンテンツと端末の管理
-          -#   %option{:value => "search-alias=primemusic"} Prime Music
-          -#   %option{:value => "search-alias=musiclibraly"} ミュージックライブラリにアクセス
-          -#   %option{:value => "search-alias=amazondrive"} お客様のAmazon Drive
-          -#   %option{:value => "search-alias=watchlist"}ウォッチリスト
-          -#   %option{:value => "search-alias=videolibrary"}ビデオライブラリ
-          -#   %option{:value => "search-alias=kindleunlimited"}お客様の Kindle Unlimited
-          -#   %option{:value => "search-alias=game"}ゲーム&PCソフトダウンロードライブラリ
-          -#   %option{:value => "search-alias=applibrary"}アプリライブラリとデバイスの管理
-          -#   %option{:value => "users/sign_out"} nさんではありませんか？サインアウト
           .nav-below__categoly
         .nav-below__tools__order
           = link_to users_path do
             %span 注文履歴
         .nav-below__tools__cart
-          = link_to "carts" do
+          = link_to carts_path do
             %span
               = @totalitems
             = image_tag "cart.png"
