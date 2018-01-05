@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     # 個別ユーザ：履歴画面
     # アソシエーションを組んでいる前提

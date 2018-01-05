@@ -154,8 +154,11 @@
         .nav-below__tools__account
           = link_to users_path, :class => "nav-below__tools__account__link" do
             %span.nav-below__tools__account__nickname
+            - if user_signed_in?
               = current_user.nickname
               さん
+            -else
+              ログインしていません
             %span.nav-below__tools__account__list
               アカウント＆リスト
             %span.triangle.triangle__account
@@ -215,9 +218,10 @@
                     = link_to "ゲーム&PCソフトダウンロードライブラリ", ""
                   %li
                     = link_to "アプリライブラリとデバイスの管理", ""
-                %ul.nav-below__tools__ul__inner
-                  %li
-                    = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path
+                - if user_signed_in?
+                  %ul.nav-below__tools__ul__inner
+                    %li
+                      = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path, method: :delete
 
           .nav-below__categoly
         .nav-below__tools__order
@@ -225,6 +229,10 @@
             %span 注文履歴
         .nav-below__tools__cart
           = link_to carts_path do
-            %span
-              = @totalitems
+            - if user_signed_in?
+              %span
+                = @totalitems
+            - else
+              %span
+                0
             = image_tag "cart.png"

@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #  カートの中の数を取得
-  before_action :gets_cart_number
+  before_action :authenticate_user!,  only: [:cardusercheck, :gets_usercardinfo, :gets_userdefaultcardid, :gets_cart_number]
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :postal_code, :pref, :city, :street, :apartment_roomnumber, :telnumber])
@@ -52,12 +51,12 @@ class ApplicationController < ActionController::Base
       @default_cardid = Payjp::Customer.retrieve(id: current_user.id.to_s).default_card
   end
 
-  # カートの数を取得
-  def gets_cart_number
-    @carts = current_user.carts.all
-    @totalitems = 0
-    @carts.each do |cart|
-      @totalitems += cart.quantity
-    end
-  end
+  # # カートの数を取得
+  # def gets_cart_number
+  #   @carts = current_user.carts.all
+  #   @totalitems = 0
+  #   @carts.each do |cart|
+  #     @totalitems += cart.quantity
+  #   end
+  # end
 end

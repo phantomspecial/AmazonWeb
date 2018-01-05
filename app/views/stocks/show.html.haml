@@ -103,13 +103,40 @@
     %i.fa.fa-twitter
     %i.fa.fa-pinterest-square
   .rightbox__cartbox
-    = form_for @cart do |f|
+    - if user_signed_in?
+      = form_for @cart do |f|
+        .rightbox__cartbox__quantity
+          = f.label :quantity, "数量"
+          = f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+        .rightbox__cartbox__addcartbutton
+          = f.hidden_field :stock_id, value: params[:id]
+          = f.submit value: "カートに入れる", class: "  AddCartButton"
+          / カートのマークをボタン左側に表示する
+        .borderline
+        .rightbox__cartbox__oneclickorder
+          = link_to "1-Click 注文を有効にしてください。",""
+        .borderline
+        .rightbox__cartbox__delivery
+          %b
+            お届け先住所
+          .br
+          =@user.first_name
+          =@user.last_name
+          =@user.pref
+          =@user.postal_code
+        .borderline
+        .rightbox__cartbox__wantbutton
+          = link_to "ほしい物リストに追加する","", class: "wantbutton"
+        .rightbox__cartbox__virtualdashlink
+          = link_to "バーチャルダッシュに追加する",""
+    - else
       .rightbox__cartbox__quantity
-        = f.label :quantity, "数量"
-        = f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+        数量
+        / = %select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
       .rightbox__cartbox__addcartbutton
-        = f.hidden_field :stock_id, value: params[:id]
-        = f.submit value: "カートに入れる", class: "  AddCartButton"
+        / = f.hidden_field :stock_id, value: params[:id]
+        = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
+        / = f.submit value: "カートに入れる", class: "AddCartButton"
         / カートのマークをボタン左側に表示する
       .borderline
       .rightbox__cartbox__oneclickorder
@@ -117,12 +144,7 @@
       .borderline
       .rightbox__cartbox__delivery
         %b
-          お届け先住所
-        .br
-        =@user.first_name
-        =@user.last_name
-        =@user.pref
-        =@user.postal_code
+          お届け先住所を表示するためにはログインしてください
       .borderline
       .rightbox__cartbox__wantbutton
         = link_to "ほしい物リストに追加する","", class: "wantbutton"
