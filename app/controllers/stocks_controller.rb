@@ -5,28 +5,18 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.all
-
-    # @carts = current_user.carts.all
     if user_signed_in?
       @cart = current_user.carts.new
     end
-    # @totalitems = 0
-    # @carts.each do |cart|
-    #   @totalitems += cart.quantity
-    # end
   end
 
   def show
     @stock = Stock.find(params[:id])
-    # @carts = current_user.carts.all
+
     if user_signed_in?
       @cart = current_user.carts.new
       @user = current_user
     end
-    # @totalitems = 0
-    # @carts.each do |cart|
-      # @totalitems += cart.quantity
-    # end
   end
 
   def create

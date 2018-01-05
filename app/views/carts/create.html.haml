@@ -5,6 +5,7 @@
       .add-to-cart__box__left__checkmark
         %i.fa.fa-check.add-to-cart__box__left__checkmark__icon.fa-fw.fa-2x
       .add-to-cart__box__left__image
+        = image_tag Stock.find(@cart.stock_id).image, width:60
         .add-to-cart__box__left__image__outer
         .add-to-cart__box__left__image__inner
       .add-to-cart__box__left__textbox
@@ -23,7 +24,7 @@
               = @totalyen.to_s(:delimited)
         .add-to-cart__box__center__text__under
           この注文での獲得ポイント: 0pt
-    .add-to-cart__box__rig
+    .add-to-cart__box__right
       .add-to-cart__box__right__box
         .showbtn
           = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
@@ -65,8 +66,8 @@
     点)：
   .carttotal__price
     %b{style: "color: red;"}
-    ￥
-    = @totalyen.to_s(:delimited)
+      ￥
+      = @totalyen.to_s(:delimited)
   .showbtn
     = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
       %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
