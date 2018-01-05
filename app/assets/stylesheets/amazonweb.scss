@@ -381,9 +381,22 @@
   &__boxes{
     &__orders{
       padding-top: 20px;
+      padding-left: 20px;
+      &__title{
+        font-size: 18px;
+      }
+      &__detail{
+        font-size: 14px;
+      }
     }
     &__stocks{
-      padding-top: 300px;
+      padding-top: 200px;
+      padding-left: 20px;
+      &__title{
+        font-size: 18px;
+      }
+      &__detail{
+      }
     }
     &__users{
 
