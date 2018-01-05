@@ -10,6 +10,10 @@
       .adminmainwindow__fields
         = f.label :description, "カテゴリー説明"
         = f.text_field :description, placeholder: "カテゴリー説明を入力してください"
+        = f.fields_for :sub_categories do |g|
+          .adminmainwindow__fields
+          = g.label :name, "ジャンル"
+          = g.text_field :name, placeholder: "ジャンルを入力してください"
       .adminmainwindow__fields
         = f.submit value: "Send", class: "SendButton"
 = render "shared/adminfooter"
