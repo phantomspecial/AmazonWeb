@@ -66,8 +66,8 @@ header {
         &__center {
           float: left;
           &__input[type=text] {
-            min-width: 600px;
-            width: calc( 100vw - 800px);
+            min-width: 650px;
+            width: calc( 100vw - 750px);
             height: 32px;
           }
         }
