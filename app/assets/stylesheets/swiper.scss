@@ -17,13 +17,13 @@
 }
 .slide {
   &__1 {
-    background-image: url('echodot.jpg');
+    background-image: image-url('echodot.jpg');
   }
   &__2 {
-    background-image: url('prime_video.jpg');
+    background-image: image-url('prime_video.jpg');
   }
   &__3 {
-    background-image: url('newyear_sale.jpg');
+    background-image: image-url('newyear_sale.jpg');
   }
 }
 
