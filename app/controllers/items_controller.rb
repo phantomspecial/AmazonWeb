@@ -1,4 +1,4 @@
-class ItemsController < AdminController
+class ItemsController < AdminsController
 
   def index
     @items = Item.all
@@ -24,7 +24,6 @@ class ItemsController < AdminController
 
       # Stockテーブルのidが確定したので、その値をItemテーブルのstock_idカラムに追加して保存
       @item.stock_id = @stock.id
-      binding.pry
       @item.save
 
     else

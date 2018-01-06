@@ -116,6 +116,7 @@ class OrdersController < ApplicationController
 
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
+    @order.update(payments: "Creditcard", status: "Shipping(preparation)")s
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|

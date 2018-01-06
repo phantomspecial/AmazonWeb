@@ -14,8 +14,9 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
-  resources :admin, only: [:index]
-  resources :userpermissions, only: [:index, :update]
+  resources :admins, only: [:index] do
+    resources :userpermissions, only: [:index, :update]
+  end
   resources :users, only: [:index, :show, :new] do
     collection do
       get 'payments'

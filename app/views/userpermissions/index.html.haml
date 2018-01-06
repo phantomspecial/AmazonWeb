@@ -27,8 +27,8 @@
             %td
               - if user.id != current_user.id
                 - if user.admin_flg == true
-                  = link_to "権限降格", userpermission_path(user.id), method: :patch
+                  = link_to "権限降格", admin_userpermission_path(current_user, user.id), method: :patch
                 - else
-                  = link_to "権限昇格", userpermission_path(user.id), method: :patch
+                  = link_to "権限昇格", admin_userpermission_path(current_user, user.id), method: :patch
 
 = render "shared/adminfooter"
