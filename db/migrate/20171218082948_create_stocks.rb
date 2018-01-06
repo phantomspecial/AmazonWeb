@@ -1,7 +1,6 @@
 class CreateStocks < ActiveRecord::Migration[5.0]
   def change
     create_table :stocks do |t|
-      t.integer :item_id, null: false
       t.string  :name, null: false
       t.string  :image, null: false
       t.string  :detail, null: false

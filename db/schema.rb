@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180105051820) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "item_id"
+    t.integer  "stock_id"
     t.string   "name",          null: false
     t.string   "image",         null: false
     t.string   "detail",        null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180105051820) do
     t.integer  "item_flg"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["stock_id"], name: "index_items_on_stock_id", using: :btree
   end
 
   create_table "orderdetails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(version: 20180105051820) do
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "item_id",       null: false
     t.string   "name",          null: false
     t.string   "image",         null: false
     t.string   "detail",        null: false
@@ -116,4 +116,5 @@ ActiveRecord::Schema.define(version: 20180105051820) do
 
   add_foreign_key "carts", "stocks"
   add_foreign_key "carts", "users"
+  add_foreign_key "items", "stocks"
 end
