@@ -117,11 +117,17 @@
     .paymentbox__leftbox__credittitle
       ご登録のクレジットカード
     .borderline
-    .paymentbox__leftbox__credittogglelist
-    - @customer_creditcards.cards.data.each do |creditcard|
-      = creditcard.brand
-      下4桁
-      = creditcard.last4
+    -if @existuser_flg == true
+      - @customer_creditcards.cards.data.each do |creditcard|
+        .paymentbox__leftbox__credittogglelist
+          = creditcard.brand
+          下4桁
+          = creditcard.last4
+          - if creditcard.id == @default_cardid
+            [選択されています]
+    -else
+      登録されているクレジットカードはありません。
+      = link_to "カードを追加", payments_users_path
     .paymentbox__leftbox__nocredittitle
       クレジットカード以外の支払い方法
     .borderline

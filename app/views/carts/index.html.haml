@@ -1,73 +1,126 @@
 = render "shared/header"
-.add-to-cart
-  .add-to-cart__box
-    .add-to-cart__box__left
-      .add-to-cart__box__left__checkmark
-        %i.fa.fa-check.add-to-cart__box__left__checkmark__icon.fa-fw.fa-2x
-      .add-to-cart__box__left__image
-        .add-to-cart__box__left__image__outer
-        .add-to-cart__box__left__image__inner
-      .add-to-cart__box__left__textbox
-        .add-to-cart__box__left__textbox__text
-          追加されました
-    .add-to-cart__box__center
-      .add-to-cart__box__center__text
-        .add-to-cart__box__center__text__over
-          %span.add-to-cart__box__center__text__over__total
-            %b カートの小計（商品4点）:
-          %span.add-to-cart__box__center__text__over__price
-            %b{style: "color: red;"} ￥ 11,502
-        .add-to-cart__box__center__text__under
-          この注文での獲得ポイント: 0pt
-    .add-to-cart__box__right
-      .add-to-cart__box__right__box
-        .showbtn
-          = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
-            %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
-        .registerbtn
-          = link_to confirm_orders_path class: "add-to-cart__box__right__box__registerbtn__link" do
-            %btn.add-to-cart__box__right__box__registerbtn__link__btn
-              =link_to "レジに進む",confirm_orders_path
-.recommends
-  .recommends__one
-    .recommends__one__title
-      この商品に関するスポンサーの商品
-    .recommends__one__images
-      - 4.times do |i|
-        = image_tag "recommenditems.png", width: 250 ,height: 250
-  .recommends__two
-    .recommends__two__title
-      もう一度買う
-    .recommends__two__images
-      - 4.times do |i|
-        = image_tag "wintersale.jpg", width: 250 ,height: 250
-  .recommends__three
-    .recommends__three__title
-      この商品を買った人は、こちらの商品も買っています
-    .recommends__three__images
-      - 4.times do |i|
-        = image_tag "camera.png", width: 250 ,height: 250
-  .recommends__four
-    .recommends__four__title
-      この商品をチェックした人は、こちらの商品もチェックしています
-    .recommends__four__images
-      - 4.times do |i|
-        = image_tag "audio_visuals.png", width: 250 ,height: 250
-.carttotal
-  .carttotal__text
-    カートの小計
-  .carttotal__itemcount
-    (商品
+.cartleftwindow
+  - @carts.each do |cart|
+    - @stock = Stock.find(cart.stock_id)
+  .cartleftwindow__ad
+    広告スペース
+  .cartleftwindow__title
+    .cartleftwindow__title__left
+      ショッピングカート
+    .cartleftwindow__title__right
+      ご利用可能なAmazonポイントは
+      n
+      pt です。
+      .br
+      カートの商品はAmazonポイントの対象外です
+  .cartleftwindow__topborder
+    .cartleftwindow__topborder__pricetext
+      価格
+    .cartleftwindow__topborder__quantitytext
+      数量
+    .cartleftwindow__topborder__line
+  .cartleftwindow__goodslist
+    - @carts.each do |cart|
+      .cartleftwindow__goodslist__detail
+        .cartleftwindow__goodslist__detail__image
+          = image_tag Stock.find(cart.stock_id).image, width:200
+        .cartleftwindow__goodslist__detail__title
+          = Stock.find(cart.stock_id).name
+        .cartleftwindow__goodslist__detail__maker
+          = Stock.find(cart.stock_id).maker
+        .cartleftwindow__goodslist__detail__stockcheck
+          - if Stock.find(cart.stock_id).current_stock > 5
+            .status-green
+              在庫あり。
+          - elsif Stock.find(cart.stock_id).current_stock == 0
+            .status-red
+              在庫切れ。入荷予定あり
+          - else
+            .status-red
+              残り
+              = Stock.find(cart.stock_id).current_stock
+              点。ご注文はお早めに。
+            在庫あり
+        .cartleftwindow__goodslist__detail__primemark
+          = image_tag "primemark.png" , width: 50 ,height: 20
+        .cartleftwindow__goodslist__detail__giftbox
+          / = check_tox_tag("")
+          ギフトの設定（贈り主名の表示に必要です）
+          = link_to "詳細", ""
+        .cartleftwindow__goodslist__detail__destroy
+          = link_to "削除", ""
+        .cartleftwindow__goodslist__detail__buylater
+          = link_to "あとで買う", ""
+      .cartleftwindow__goodslist__pricespace
+        .cartleftwindow__goodslist__pricespace__price
+          ¥
+          = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
+      .cartleftwindow__goodslist__quantityspace
+        .cartleftwindow__goodslist__quantity
+        = form_for @cart do |f|
+          .rightbox__cartbox__quantity
+            = f.label :quantity, "数量"
+            = f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]], selected: cart.quantity
+          .rightbox__cartbox__addcartbutton
+            = f.hidden_field :stock_id, value: cart.stock_id
+            / = f.submit value: "更新"
+            / 要検討
+  .cartleftwindow__bottomborder
+  .cartleftwindow__subtotal
+    .cartleftwindow__subtotal__items
+      小計 (
+      = @totalitems.to_s(:delimited)
+      )点：
+    .cartleftwindow__subtotal__total
+      ¥
+      = @totalyen.to_s(:delimited)
+  .cartleftwindow__points
+    この注文での獲得ポイント：
     n
-    点)：
-  .carttotal__price
-    %b{style: "color: red;"} ￥ 11,502
-  .showbtn
-    = link_to root_path class: "add-to-cart__box__right__box__showbtn__link" do
-      %btn.add-to-cart__box__right__box__showbtn__link__btn カートの編集
-  .registerbtn
-    = link_to root_path class: "add-to-cart__box__right__box__registerbtn__link" do
-      %btn.add-to-cart__box__right__box__registerbtn__link__btn
-        =link_to "レジに進む",confirm_orders_path
-
+    pt
+  .cartleftwindow__message
+    Amazon.co.jp での商品価格や在庫状況は変更される場合があります。カートに追加した時と在庫状況や価格が異なることがあります。カート内で表示されている価格は最新の価格となります。
+    .br
+    未登録のAmazonギフト券やクーポンは、お支払い方法選択画面や注文確定画面で入力できます。
+.cartrightwindow
+  .cartrightwindow__totalbox
+    .cartrightwindow__totalbox__subtotaltext
+      小計(
+      = @totalitems.to_s(:delimited)
+      点)：
+      %b{style: "color: #A82207;"}
+        ￥
+        = @totalyen.to_s(:delimited)
+    .cartrightwindow__totalbox__points
+      この注文での獲得ポイント：
+      n
+      pt
+    .cartrightwindow__totalbox__giftsettings
+      / = check_tox_tag("")
+      ギフトの設定（贈り主名の表示に必要です）
+    .cartrightwindow__totalbox__registarbtn
+      .registerbtn
+        = link_to "レジに進む",confirm_orders_path
+    .cartrightwindow__totalbox__bordertext
+      または
+    .cartrightwindow__totalbox__oneclicklinks
+      = link_to "サインイン"
+      して1-ClickをONにする
+  .cartrightwindow__sponsoredgoodslink
+    .cartrightwindow__sponsoredgoodslink__title
+      カート内の商品に関連するスポンサープロダクト
+    .cartrightwindow__sponsoredgoodslink__items
+      .cartrightwindow__sponsoredgoodslink__items__image
+        = image_tag "prime.png" , width: 96, height: 72
+      .cartrightwindow__sponsoredgoodslink__items__goodsname
+        SPONSORDGOODSNAME
+      .cartrightwindow__sponsoredgoodslink__items__rate
+        RATE1
+      .cartrightwindow__sponsoredgoodslink__items__price
+        ¥1,000
+      .cartrightwindow__sponsoredgoodslink__items__primemark
+        = image_tag "primemark.png"
+      .cartrightwindow__sponsoredgoodslink__items__allitems
+        .showbtn__mini
+          = link_to "すべての出品を見る",""
 = render "shared/footer"

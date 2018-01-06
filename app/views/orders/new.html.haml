@@ -67,9 +67,11 @@
           .paybox__creditmark
             = image_tag "visa_mark.gif"
           .paybox__text
-            - @customer_creditcards.cards.data.each do |creditcard|
-              下4桁
-              = creditcard.last4
+            -if @existuser_flg == true
+              - @customer_creditcards.cards.data.each do |creditcard|
+                -if creditcard.id == @default_cardid
+                  下4桁
+                  = creditcard.last4
         .dembox
           .dembox__title
             請求先住所
@@ -116,9 +118,9 @@
               = Stock.find(cart.stock_id).name
             .orderbox__leftwindow__itembox__leftbox__items__sellprice
               ¥
-              = Stock.find(cart.stock_id).sell_price
+              = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
             .orderbox__leftwindow__itembox__leftbox__items__stock
-              = Stock.find(cart.stock_id).current_stock
+              = Stock.find(cart.stock_id).current_stock.to_s(:delimited)
               点在庫あり。
             .orderbox__leftwindow__itembox__leftbox__items__quantity
               数量：
@@ -154,20 +156,20 @@
           商品の小計：
         .orderbox__rightwindow__orderbox__itemtotal__yen
           ¥
-          = @totalitemyen
+          = @totalitemyen.to_s(:delimited)
       .orderbox__rightwindow__orderbox__shiptotal
         .orderbox__rightwindow__orderbox__shiptotal__label
           配送料・手数料：
         .orderbox__rightwindow__orderbox__shiptotal__yen
           ¥
-          = @totalshipyen
+          = @totalshipyen.to_s(:delimited)
         .orderbox__rightwindow__orderbox__shiptotal__line
       .orderbox__rightwindow__orderbox__total
         .orderbox__rightwindow__orderbox__total__label
           ご請求額：
         .orderbox__rightwindow__orderbox__total__yen
           ¥
-          = @totalitemyen + @totalshipyen
+          = (@totalitemyen + @totalshipyen).to_s(:delimited)
         .orderbox__rightwindow__orderbox__total__line
       .orderbox__rightwindow__orderbox__textbox
         .orderbox__rightwindow__orderbox__textbox__toptext

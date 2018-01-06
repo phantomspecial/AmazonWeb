@@ -32,13 +32,13 @@
             %td
               = item.maker
             %td
-              = item.unit_cost
+              = item.unit_cost.to_s(:delimited)
             %td
-              = item.quantity
+              = item.quantity.to_s(:delimited)
             %td
-              = item.sell_price
+              = item.sell_price.to_s(:delimited)
             %td
-              = item.shipping_cost
+              = item.shipping_cost.to_s(:delimited)
             %td
               = link_to "編集", "/items/#{item.id}/edit",   method: :get
 = render "shared/adminfooter"

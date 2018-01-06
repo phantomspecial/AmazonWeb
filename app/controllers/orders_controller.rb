@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     # 個別ユーザ：履歴画面
     # アソシエーションを組んでいる前提
@@ -10,7 +13,6 @@ class OrdersController < ApplicationController
     @user_orders.each do |user_order|
       @user_order_details += Orderdetail.where(order_id: user_order.id)
     end
-    # binding.pry
 
     # 画面表示用
     # ユーザ登録年取得
@@ -20,8 +22,7 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
-    # 発送日取得
-    # @date_of_shipping = Orders.created_at.since(1.days)
+
   end
 
   def show
@@ -33,8 +34,13 @@ class OrdersController < ApplicationController
     # 決済方法の選択画面
     # ギフトの選択画面
     @user = current_user
-    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
-    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
+
+    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
+    @existuser_flg = cardusercheck
+    if @existuser_flg == true
+      @customer_creditcards = gets_usercardinfo
+      @default_cardid = gets_userdefaultcardid
+    end
   end
 
   def new
@@ -50,8 +56,13 @@ class OrdersController < ApplicationController
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
       @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
     end
-    # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
-    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
+
+    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
+    @existuser_flg = cardusercheck
+    if @existuser_flg == true
+      @customer_creditcards = gets_usercardinfo
+      @default_cardid = gets_userdefaultcardid
+    end
   end
 
   def create

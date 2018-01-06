@@ -1,25 +1,22 @@
 class CartsController < ApplicationController
 
+  before_action :authenticate_user!
+
 # stockのshowからカートに追加した際の処理
   def index
-    # @cart = Cart.stocks.find(params[:id])
-  end
-
-  def show
-    @carts = current_user.carts.all
     @cart = current_user.carts.new
 
-    # 合計点数と合計金額の表示
-    @totalitems = 0
+    # 表示用変数
     @totalyen = 0
+    @carts = gets_cart_items
+    @totalitems = gets_cart_itemcount
     @carts.each do |cart|
-      @totalitems += cart.quantity
       @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end
   end
 
   def create
-    @carts = current_user.carts.all
+    @carts = gets_cart_items
     update_flg = 0
     @carts.each do |cartitem|
       if cartitem.stock_id == cart_params[:stock_id].to_i
@@ -31,6 +28,17 @@ class CartsController < ApplicationController
     if update_flg == 0
       @cart = current_user.carts.new(cart_params)
       @cart.save
+    else
+      @cart = current_user.carts.where(stock_id: cart_params[:stock_id])[0]
+    end
+
+    # 合計点数と合計金額の表示
+    @carts = current_user.carts.all
+    @totalitems = 0
+    @totalyen = 0
+    @carts.each do |cart|
+      @totalitems += cart.quantity
+      @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end
 
   end
