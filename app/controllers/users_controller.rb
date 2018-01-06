@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @year = Time.current.in_time_zone('Tokyo').strftime("%Y").to_i
 
     # Payjpに登録されているそのユーザidを持つユーザのクレジットカード情報を取得する。
-    @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
+    # @customer_creditcards = Payjp::Customer.retrieve(id: current_user.id.to_s)
    end
 
   def creditcard_regist

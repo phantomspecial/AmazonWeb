@@ -1,2 +1,81 @@
-/ = render "shared/header"
-/ = render "shared/footer"
+= render "shared/header"
+.order
+  .order__head
+    .order__head__root
+      .order__head__root__text
+        = link_to users_path do
+          %span.order__head__root__text__servise アカウントサービス
+        %span.order__head__root__text__arrow >
+        %span.order__head__root__text__history 注文履歴
+    .order__head__title
+      .order__head__title__text
+        %h3 注文履歴
+      .order__head__title__search
+      = form_for "" do |f|
+        .order__head__title__search__field
+          .order__head__title__search__field__icon
+            %i.fa.fa-search.order__head__title__search__field__icon__btn
+          .order__head__title__search__field__textbox
+            = f.text_field :name, placeholder: "タイトル、カテゴリー、またはお届け先で検索", class: "order__head__title__search__field__textbox__placeholder"
+        .order__head__title__search__btn
+          = f.submit "注文を検索", class: "order__head__title__search__btn__button"
+    .order__head__category
+      .order__head__category__settled 注文
+      .order__head__category__notyet 未発送の注文
+      .order__head__category__cancel キャンセルされた注文
+    .order__head__sort
+      .order__head__sort__box
+        %select.order__head__sort__box__select{ name: "period"}
+          %option.order__head__sort__box__option{ value: "1month" } 過去30日間
+          %option.order__head__sort__box__option{ value: "6month" } 過去6ヶ月間
+      .order__head__sort__text
+        に確定された#{@user_orders.count}件の注文
+  .order__main
+  - @user_order_details.each do |user_order_details|
+    .order__main__inner
+      .order__main__inner__over
+        .order__main__inner__over__order-date
+          .order__main__inner__over__order-date__title 注文日
+          .order__main__inner__over__order-date__detail
+            = user_order_details.order.created_at.in_time_zone('Tokyo').strftime("%y/%m/%d")
+        .order__main__inner__over__total
+          .order__main__inner__over__total__title 合計
+          .order__main__inner__over__total__detail
+            ¥ #{user_order_details.order.total.to_s(:delimited)}
+        .order__main__inner__over__address
+          .order__main__inner__over__address__title お届け先
+          .order__main__inner__over__address__detail
+            = user_order_details.order.user.nickname
+        .order__main__inner__over__memo
+          .order__main__inner__over__memo__title
+            注文番号 #{user_order_details.order.id}
+          .order__main__inner__over__memo__detail 注文の詳細  領収書／購入明細書
+      .order__main__inner__under
+        .order__main__inner__under__delivery-date
+          .order__main__inner__under__delivery-date__title
+            #{user_order_details.order.created_at.since(1.days).in_time_zone('Tokyo').strftime("%y/%m/%d")}に配達しました
+          .order__main__inner__under__delivery-date__detail 配達またはポスト投函が完了しました
+        .order__main__inner__under__image
+          = image_tag user_order_details.stock.image,width:100, height:100
+        .order__main__inner__under__info
+          .order__main__inner__under__info__name
+            = user_order_details.stock.name
+          .order__main__inner__under__info__maker
+            = user_order_details.stock.maker
+          .order__main__inner__under__info__price
+            ¥ #{user_order_details.stock.sell_price.to_s(:delimited)}
+          .order__main__inner__under__info__again
+            = link_to confirm_orders_path do
+              = button_tag "再度購入", type: 'button', class: "order__main__inner__under__info__again__btn"
+        .order__main__inner__under__detail
+          .order__main__inner__under__detail__maker-review
+            = link_to "https://www.rakuten.co.jp/" do
+              = button_tag "出品者を評価", type: 'button', class: "order__main__inner__under__detail__maker-review__btn"
+          .order__main__inner__under__detail__item-review
+            = link_to "https://www.rakuten.co.jp/" do
+              = button_tag "商品レビューを書く", type: 'button', class: "order__main__inner__under__detail__item-review__btn"
+          .order__main__inner__under__detail__hide
+            = link_to "https://www.rakuten.co.jp/" do
+              = button_tag "注文を非表示にする", type: 'button', class: "order__main__inner__under__detail__hide__btn"
+  .order__right
+= render "shared/footer"

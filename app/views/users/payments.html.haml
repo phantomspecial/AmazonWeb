@@ -19,20 +19,20 @@
         .top__limit
           有効期限
     .payoption__rightbox__creditlist
-      - @customer_creditcards.cards.data.each do |creditcard|
-        .credit
-          .credit__mark
-            = image_tag "visa_mark.gif", width:40
-          .credit__text
-            = creditcard.brand
-            下4桁
-            = creditcard.last4
-          .credit__limit
-            = creditcard.exp_month
-            #{"/"}
-            = creditcard.exp_year
-          .credit__listdownmark
-            %i.fa.fa-angle-down
+      / - @customer_creditcards.cards.data.each do |creditcard|
+      /   .credit
+      /     .credit__mark
+      /       = image_tag "visa_mark.gif", width:40
+      /     .credit__text
+      /       = creditcard.brand
+      /       下4桁
+      /       = creditcard.last4
+      /     .credit__limit
+      /       = creditcard.exp_month
+      /       #{"/"}
+      /       = creditcard.exp_year
+      /     .credit__listdownmark
+      /       %i.fa.fa-angle-down
     .payoption__rightbox__toptitle
       残高
     .payoption__rightbox__giftcardbox
