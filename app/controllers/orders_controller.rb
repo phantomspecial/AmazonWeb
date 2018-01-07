@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
     @carts.each do |cart|
       @totalitems += cart.quantity
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
-      @totalshipyen += cart.quantity * Stock.find(cart.stock_id).shipping_cost
+      @totalshipyen += shipping_cost_calc(Stock.find(cart.stock_id).shipping_cost, cart.quantity)
     end
 
     # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
@@ -103,7 +103,7 @@ class OrdersController < ApplicationController
 
       # 1商品あたりの金額の算出：注文履歴画面で利用予定
       @ordermaking.total_price = @ordermaking.quantity * @ordermaking.sell_price
-      @ordermaking.total_shippingcost = @ordermaking.quantity * @ordermaking.shipping_cost
+      @ordermaking.total_shippingcost = shipping_cost_calc(Stock.find(currentorder.stock_id).shipping_cost, currentorder.quantity)
 
       # orderテーブルに書き込むための合計金額、合計送料の集計
       total += @ordermaking.total_price
@@ -142,6 +142,22 @@ class OrdersController < ApplicationController
     end
     @user = current_user
     @deliverydate = Order.find(@order.id).created_at.since(2.days)
+  end
+
+
+  private
+  # 段階送料を設定する（円未満四捨五入）
+  # 数量1：送料単価
+  # 数量2〜5：送料単価×数量×0.8
+  # 数量6以上：送料単価×数量×0.5
+  def shipping_cost_calc(shipping_cost,quantity)
+    if quantity <= 1
+      return shipping_cost
+    elsif quantity <= 5
+      return (shipping_cost * quantity * 0.8).round
+    else
+      return (shipping_cost * quantity * 0.5).round
+    end
   end
 
 end
