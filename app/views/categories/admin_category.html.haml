@@ -1,0 +1,22 @@
+= render "shared/adminheader"
+= render "shared/leftsidebar"
+.adminmainwindow
+  .adminmainwindow__boxes
+    .adminmainwindow__boxes__items
+      [仕入履歴]
+      %table
+        %tr
+          %th id
+          %th name
+          %th description
+        - @categories.each do |category|
+          %tr
+            %td
+              = category.id
+            %td
+              = category.name
+            %td
+              = category.description
+            %td
+              = link_to "編集", edit_category_path(category.id)
+= render "shared/adminfooter"

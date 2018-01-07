@@ -1,17 +1,21 @@
 class StocksController < ApplicationController
 
-  before_action :permission_check, except: :index
+  before_action :permission_check, except: [:index, :show]
+  before_action :authenticate_user! , except: [:index, :show]
 
   def index
     @stocks = Stock.all
-
-    @cart = current_user.carts.new
+    if user_signed_in?
+      @cart = current_user.carts.new
+    end
   end
 
   def show
     @stock = Stock.find(params[:id])
-    @cart = current_user.carts.new
-    @user = current_user
+    if user_signed_in?
+      @cart = current_user.carts.new
+      @user = current_user
+    end
   end
 
   def create

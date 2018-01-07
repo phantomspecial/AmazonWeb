@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     # 個別ユーザ：履歴画面
     # アソシエーションを組んでいる前提
@@ -19,6 +22,7 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
+
   end
 
   def show

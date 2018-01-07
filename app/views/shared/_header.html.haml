@@ -55,7 +55,7 @@
           .nav-over__center__content__center
             .nav-over__center__content__center__search-field
               %label#nav-search-label.aok-offscreen{:for => "twotabsearchtextbox"}
-              %input.nav-over__center__content__center__input{:autocomplete => "off", :dir => "auto", :name => "field-keywords", :placeholder => "", :tabindex => "6", :type => "text", :value => ""}/
+              %input.nav-over__center__content__center__input{:autocomplete => "off", :dir => "auto", :name => "field-keywords", :placeholder => "", :tabindex => "6", :type => "text", :value => ""}
           .nav-over__center__content__right
             %i.fa.fa-search{"aria-hidden" => "true"}
     .nav-below
@@ -144,7 +144,6 @@
             = link_to "Amazonパントリー", ""
           %li
             = link_to "Amazonアウトレット", ""
-
       .nav-below__amazonpoint
         .nav-below__amazonpoint__mystore
           =link_to "マイストア", user_path(current_user), :class => "link"
@@ -155,8 +154,11 @@
         .nav-below__tools__account
           = link_to users_path, :class => "nav-below__tools__account__link" do
             %span.nav-below__tools__account__nickname
+            - if user_signed_in?
               = current_user.nickname
               さん
+            -else
+              ログインしていません
             %span.nav-below__tools__account__list
               アカウント＆リスト
             %span.triangle.triangle__account
@@ -216,9 +218,10 @@
                     = link_to "ゲーム&PCソフトダウンロードライブラリ", ""
                   %li
                     = link_to "アプリライブラリとデバイスの管理", ""
-                %ul.nav-below__tools__ul__inner
-                  %li
-                    = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path
+                - if user_signed_in?
+                  %ul.nav-below__tools__ul__inner
+                    %li
+                      = link_to "#{current_user.nickname}さんではありませんか？サインアウト", destroy_user_session_path, method: :delete
 
           .nav-below__categoly
         .nav-below__tools__order
@@ -226,6 +229,10 @@
             %span 注文履歴
         .nav-below__tools__cart
           = link_to carts_path do
-            %span
-              = @totalitems
+            - if user_signed_in?
+              %span
+                = gets_cart_itemcount
+            - else
+              %span
+                0
             = image_tag "cart.png"

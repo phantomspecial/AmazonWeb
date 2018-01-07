@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     end
   end
   resources :carts
-  resources :categories
+  resources :categories do
+    collection do
+      get 'admin_category'
+    end
+  end
 
   resources :carts, only: [:index, :show, :destroy, :edit, :update, :create]
 
