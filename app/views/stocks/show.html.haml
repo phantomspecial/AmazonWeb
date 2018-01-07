@@ -135,14 +135,15 @@
         .rightbox__cartbox__virtualdashlink
           = link_to "バーチャルダッシュに追加する",""
     - else
-      .rightbox__cartbox__quantity
-        数量
-        %select
-          - 10.times do |i|
-            %option{ value: "#{i+1}"}#{i+1}
-      .rightbox__cartbox__addcartbutton
-        = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
-        / カートのマークをボタン左側に表示する
+      - if @stock.current_stock > 0
+        .rightbox__cartbox__quantity
+          数量
+          %select
+            - @current_stock_array.length.times do |i|
+              %option{ value: "#{i+1}"}#{i+1}
+        .rightbox__cartbox__addcartbutton
+          = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
+          / カートのマークをボタン左側に表示する
       .borderline
       .rightbox__cartbox__oneclickorder
         = link_to new_user_session_path do
