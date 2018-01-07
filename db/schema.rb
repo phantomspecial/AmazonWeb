@@ -13,11 +13,12 @@
 ActiveRecord::Schema.define(version: 20180105051820) do
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "quantity",   null: false
+    t.integer  "quantity",     null: false
     t.integer  "stock_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "buylater_flg", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["stock_id"], name: "index_carts_on_stock_id", using: :btree
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end

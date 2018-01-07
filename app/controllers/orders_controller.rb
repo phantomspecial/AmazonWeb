@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    # 個別ユーザ：注文詳細画面
   end
 
 
@@ -45,7 +46,7 @@ class OrdersController < ApplicationController
   def new
     # 購入確認画面
     @user = current_user
-    @carts = current_user.carts
+    @carts = gets_cart_items
     # 合計点数と合計金額の表示
     @totalitems = 0
     @totalitemyen = 0
@@ -66,8 +67,9 @@ class OrdersController < ApplicationController
 
   def create
     # 購入完了画面
-    # カートテーブルから、そのユーザのレコードを持ってくる
-    @currentorder = current_user.carts
+    # カートテーブルから、そのユーザのレコードのうち、ショッピングカートにあるもの
+    # (= buylater_flgがfalseのもの）を持ってくる
+    @currentorder = gets_cart_items
 
     # order_idを確定するために、Orderテーブルにレコードを作成する
     # 現状わかっている、ユーザIDのみを格納する
@@ -116,7 +118,7 @@ class OrdersController < ApplicationController
 
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
-    @order.update(payments: "Creditcard", status: "Shipping(preparation)")s
+    @order.update(payments: "Creditcard", status: "Shipping(preparation)")
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|
