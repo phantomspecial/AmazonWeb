@@ -33,6 +33,9 @@ class StocksController < ApplicationController
     redirect_to action: :index
   end
 
+  def search
+  end
+
 
   private
   def permission_check

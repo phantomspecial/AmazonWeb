@@ -1,7 +1,293 @@
 // 注文履歴画面 index
-
-
-
+.order {
+  width: 100vw;
+  &__head {
+    padding: 120px 250px 0;
+    &__root {
+      float: left;
+      width: 100%;
+      padding-bottom: 20px;
+      &__text {
+        font-size: 13px;
+        &__servise {
+          color: #555;
+        }
+        &__history {
+          color: #c45500!important;
+        }
+      }
+    }
+    &__title {
+      margin: 20px 0;
+      width: 100%;
+      &__text {
+        width: 450px;
+        font-size: 28px;
+        color: #111;
+        float: left;
+      }
+      &__search {
+        margin-top: 12px;
+        width: calc(100% - 450px);
+        font-size: 13px;
+        float: left;
+        &__field {
+          width: 350px;
+          height: 30px;
+          float: left;
+          border-width: 1px;
+          border-color: #111;
+          border-style: solid;
+          border-radius: 3px;
+          &__icon {
+            width: 30px;
+            height: 10px;
+            padding-left: 10px;
+            float: left;
+            &__btn {
+              text-align: center;
+              // padding-top: 10px;
+              font-size: 13px;
+              color: #111;
+            }
+          }
+          &__textbox {
+            width: 310px;
+            height: 30px;
+            float: left;
+            &__placeholder {
+              height: 30px;
+              width: 310px;
+              font-size: 12px;
+              border-style: none;
+            }
+          }
+        }
+        &__btn {
+          width: 90px;
+          height: 30px;
+          float: left;
+          padding-left: 5px;
+          &__button {
+            background-color: gray;
+            width: 90px;
+            height: 30px;
+            color: white;
+            font-size: 12px;
+            font-family: inherit;
+          }
+        }
+      }
+    }
+    &__category {
+      width: 100%;
+      font-size: 13px;
+      float: left;
+      color: #0066c0;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: #949494;
+      &__settled {
+        width: 50px;
+        float: left;
+        padding: 0 10px;
+        padding-left: 10px;
+      }
+      &__notyet {
+        width: 100px;
+        float: left;
+        padding: 0 10px;
+      }
+      &__cancel {
+        width: 150px;
+        float: left;
+        padding: 0 10px;
+      }
+    }
+    &__sort {
+      width: 100%;
+      &__box {
+        float: left;
+        padding: 10px 0;
+        font-size: 11px;
+      }
+      &__text {
+        float: left;
+        padding-left: 10px;
+        padding: 10px 0;
+      }
+    }
+  }
+  &__main {
+    &__inner {
+    padding: 10px 250px;
+    float: left;
+      &__over {
+        width: 100%;
+        height: 40px;
+        background-color: #f6f6f6;
+        padding: 15px 20px;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: #ddd;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: #ddd;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: #ddd;
+        &__order-date {
+          float: left;
+          width: 140px;
+          &__title {
+            font-size: 11px;
+          }
+          &__detail {
+            font-size: 13px;
+          }
+        }
+        &__total {
+          float: left;
+          width: 100px;
+          &__title {
+            font-size: 11px;
+          }
+          &__detail {
+            font-size: 13px;
+          }
+        }
+        &__address {
+          float: left;
+          width: 400px;
+          &__title {
+            font-size: 11px;
+          }
+          &__detail {
+            font-size: 13px;
+          }
+        }
+        &__memo {
+          float: right;
+          width: 220px;
+          text-align: right;
+          &__title {
+            font-size: 11px;
+          }
+          &__detail {
+            font-size: 13px;
+          }
+        }
+      }
+      &__under {
+        width: 100%;
+        height: 200px;
+        float: left;
+        padding: 10px 20px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #ddd;
+        &__delivery-date {
+          width: 100%;
+          color: #111;
+          &__title {
+            font-size: 17px;
+          }
+          &__detail {
+            font-size: 13px;
+          }
+        }
+        &__image {
+          width: 100px;
+          height: 100px;
+          background-color: yellow;
+          float: left;
+        }
+        &__info {
+          padding-left: 10px;
+          width: 600px;
+          float: left;
+          &__form {
+            width: 600px;
+            float: left;
+            padding-left: 10px;
+          }
+          &__name {
+            font-size: 13px;
+            width: 600px;
+          }
+          &__maker {
+            font-size: 12px;
+            width: 600px;
+          }
+          &__price {
+            font-size: 12px;
+            width: 600px;
+          }
+          &__again {
+            padding-top: 5px;
+            width: 600px;
+            &__btn {
+             background-color: #f6f6f6;
+             width: 100px;
+             height: 30px;
+             font-size: 11px;
+             font-family: inherit;
+             border-radius: 4px;
+            }
+          }
+        }
+        &__detail {
+          float: left;
+          width: 220px;
+          &__form {
+            float: left;
+          }
+          &__maker-review {
+            padding-bottom: 5px;
+            width: 220px;
+            &__btn {
+             background-color: #f6f6f6;
+             width: 220px;
+             height: 30px;
+             font-size: 11px;
+             font-family: inherit;
+             border-radius: 4px;
+             color: #111;
+            }
+          }
+          &__item-review {
+            padding-bottom: 5px;
+            width: 220px;
+            &__btn {
+             background-color: #f6f6f6;
+             width: 220px;
+             height: 30px;
+             font-size: 11px;
+             font-family: inherit;
+             border-radius: 4px;
+             color: #111;
+            }
+          }
+          &__hide {
+            padding-bottom: 5px;
+            width: 220px;
+            &__btn {
+             background-color: #f6f6f6;
+             width: 220px;
+             height: 30px;
+             font-size: 11px;
+             font-family: inherit;
+             border-radius: 4px;
+             color: #111;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 // 注文詳細画面 show
 
 
