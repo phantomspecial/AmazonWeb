@@ -1,18 +1,19 @@
 class CartsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :quantitychecker_moveto_buylater
 
-# stockのshowからカートに追加した際の処理
   def index
-    @cart = current_user.carts.new
-
     # 表示用変数
     @totalyen = 0
+    # カート内の商品を取得
     @carts = gets_cart_items
     @totalitems = gets_cart_itemcount
     @carts.each do |cart|
       @totalyen += cart.quantity * Stock.find(cart.stock_id).sell_price
     end
+    # あとで買う内の商品を取得
+    @buylaters = gets_buylater_items
   end
 
   def create
@@ -44,22 +45,20 @@ class CartsController < ApplicationController
   end
 
   def destroy
-
-  end
-
-  def edit
-    @cart = Cart.find(params[:id])
+    cart = Cart.find(params[:id])
+    cart.destroy
+    redirect_to carts_path
   end
 
   def update
-    binding.pry
     cart = Cart.find(params[:id])
     cart.update(cart_params)
+    redirect_to carts_path
   end
 
   private
   def cart_params
-    params.require(:cart).permit(:quantity, :stock_id)
+    params.require(:cart).permit(:quantity, :stock_id, :buylater_flg)
   end
 
 end

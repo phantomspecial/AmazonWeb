@@ -289,6 +289,7 @@
     &__detail{
       width: 700px;
       float: left;
+      padding-top: 10px;
       padding-bottom: 10px;
       &__image{
         float: left;
@@ -339,6 +340,60 @@
       width: 150px;
       padding-left: 100px;
       &__quantity{
+      }
+    }
+  }
+  &__buylatertitle{
+    padding-top: 10px;
+    &__left{
+      font-size: 20px;
+    }
+  }
+  &__buylatergoodslist{
+    padding-top: 10px;
+    &__detail{
+      width: 700px;
+      float: left;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &__image{
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      &__title{
+        padding-right: 10px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      &__maker{
+        font-size: 14px;
+      }
+      &__stockcheck{
+        font-size: 10px;
+      }
+      &__primemark{
+
+      }
+      &__destroy{
+        font-size: 12px;
+        float: left;
+        padding-right: 10px;
+      }
+      &__movetocart{
+        font-size: 12px;
+      }
+    }
+    &__pricespace{
+      float: left;
+      padding-left: 70px;
+      &__price{
+        width: 150px;
+        float: left;
+        font-size: 20px;
+        color: #A82207;
+        font-weight: bold;
+        padding-top: 20px;
       }
     }
   }
@@ -455,4 +510,10 @@
 .cartleftwindow a{
   color: #0000FF;
   text-decoration: none;
+}
+
+.btntolink{
+  border-style: none;
+  font-size: 12px;
+  color: #0000FF;
 }

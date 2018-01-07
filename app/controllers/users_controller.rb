@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :quantitychecker_moveto_buylater
+
 
   def index
     # アカウントサービス画面

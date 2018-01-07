@@ -1,4 +1,4 @@
-class ItemsController < AdminController
+class ItemsController < AdminsController
 
   def index
     @items = Item.all
@@ -15,32 +15,33 @@ class ItemsController < AdminController
 
     if @item.item_flg == 0
       #新規商品のときの処理（action: :newから来た場合）
+
       @item.save
 
-      # Itemテーブルのidが確定したので、その値をitem_idカラムにも追加する
-      @item.item_id = @item.id
+      #Stockテーブルにレコードを作成する
+      @stock = Stock.create(name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
+
+
+      # Stockテーブルのidが確定したので、その値をItemテーブルのstock_idカラムに追加して保存
+      @item.stock_id = @stock.id
       @item.save
-
-
-      Stock.create(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
 
     else
       # 既存商品のときの処理(action: :addtoから来た場合)
 
-      #Itemテーブルの処理
-
       # 抜けているカラム（name,image,detail,maker,sell_price,shipping_cost）を追加
-      # 同じitem_idの最後の行を取得し、その値を格納する。
-      @same_item = Item.where(item_id: @item.item_id)
-      @last_same_item = @same_item.last
+      # Stockテーブルから同じstock_idのレコードを取得し、そのインスタンスを格納する。
+      # 画像については、Itemテーブルから、最新のupdated_atのtimestampのものを抽出する。
+      # Stock.find(@item.stock_id).imageでは正常に動作しなかったため
+      @target_item = Stock.find(@item.stock_id)
 
       # データ格納
-      @item.name = @last_same_item.name
-      @item.image = @last_same_item.image
-      @item.detail = @last_same_item.detail
-      @item.maker = @last_same_item.maker
-      @item.sell_price = @last_same_item.sell_price
-      @item.shipping_cost = @last_same_item.shipping_cost
+      @item.name = @target_item.name
+      @item.image = Item.where(stock_id: @item.stock_id).order(updated_at: :desc).limit(1)[0].image
+      @item.detail = @target_item.detail
+      @item.maker = @target_item.maker
+      @item.sell_price = @target_item.sell_price
+      @item.shipping_cost = @target_item.shipping_cost
 
       # 全カラムを埋めたので、保存する
       @item.save
@@ -49,7 +50,7 @@ class ItemsController < AdminController
       # 総仕入金額・総仕入数量の算出
       totalcost = 0
       totalstock = 0
-      @targetitems = Item.where(item_id: @item.item_id)
+      @targetitems = Item.where(stock_id: @item.stock_id)
       @targetitems.each do |targetitem|
         totalcost = totalcost + targetitem.unit_cost * targetitem.quantity
         totalstock = totalstock + targetitem.quantity
@@ -58,15 +59,9 @@ class ItemsController < AdminController
       # 平均単価算出
       avg_cost = (totalcost/totalstock).round
 
-      # Stockテーブルからそのitem_idを持ったインスタンスを取得
-      @stocktargets =  Stock.where(item_id: @item.item_id)
-
-      @stocktarget = @stocktargets[0]
-
       # 新在庫算出
-      new_stock = @stocktarget.current_stock + @item.quantity
-
-      @stocktarget.update(item_id: @item.item_id, name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
+      new_stock = @target_item.current_stock + @item.quantity
+      @target_item.update(avg_unit_cost: avg_cost, current_stock: new_stock)
 
     end
 
@@ -89,14 +84,13 @@ class ItemsController < AdminController
     item.update(new_item_params)
 
     # new_item_paramsでもらって来た更新内容で、stockテーブルを更新する。
-    # Stockテーブルからそのitem_idを持ったインスタンスを取得
-    @stocktargets =  Stock.where(item_id: item.item_id)
-    @stocktarget = @stocktargets[0]
+    # Stockテーブルからそのitem.stock_idを持ったインスタンスを取得
+    @stocktarget = Stock.find(item.stock_id)
 
     # 総仕入金額・総仕入数量の算出
     totalcost = 0
     totalstock = 0
-    @targetitems = Item.where(item_id: item.item_id)
+    @targetitems = Item.where(stock_id: item.stock_id)
     @targetitems.each do |targetitem|
       totalcost = totalcost + targetitem.unit_cost * targetitem.quantity
       totalstock = totalstock + targetitem.quantity
@@ -107,14 +101,14 @@ class ItemsController < AdminController
 
     # データupdate
     new_stock = @stocktarget.current_stock + item.quantity - @@old_item_dataset.quantity
-    @stocktarget.update(item_id: item.item_id, name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost)
+    @stocktarget.update(name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost)
 
     redirect_to action: :index
   end
 
   private
   def new_item_params
-    params.require(:item).permit(:item_id,:name,:image,:detail,:maker,:unit_cost, :quantity, :sell_price,:shipping_cost, :item_flg)
+    params.require(:item).permit(:stock_id, :name,:image,:detail,:maker,:unit_cost, :quantity, :sell_price,:shipping_cost, :item_flg)
   end
 
 end

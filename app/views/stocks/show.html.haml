@@ -39,7 +39,9 @@
       )
     .goodsbox__textbox__creditcardlink
       %i.fa.fa-info
-      入会特典をこの商品に利用した場合0円に 。
+      入会特典をこの商品に利用した場合
+      = amazoncreditcard(@stock.sell_price).to_s(:delimited)
+      円に 。
       .br
       = link_to "Amazonクラシックカード", ""
       新規ご入会で5,000ポイント
@@ -60,14 +62,15 @@
       .goodsbox__textbox__stockbox__stock-notice
         = link_to "在庫状況について", ""
     .goodsbox__textbox__primedelivery
-      = Time.current.since(1.days).in_time_zone('Tokyo').strftime("%m/%d")
-      にお届けするには、今から
-      12時間30分
-      以内に
-      = link_to "お急ぎ便", ""
-      を選択して注文を確定してください（有料オプション。
-      = link_to "Amazon プライム会員", ""
-      は無料）
+      -if @stock.current_stock > 0
+        = Time.current.since(1.days).in_time_zone('Tokyo').strftime("%m/%d")
+        にお届けするには、今から
+        12時間30分
+        以内に
+        = link_to "お急ぎ便", ""
+        を選択して注文を確定してください（有料オプション。
+        = link_to "Amazon プライム会員", ""
+        は無料）
     .goodsbox__textbox__seller-shipping
       この商品は、
       =link_to "Amazon.co.jp", "/"
@@ -105,14 +108,16 @@
   .rightbox__cartbox
     - if user_signed_in?
       = form_for @cart do |f|
-        .rightbox__cartbox__quantity
-          = f.label :quantity, "数量"
-          = f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
-        .rightbox__cartbox__addcartbutton
-          = f.hidden_field :stock_id, value: params[:id]
-          = f.submit value: "カートに入れる", class: "  AddCartButton"
-          / カートのマークをボタン左側に表示する
-        .borderline
+        - if @stock.current_stock > 0
+          .rightbox__cartbox__quantity
+            = f.label :quantity, "数量"
+            = f.select :quantity, @current_stock_array
+          .rightbox__cartbox__addcartbutton
+            = f.hidden_field :stock_id, value: params[:id]
+            = f.hidden_field :buylater_flg, value: false
+            = f.submit value: "カートに入れる", class: "  AddCartButton"
+            / カートのマークをボタン左側に表示する
+          .borderline
         .rightbox__cartbox__oneclickorder
           = link_to "1-Click 注文を有効にしてください。",""
         .borderline
@@ -130,14 +135,15 @@
         .rightbox__cartbox__virtualdashlink
           = link_to "バーチャルダッシュに追加する",""
     - else
-      .rightbox__cartbox__quantity
-        数量
-        %select
-          - 10.times do |i|
-            %option{ value: "#{i+1}"}#{i+1}
-      .rightbox__cartbox__addcartbutton
-        = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
-        / カートのマークをボタン左側に表示する
+      - if @stock.current_stock > 0
+        .rightbox__cartbox__quantity
+          数量
+          %select
+            - @current_stock_array.length.times do |i|
+              %option{ value: "#{i+1}"}#{i+1}
+        .rightbox__cartbox__addcartbutton
+          = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
+          / カートのマークをボタン左側に表示する
       .borderline
       .rightbox__cartbox__oneclickorder
         = link_to new_user_session_path do
@@ -204,13 +210,10 @@
         = link_to "文房具・オフィス用品 バーゲンページ",""
       %li
         入会特典をこの商品に利用した場合
-        = @stock.sell_price
-        が
-        - if @stock.sell_price > 5000
-          = (@stock.sell_price - 5000).to_s(:delimited)
-        - else
-          = (5000 - @stock.sell_price).to_s(:delimited)
-        円に ！
+        = @stock.sell_price.to_s(:delimited)
+        円が
+        = amazoncreditcard(@stock.sell_price).to_s(:delimited)
+        円に！
         = link_to "Amazonクラシックカード",""
         新規ご入会で、
         %b{style: "color: #a82207;"}

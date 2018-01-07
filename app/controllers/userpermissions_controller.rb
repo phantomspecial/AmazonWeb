@@ -1,4 +1,4 @@
-class UserpermissionsController < AdminController
+class UserpermissionsController < AdminsController
   def index
     @users = User.all
   end

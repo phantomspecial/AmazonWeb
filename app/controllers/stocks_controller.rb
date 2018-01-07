@@ -6,19 +6,19 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
     if user_signed_in?
+      quantitychecker_moveto_buylater
       @cart = current_user.carts.new
     end
   end
 
   def show
     @stock = Stock.find(params[:id])
+    @current_stock_array = quantity_array_maker(@stock)
     if user_signed_in?
+      quantitychecker_moveto_buylater
       @cart = current_user.carts.new
       @user = current_user
     end
-  end
-
-  def create
   end
 
   def destroy
@@ -45,6 +45,19 @@ class StocksController < ApplicationController
         render "errors/forbidden"
       end
     end
+  end
+
+  # 数量セレクトボックスの配列作成
+  def quantity_array_maker(stocks)
+    @current_stock_array = []
+    stocks.current_stock.times do |current_stock|
+      if current_stock < 10
+        @current_stock_array << [current_stock + 1,current_stock + 1]
+      else
+        break
+      end
+    end
+    return @current_stock_array
   end
 
 end

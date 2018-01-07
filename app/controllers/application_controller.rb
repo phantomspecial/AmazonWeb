@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!,  only: [:cardusercheck, :gets_usercardinfo, :gets_userdefaultcardid, :gets_cart_number]
 
-  helper_method :gets_cart_items, :gets_cart_itemcount
+  helper_method :gets_cart_items, :gets_cart_itemcount, :quantitychecker_moveto_buylater
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :postal_code, :pref, :city, :street, :apartment_roomnumber, :telnumber])
@@ -53,10 +53,18 @@ class ApplicationController < ActionController::Base
       @default_cardid = Payjp::Customer.retrieve(id: current_user.id.to_s).default_card
   end
 
-  # カート内の商品を取得
+  # カート内の有効な商品を取得
   def gets_cart_items
-    return current_user.carts.all
+    @cartitems = current_user.carts.all.where(buylater_flg: false)
+    return @cartitems
   end
+
+  # あとで買うの商品を取得
+  def gets_buylater_items
+    @cartlateritems = current_user.carts.all.where(buylater_flg: true)
+    return @cartlateritems
+  end
+
   # カート内の商品の合計数を取得
   def gets_cart_itemcount
     @carts = gets_cart_items
@@ -66,4 +74,16 @@ class ApplicationController < ActionController::Base
     end
     return @totalitems
   end
+
+  # カート内の商品の数量と現在の在庫数の比較
+  # 在庫数 > 数量ならばあとで買うに移動させる
+  def quantitychecker_moveto_buylater
+    @carts = gets_cart_items
+    @carts.each do |cart|
+      if cart.quantity > Stock.find(cart.stock_id).current_stock
+        cart.update(buylater_flg: true)
+      end
+    end
+  end
+
 end
