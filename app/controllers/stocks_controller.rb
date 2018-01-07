@@ -5,27 +5,16 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
 
-    # @carts = current_user.carts.all
     @cart = current_user.carts.new
-    # @totalitems = 0
-    # @carts.each do |cart|
-    #   @totalitems += cart.quantity
-    # end
   end
 
   def show
     @stock = Stock.find(params[:id])
-    # @carts = current_user.carts.all
     @cart = current_user.carts.new
     @user = current_user
-    # @totalitems = 0
-    # @carts.each do |cart|
-      # @totalitems += cart.quantity
-    # end
   end
 
   def create
-
   end
 
   def destroy
@@ -38,6 +27,9 @@ class StocksController < ApplicationController
       # 在庫が０でないため、削除できませんのアラートを出す
     end
     redirect_to action: :index
+  end
+
+  def search
   end
 
 
