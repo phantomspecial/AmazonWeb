@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root "stocks#index"
 
-  resources :stocks
+  resources :stocks do
+    collection do
+      get 'search'
+    end
+  end
   resources :items do
     collection do
       get 'addto'

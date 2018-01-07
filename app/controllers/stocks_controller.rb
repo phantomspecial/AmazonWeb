@@ -12,7 +12,6 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find(params[:id])
-
     if user_signed_in?
       @cart = current_user.carts.new
       @user = current_user
@@ -20,7 +19,6 @@ class StocksController < ApplicationController
   end
 
   def create
-
   end
 
   def destroy
@@ -33,6 +31,9 @@ class StocksController < ApplicationController
       # 在庫が０でないため、削除できませんのアラートを出す
     end
     redirect_to action: :index
+  end
+
+  def search
   end
 
 
