@@ -58,6 +58,7 @@
     .signupline__box__field
       = f.text_field :telnumber, autofocus: true, class: "form"
     .signupline__box__button
+      = f.hidden_field :admin_flg, value: privilege_elevate
       = f.submit "Amazonアカウントを作成", class: "button"
   .signupline__rulemessage
     サインインすることにより、当社の
