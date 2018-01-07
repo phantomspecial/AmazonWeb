@@ -28,6 +28,8 @@
         %select.order__head__sort__box__select{ name: "period"}
           %option.order__head__sort__box__option{ value: "1month" } 過去30日間
           %option.order__head__sort__box__option{ value: "6month" } 過去6ヶ月間
+          - @yearcount.times do |y|
+            %option.order__head__sort__box__option{ value: "#{@current_year - y}" } #{@current_year - y}年
       .order__head__sort__text
         に確定された#{@user_orders.count}件の注文
   .order__main

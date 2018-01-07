@@ -146,7 +146,11 @@
             = link_to "Amazonアウトレット", ""
       .nav-below__amazonpoint
         .nav-below__amazonpoint__mystore
-          =link_to "マイストア", user_path(current_user), :class => "link"
+          - if user_signed_in?
+            =link_to "マイストア", user_path(current_user), :class => "link"
+          - else
+            =link_to "マイストア", new_user_session_path, :class => "link"
+
         .nav-below__amazonpoint__timesale タイムセール
         .nav-below__amazonpoint__gift     ギフト券
 
