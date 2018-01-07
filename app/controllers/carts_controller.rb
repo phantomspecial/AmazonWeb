@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :quantitychecker_moveto_buylater
 
-# stockのshowからカートに追加した際の処理
   def index
     # 表示用変数
     @totalyen = 0

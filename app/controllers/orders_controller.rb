@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :quantitychecker_moveto_buylater
 
   def index
     # 個別ユーザ：履歴画面

@@ -6,6 +6,7 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
     if user_signed_in?
+      quantitychecker_moveto_buylater
       @cart = current_user.carts.new
     end
   end
@@ -14,6 +15,7 @@ class StocksController < ApplicationController
     @stock = Stock.find(params[:id])
     @current_stock_array = quantity_array_maker(@stock)
     if user_signed_in?
+      quantitychecker_moveto_buylater
       @cart = current_user.carts.new
       @user = current_user
     end

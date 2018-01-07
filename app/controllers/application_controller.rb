@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!,  only: [:cardusercheck, :gets_usercardinfo, :gets_userdefaultcardid, :gets_cart_number]
-  before_action :quantitychecker_moveto_buylater
 
-  helper_method :gets_cart_items, :gets_cart_itemcount,
+  helper_method :gets_cart_items, :gets_cart_itemcount, :quantitychecker_moveto_buylater
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :postal_code, :pref, :city, :street, :apartment_roomnumber, :telnumber])
