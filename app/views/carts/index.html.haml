@@ -122,29 +122,30 @@
     .br
     未登録のAmazonギフト券やクーポンは、お支払い方法選択画面や注文確定画面で入力できます。
 .cartrightwindow
-  .cartrightwindow__totalbox
-    .cartrightwindow__totalbox__subtotaltext
-      小計(
-      = @totalitems.to_s(:delimited)
-      点)：
-      %b{style: "color: #A82207;"}
-        ￥
-        = @totalyen.to_s(:delimited)
-    .cartrightwindow__totalbox__points
-      この注文での獲得ポイント：
-      n
-      pt
-    .cartrightwindow__totalbox__giftsettings
-      / = check_tox_tag("")
-      ギフトの設定（贈り主名の表示に必要です）
-    .cartrightwindow__totalbox__registarbtn
-      .registerbtn
-        = link_to "レジに進む",confirm_orders_path
-    .cartrightwindow__totalbox__bordertext
-      または
-    .cartrightwindow__totalbox__oneclicklinks
-      = link_to "サインイン"
-      して1-ClickをONにする
+  - if @totalyen > 0
+    .cartrightwindow__totalbox
+      .cartrightwindow__totalbox__subtotaltext
+        小計(
+        = @totalitems.to_s(:delimited)
+        点)：
+        %b{style: "color: #A82207;"}
+          ￥
+          = @totalyen.to_s(:delimited)
+      .cartrightwindow__totalbox__points
+        この注文での獲得ポイント：
+        n
+        pt
+      .cartrightwindow__totalbox__giftsettings
+        / = check_tox_tag("")
+        ギフトの設定（贈り主名の表示に必要です）
+      .cartrightwindow__totalbox__registarbtn
+        .registerbtn
+          = link_to "レジに進む",confirm_orders_path
+      .cartrightwindow__totalbox__bordertext
+        または
+      .cartrightwindow__totalbox__oneclicklinks
+        = link_to "サインイン"
+        して1-ClickをONにする
   .cartrightwindow__sponsoredgoodslink
     .cartrightwindow__sponsoredgoodslink__title
       カート内の商品に関連するスポンサープロダクト
