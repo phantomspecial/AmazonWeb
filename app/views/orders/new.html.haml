@@ -151,7 +151,12 @@
   .orderbox__rightwindow
     .orderbox__rightwindow__orderbox
       .orderbox__rightwindow__orderbox__orderbtn
-        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+        - if @payment != "Cash"
+          - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
+            = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+          - else
+            %b{style: "color: red;"}
+              クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
       .orderbox__rightwindow__orderbox__title
         注文内容
       .orderbox__rightwindow__orderbox__itemtotal
@@ -185,7 +190,12 @@
           ご注文に含まれるAmazonプライムの特典対象商品には、Amazonプライムの配送が適用されました。
     .orderbox__rightwindow__bottomorderbox
       .orderbox__rightwindow__bottomorderbox__orderbtn
-        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+        - if @payment != "Cash"
+          - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
+            = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+          - else
+            %b{style: "color: red;"}
+              クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
 .bottommessage
   .bottommessage__text
     ご不明な点は
