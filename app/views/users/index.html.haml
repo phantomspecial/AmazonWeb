@@ -7,9 +7,9 @@
       .unit1__boximage
         =image_tag "orders.png", width: 96 , height: 54
       .unit1__boxname
-        注文履歴
+        = link_to "注文履歴", orders_path
       .unit1__boxdetail
-        配送状況の確認・返品手続き
+        = link_to "配送状況の確認・返品手続き", orders_path
     .unit2
       .unit2__boximage
         =image_tag "addresses.png", width: 96 , height: 72

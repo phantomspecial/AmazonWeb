@@ -8,12 +8,15 @@ class OrdersController < ApplicationController
     # アソシエーションを組んでいる前提
 
     # オーダ情報取得
-    @user_orders = current_user.orders
-    # オーダ詳細情報取得
-    @user_order_details = []
-    @user_orders.each do |user_order|
-      @user_order_details += Orderdetail.where(order_id: user_order.id)
+    # 期間指定があるか？ない場合は、過去30日の注文を表示する
+    if params[:period].nil? || params[:period] == "30"
+      @range = Date.current.ago(30.days).beginning_of_day..Date.current.end_of_day
+    elsif params[:period] == "6"
+      @range = Date.current.ago(6.months).beginning_of_day..Date.current.end_of_day
+    else
+      @range = DateTime.new(params[:period].to_i,1,1).beginning_of_year..DateTime.new(params[:period].to_i,12,31).end_of_year
     end
+    @user_orders = current_user.orders.where(created_at: @range)
 
     # 画面表示用
     # ユーザ登録年取得
@@ -23,7 +26,6 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
-
   end
 
   def show
