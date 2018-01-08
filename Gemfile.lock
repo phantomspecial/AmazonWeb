@@ -167,8 +167,12 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
+    rubyzip (1.2.1)
     sass (3.5.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -238,6 +242,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.6)
+  roo
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

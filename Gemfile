@@ -67,5 +67,6 @@ gem 'devise'
 gem 'font-awesome-rails'
 
 gem 'payjp'
+gem 'roo'
 
 
