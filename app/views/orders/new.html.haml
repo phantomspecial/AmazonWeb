@@ -65,13 +65,16 @@
           .paybox__editlink
             =link_to "変更",""
           .paybox__creditmark
-            = image_tag "visa_mark.gif"
+            - if @payment == "Cash"
+              代金引換
+            - else
+              = image_tag "visa_mark.gif"
           .paybox__text
-            -if @existuser_flg == true
-              - @customer_creditcards.cards.data.each do |creditcard|
-                -if creditcard.id == @default_cardid
-                  下4桁
-                  = creditcard.last4
+            - if @payment == "Cash"
+              所定の手数料がかかります
+            - else
+              下4桁
+              = @defcardinfo.last4
         .dembox
           .dembox__title
             請求先住所
