@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
 
   private
   def new_category_params
-    params.require(:category).permit(:name,:description, sub_categories_attributes: [:name])
+    params.require(:category).permit(:name,:description, sub_categories_attributes: [:category_id],sub_categories_attributes: [:name])
   end
 
 end
