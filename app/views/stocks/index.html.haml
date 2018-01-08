@@ -21,8 +21,11 @@
     .hud-dashboard__a-section2
       .hud-dashboard__a-section2__a
         = link_to "/users" do
-          %span お客様のご注文
-          %p n件の最近の注文
+          %span
+            お客様のご注文
+          %p
+            = @recentorders
+            件の最近の注文
     .hud-dashboard__span__modal-link
       .hud-dashboard__span__modal-link__a
         = link_to "/users" do
