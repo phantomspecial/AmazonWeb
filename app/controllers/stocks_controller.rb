@@ -8,6 +8,8 @@ class StocksController < ApplicationController
     if user_signed_in?
       quantitychecker_moveto_buylater
       @cart = current_user.carts.new
+      range = Date.current.ago(14.days).beginning_of_day..Date.current.end_of_day
+      @recentorders = current_user.orders.where(created_at: range).length
     end
   end
 
