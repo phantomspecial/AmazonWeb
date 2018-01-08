@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       get 'payments'
       post 'creditcard_regist'
+      delete 'creditcard_destroy'
     end
   end
   resources :carts

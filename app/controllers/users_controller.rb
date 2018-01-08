@@ -83,12 +83,28 @@ class UsersController < ApplicationController
   	# お支払いオプションページに戻る
     # アラートを出す
   	redirect_to payments_users_path
+  end
 
+  def creditcard_destroy
+    # 顧客情報取得
+    # 取得したparams[:id]と合致したものを削除する
+    @customer_creditcards = gets_usercardinfo
+    @customer_creditcards.cards.data.each do |customer_creditcard|
+      if customer_creditcard.id == params[:id]
+        card = @customer_creditcards.cards.retrieve(params[:id])
+        card.delete
+      end
+    end
+    redirect_to payments_users_path
   end
 
   private
   def card_params
   	params.permit(:name, :number, :month, :year, :cvc)
+  end
+
+  def delete_card_params
+    params.permit(:id, :name)
   end
 
 end

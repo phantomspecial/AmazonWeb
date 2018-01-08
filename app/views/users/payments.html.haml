@@ -35,6 +35,7 @@
               #{"/"}
               = creditcard.exp_year
             .credit__listdownmark
+              = link_to "削除",creditcard_destroy_users_path(@user, params: creditcard ), method: :delete
               %i.fa.fa-angle-down
     .payoption__rightbox__toptitle
       残高
