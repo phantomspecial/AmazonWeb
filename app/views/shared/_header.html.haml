@@ -54,10 +54,19 @@
               %option{:value => "search-alias=warehouse-deals"} Amazonアウトレット
           .nav-over__center__content__center
             .nav-over__center__content__center__search-field
-              %label#nav-search-label.aok-offscreen{:for => "twotabsearchtextbox"}
-              %input.nav-over__center__content__center__input{:autocomplete => "off", :dir => "auto", :name => "field-keywords", :placeholder => "", :tabindex => "6", :type => "text", :value => ""}
-          .nav-over__center__content__right
-            %i.fa.fa-search{"aria-hidden" => "true"}
+
+              = form_tag(search_stocks_path, method: :get) do
+                -# = autocomplete_field :stocks, :name, autocomplete_stocks_name_stocks_path
+                -# = autocomplete_field_tag 'address', '', autocomplete_stocks_name_stocks_path
+                -# = text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: autocomplete_stocks_name_stocks_path}
+                %input.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
+                .nav-over__center__content__right
+                  %span.fa.fa-search{"aria-hidden" => "true"}
+                  %button.nav-over__center__content__right__search_btn{ title: "検索", type: "submit"}
+          -#     %label#nav-search-label.aok-offscreen{:for => "twotabsearchtextbox"}
+          -#     %input.nav-over__center__content__center__input{:autocomplete => "off", :dir => "auto", :name => "field-keywords", :placeholder => "", :tabindex => "6", :type => "text", :value => ""}
+          -# .nav-over__center__content__right
+          -#   %i.fa.fa-search{"aria-hidden" => "true"}
     .nav-below
       .nav-below__categoly
         = link_to categories_path do

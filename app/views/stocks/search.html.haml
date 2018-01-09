@@ -4,8 +4,14 @@
   .searchTemplate
     .searchTemplate__left
       %h1.searchTemplate__left__h1
-        検索結果 27,516 のうち 1-24件
-        %span "usb type c"
+        検索結果
+        = @stocks.total_count
+        のうち
+        = @search_result_count
+        %span
+          "
+          = @search_result_string
+          "
     .searchTemplate__right
       .searchTemplate__right__selectbox
         %span 並び替え:
@@ -172,109 +178,29 @@
       = image_tag('sidebar_search_bnr.jpg')
     .searchResult
       %ul.searchResult__ul.clearfix
-        %li.searchResult__ul__li
-          .searchResult__ul__li__img
-            = link_to "" do
-              = image_tag "search_result_img_1.png", width:182, height:180
-          .searchResult__ul__li__title
-            = link_to "" do
-              %h2 FSC USB Type-C ナイロンメッシュケーブル 急速充電 新型MacBook Pro /Nexus 6P/ Xperia XZ/ Nintendo switch /Galaxy S8/ HTC10 (1.0ｍ, グレー)
-          .searchResult__ul__li__brand
-            %span FSC
-          .searchResult__ul__li__price
-            = link_to "" do
-              %span ￥
-              %span 1,000
-            = image_tag "prime_search_icon.png", width:49, height:15
-            .searchResult__ul__li__day
-              %span.color-success 明日中
-              %span にお届け
-          .searchResult__ul__li__review
-            = link_to "" do
-              %span.review_stars
-              %span.review_number 10
-        %li.searchResult__ul__li
-          .searchResult__ul__li__img
-            = link_to "" do
-              = image_tag "search_result_img_1.png", width:182, height:180
-          .searchResult__ul__li__title
-            = link_to "" do
-              %h2 FSC USB Type-C ナイロンメッシュケーブル 急速充電 新型MacBook Pro /Nexus 6P/ Xperia XZ/ Nintendo switch /Galaxy S8/ HTC10 (1.0ｍ, グレー)
-          .searchResult__ul__li__brand
-            %span FSC
-          .searchResult__ul__li__price
-            = link_to "" do
-              %span ￥
-              %span 1,000
-            = image_tag "prime_search_icon.png", width:49, height:15
-            .searchResult__ul__li__day
-              %span.color-success 明日中
-              %span にお届け
-          .searchResult__ul__li__review
-            = link_to "" do
-              %span.review_stars
-              %span.review_number 10
-        %li.searchResult__ul__li
-          .searchResult__ul__li__img
-            = link_to "" do
-              = image_tag "search_result_img_1.png", width:182, height:180
-          .searchResult__ul__li__title
-            = link_to "" do
-              %h2 FSC USB Type-C ナイロンメッシュケーブル 急速充電 新型MacBook Pro /Nexus 6P/ Xperia XZ/ Nintendo switch /Galaxy S8/ HTC10 (1.0ｍ, グレー)
-          .searchResult__ul__li__brand
-            %span FSC
-          .searchResult__ul__li__price
-            = link_to "" do
-              %span ￥
-              %span 1,000
-            = image_tag "prime_search_icon.png", width:49, height:15
-            .searchResult__ul__li__day
-              %span.color-success 明日中
-              %span にお届け
-          .searchResult__ul__li__review
-            = link_to "" do
-              %span.review_stars
-              %span.review_number 10
-        %li.searchResult__ul__li
-          .searchResult__ul__li__img
-            = link_to "" do
-              = image_tag "search_result_img_1.png", width:182, height:180
-          .searchResult__ul__li__title
-            = link_to "" do
-              %h2 FSC USB Type-C ナイロンメッシュケーブル 急速充電 新型MacBook Pro /Nexus 6P/ Xperia XZ/ Nintendo switch /Galaxy S8/ HTC10 (1.0ｍ, グレー)
-          .searchResult__ul__li__brand
-            %span FSC
-          .searchResult__ul__li__price
-            = link_to "" do
-              %span ￥
-              %span 1,000
-            = image_tag "prime_search_icon.png", width:49, height:15
-            .searchResult__ul__li__day
-              %span.color-success 明日中
-              %span にお届け
-          .searchResult__ul__li__review
-            = link_to "" do
-              %span.review_stars
-              %span.review_number 10
+        = render partial: 'stock', collection: @stocks, as: :stock
+
+      -# - unless @stocks.total_count < 30
       .text-center
         %ul.pagination.clearfix
-          %nav.pagination
-            %li.first
-              = link_to "" do
-                %span.pagnSprite.pagnPrevArrow
-                %span.pagnPrevString 前のページ
-            %li.active.page-item
-              = link_to "1", "", class: "page-link"
-            %li.page-item
-              = link_to "2", "", class: "page-link"
-            %li.page-item
-              = link_to "3", "", class: "page-link"
-            %li.page-item.gap ...
-            %li.page-item 20
-            %li.next
-              = link_to "" do
-                %span.pagnNextString 次のページ
-                %span.pagnSprite.pagnNextArrow
+          = paginate @stocks
+          -# %nav.pagination
+          -#   %li.first
+          -#     = link_to "" do
+          -#       %span.pagnSprite.pagnPrevArrow
+          -#       %span.pagnPrevString 前のページ
+          -#   %li.active.page-item
+          -#     = link_to "1", "", class: "page-link"
+          -#   %li.page-item
+          -#     = link_to "2", "", class: "page-link"
+          -#   %li.page-item
+          -#     = link_to "3", "", class: "page-link"
+          -#   %li.page-item.gap ...
+          -#   %li.page-item 20
+          -#   %li.next
+          -#     = link_to "" do
+          -#       %span.pagnNextString 次のページ
+          -#       %span.pagnSprite.pagnNextArrow
 
 
 = render "shared/footer"
