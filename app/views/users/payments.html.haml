@@ -35,8 +35,32 @@
               #{"/"}
               = creditcard.exp_year
             .credit__listdownmark
-              = link_to "削除",creditcard_destroy_users_path(@user, params: creditcard ), method: :delete
               %i.fa.fa-angle-down
+          .textarea
+            .textarea__leftbox
+              %b
+                クレジットカード名義人
+              .br
+              = creditcard.name
+            .textarea__rightbox
+              %b
+                請求先住所
+                = @user.first_name
+                = @user.last_name
+              .br
+              = @user.postal_code
+              .br
+              = @user.pref
+              = @user.city
+              .br
+              = @user.apartment_roomnumber
+              .br
+              日本
+              .br
+              = @user.telnumber
+              .br
+              = link_to "削除",creditcard_destroy_users_path(@user, params: creditcard ), method: :delete ,class: "card-graybutton-mini"
+              = link_to "編集", "", id:"credit-modal-open" , class: "card-graybutton-mini"
     .payoption__rightbox__toptitle
       残高
     .payoption__rightbox__giftcardbox
@@ -130,5 +154,10 @@
           =link_to "続行","" , class: "addpaymentcarrierbutton"
       .payoption__rightbox__cellphone__rightboxmark
         =image_tag "carrier_brand.png", width:50
+
+#modal-main
+  .aaa
+    TEST
+
 
 =render "shared/footer"

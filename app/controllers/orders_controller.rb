@@ -26,6 +26,20 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
+
+    @yearcountarray =[]
+    @yearcountarray << ["30","0"]
+    @yearcountarray << ["6","1"]
+    @yearcount.times do |year|
+      @yearcountarray << ["#{@current_year - year}", "#{year + 2}"]
+    end
+
+    @yearcountarray.each do |year|
+      if params[:period] == year[0]
+        @periodindex = year[1]
+      end
+    end
+
   end
 
   def show

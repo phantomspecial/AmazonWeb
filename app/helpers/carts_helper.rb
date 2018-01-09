@@ -11,4 +11,8 @@ module CartsHelper
     end
     return @current_stock_array
   end
+
+  def quantityselecter(cart)
+    return cart.quantity - 1
+  end
 end
