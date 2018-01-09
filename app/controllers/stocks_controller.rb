@@ -36,8 +36,14 @@ class StocksController < ApplicationController
   end
 
   def search
+    @stocks = Kaminari.paginate_array(Stock.where('name LIKE(?)', "%#{params[:keyword]}%")).page(params[:page]).per(2)
+    @search_result_count = Stock.where('name LIKE(?)', "%#{params[:keyword]}%").count
+    @search_result_string = params[:keyword]
+    # respond_to do |format|
+    #   format.html
+    #   format.json
+    # end
   end
-
 
   private
   def permission_check

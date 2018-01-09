@@ -162,6 +162,12 @@ a {
           position: relative;
           top: -2px;
         }
+        &__img img {
+          max-width: 300px;
+          max-height: 200px;
+          width: auto;
+          height: auto;
+        }
         &__title {
           a {
             font-size: 15px;

@@ -69,4 +69,4 @@ gem 'font-awesome-rails'
 gem 'payjp'
 gem 'roo'
 
-
+gem 'kaminari'
