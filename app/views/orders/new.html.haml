@@ -63,15 +63,18 @@
           .paybox__title
             支払い方法
           .paybox__editlink
-            =link_to "変更",""
+            =link_to "変更",confirm_orders_path
           .paybox__creditmark
-            = image_tag "visa_mark.gif"
+            - if @payment == "Cash"
+              代金引換
+            - else
+              = image_tag "visa_mark.gif"
           .paybox__text
-            -if @existuser_flg == true
-              - @customer_creditcards.cards.data.each do |creditcard|
-                -if creditcard.id == @default_cardid
-                  下4桁
-                  = creditcard.last4
+            - if @payment == "Cash"
+              所定の手数料がかかります
+            - else
+              下4桁
+              = @defcardinfo.last4
         .dembox
           .dembox__title
             請求先住所
@@ -125,7 +128,7 @@
             .orderbox__leftwindow__itembox__leftbox__items__quantity
               数量：
               = cart.quantity
-              = link_to "変更",""
+              = link_to "変更",carts_path
             .orderbox__leftwindow__itembox__leftbox__items__seller
               販売：
               Amazon Japan G.K.
@@ -148,7 +151,13 @@
   .orderbox__rightwindow
     .orderbox__rightwindow__orderbox
       .orderbox__rightwindow__orderbox__orderbtn
-        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+        - if @payment != "Cash"
+          - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
+            = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+          - else
+            クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
+        - else
+          = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
       .orderbox__rightwindow__orderbox__title
         注文内容
       .orderbox__rightwindow__orderbox__itemtotal
@@ -182,7 +191,13 @@
           ご注文に含まれるAmazonプライムの特典対象商品には、Amazonプライムの配送が適用されました。
     .orderbox__rightwindow__bottomorderbox
       .orderbox__rightwindow__bottomorderbox__orderbtn
-        = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+        - if @payment != "Cash"
+          - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
+            = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
+          - else
+            クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
+        - else
+          = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
 .bottommessage
   .bottommessage__text
     ご不明な点は

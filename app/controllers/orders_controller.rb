@@ -48,25 +48,47 @@ class OrdersController < ApplicationController
   end
 
   def new
+    # 支払い方法の取得
+    @payment = params[:payments]
+    # クレジットカードの場合、そのカードを、デフォルトカードに設定し、@@payにCreditcardを入れる
+    # 代引きの場合、Cashを保存する
+    if @payment == "Cash"
+      @@pay = "Cash"
+    else
+      @@pay = "Creditcard"
+      @user_info = Payjp::Customer.retrieve(id: current_user.id.to_s)
+      @user_info.default_card = @payment
+      @user_info.save
+
+      # デフォルトカードの情報を、last4に変換する
+      # そのユーザのカードを取得
+      @customer_creditcards = gets_usercardinfo
+      @customer_creditcards.cards.each do |customer_creditcard|
+        if customer_creditcard.id == @payment
+          @defcardinfo = customer_creditcard
+        end
+      end
+    end
+
     # 購入確認画面
     @user = current_user
     @carts = gets_cart_items
     # 合計点数と合計金額の表示
     @totalitems = 0
     @totalitemyen = 0
-    @totalshipyen = 0
+    # 代引き手数料の設定
+    # config/initializers/constants.rbに記載
+    if @@pay == "Cash"
+      @totalshipyen = Constants::CASHDELIVERYCOMMISSION
+    else
+      @totalshipyen = 0
+    end
     @carts.each do |cart|
       @totalitems += cart.quantity
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
       @totalshipyen += shipping_cost_calc(Stock.find(cart.stock_id).shipping_cost, cart.quantity)
     end
 
-    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
-    @existuser_flg = cardusercheck
-    if @existuser_flg == true
-      @customer_creditcards = gets_usercardinfo
-      @default_cardid = gets_userdefaultcardid
-    end
   end
 
   def create
@@ -120,21 +142,31 @@ class OrdersController < ApplicationController
 
     end
 
+    # 代引き手数料の設定
+    # config/initializers/constants.rbに記載
+    if @@pay == "Cash"
+      total_shippingcost += Constants::CASHDELIVERYCOMMISSION
+    end
+
+
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
-    @order.update(payments: "Creditcard", status: "Shipping(preparation)")
+    @order.update(payments: @@pay, status: "Shipping(preparation)")
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|
       currentorder.destroy
     end
 
-    #payjpの処理
-    Payjp::Charge.create(
-      currency: 'jpy',
-      amount: total + total_shippingcost,
-      customer: current_user.id
-    )
+    if @@pay == "Creditcard"
+      #payjpの処理
+      Payjp::Charge.create(
+        currency: 'jpy',
+        amount: total + total_shippingcost,
+        customer: current_user.id
+      )
+    end
+
 
     # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)
