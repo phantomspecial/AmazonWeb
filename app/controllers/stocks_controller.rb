@@ -36,9 +36,17 @@ class StocksController < ApplicationController
   end
 
   def search
-    @stocks = Kaminari.paginate_array(Stock.where('name LIKE(?)', "%#{params[:keyword]}%")).page(params[:page]).per(2)
-    @search_result_count = Stock.where('name LIKE(?)', "%#{params[:keyword]}%").count
+    # binding.pry
+    if params[:keyword].empty?
+      redirect_to action: 'index'
+    # elsif search_stocks.count == 0
+    #   render '_search_noresult'
+    else
+      @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(3)
+    end
+    @search_result_count = search_stocks.count
     @search_result_string = params[:keyword]
+
     # respond_to do |format|
     #   format.html
     #   format.json
@@ -68,4 +76,13 @@ class StocksController < ApplicationController
     return @current_stock_array
   end
 
+  def search_stocks
+    @category = params[:category_id]
+    input = params[:keyword]
+    if @category.empty?
+      Stock.where('name LIKE(?)', "%#{input}%")
+    else
+      Stock.where('name LIKE(?)', "%#{input}%").where(category_id: @category)
+    end
+  end
 end

@@ -211,7 +211,7 @@ a {
   // pagination
   .text-center {
     height: 40px;
-    background: #eee;
+    // background: #eee;
     margin: 0 20px;
     text-align: center;
       .pagination {
@@ -264,5 +264,74 @@ a {
       nav.pagination {
         display: flex;
       }
+      nav.pagination:before {
+        content: '';
+        width: calc(100% - 260px);
+        height: 40px;
+        background: #eee;
+        position: absolute;
+        right: 0;
+        margin: -7px 20px 0 0;
+        z-index: -9999;
+      }
   }
+}
+
+// No result
+.searchNoResult {
+  h1 {
+    font-size: 18px;
+    margin: 50px 0 20px 0;
+      span {
+        font-weight: bold;
+      }
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  ul {
+    margin: 0;
+      li {
+        width: 100%;
+        padding: 0;
+        border: none;
+      }
+      li.a-size-base {
+        font-size: 12px;
+        margin-top: 10px;
+        padding-left: 10px;
+        list-style: inside;
+        float: none;
+      }
+      li.a-size-base:last-child {
+        margin-bottom: 20px;
+      }
+  }
+}
+
+.a-box-inner {
+  border: 1px solid #d2d2d2;
+  padding: 17px 20px;
+  border-radius: 6px;
+    span {
+      font-size: 13px;
+    }
+    li.a-list-item {
+      width: auto;
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 5px 12px;
+      font-size: 14px;
+      margin: 5px 10px 5px 0;
+      border-radius: 4px;
+    }
+    .a-row {
+      a {
+        color: #0066c0;
+      }
+      a:hover {
+        color: #c45500;
+      }
+    }
 }

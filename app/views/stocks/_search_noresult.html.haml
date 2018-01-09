@@ -1,0 +1,32 @@
+.searchNoResult
+  .centerPlus
+    %h1
+      %span
+        "
+        = word
+        "
+      の検索に一致する商品はありませんでした。
+    %h2
+      以下のようなことを試してください
+    %ul
+      %li.a-size-base
+        より一般的な用語の使用
+      %li.a-size-base
+        スペルの確認
+  .a-box-inner
+    .sx-hms-heading
+      %h4
+        検索結果を評価する
+      %span
+        お探しの商品は見つかりましたか？
+      %ul.a-unordered-list.clearfix
+        %li.a-list-item
+          はい
+        %li.a-list-item
+          いいえ
+    .a-row
+      %span
+        ご質問、ご不明な点がある場合は、
+        = link_to "ヘルプページ", ""
+      %span
+        をご確認ください。
