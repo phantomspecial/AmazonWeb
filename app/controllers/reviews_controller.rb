@@ -16,6 +16,12 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @stock = Stock.find(params[:stock_id])
+    review = Review.find(params[:id])
+    if review.user_id == current_user.id
+      review.destroy
+    end
+    @reviews = @stock.reviews
   end
 
   private

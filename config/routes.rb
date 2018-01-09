@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    resources :reviews, only: [:create, :edit, :update, :destroy]
   end
   resources :items do
     collection do
@@ -35,7 +36,5 @@ Rails.application.routes.draw do
     end
     resources :sub_categories
   end
-
-  resources :reviews, only: [:create, :edit, :update, :destroy]
 
 end

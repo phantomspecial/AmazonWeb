@@ -17,5 +17,5 @@
     .reviews__main__boxes__box__bottombox__links
       - if user_signed_in?
         - if review.user_id == current_user.id
-          = link_to "削除" ,review_path(review.id), method: :delete, remote: true
+          = link_to "削除" ,stock_review_path(@stock.id ,review.id), method: :delete, remote: true
           = link_to "編集" , ""
