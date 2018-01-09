@@ -24,7 +24,10 @@
           %span
             お客様のご注文
           %p
-            = @recentorders
+            - if user_signed_in?
+              = @recentorders
+            - else
+              0
             件の最近の注文
     .hud-dashboard__span__modal-link
       .hud-dashboard__span__modal-link__a
