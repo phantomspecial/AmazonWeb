@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     else
       @range = DateTime.new(params[:period].to_i,1,1).beginning_of_year..DateTime.new(params[:period].to_i,12,31).end_of_year
     end
-    @user_orders = current_user.orders.where(created_at: @range)
+    @user_orders = current_user.orders.where(created_at: @range).order(created_at: :desc)
 
     # 画面表示用
     # ユーザ登録年取得
@@ -71,6 +71,7 @@ class OrdersController < ApplicationController
           @defcardinfo = customer_creditcard
         end
       end
+      @@cardlast4 = @defcardinfo.last4
     end
 
     # 購入確認画面
@@ -154,7 +155,7 @@ class OrdersController < ApplicationController
 
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
-    @order.update(payments: @@pay, status: "Shipping(preparation)")
+    @order.update(payments: @@pay + @@cardlast4, status: "Shipping(preparation)")
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|

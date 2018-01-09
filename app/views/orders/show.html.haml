@@ -38,7 +38,9 @@
         - if @order.payments == "Cash" || @order.payments == "Transfer"
           銀行振込
         - else
-          AAA
+          = image_tag "visa_mark.gif",width:30
+          ****
+          =@order.payments[-4,4]
     .ordertopbox__ordertopboxover__rightbox
       .ordertopbox__ordertopboxover__rightbox__title
         注文内容
@@ -72,9 +74,10 @@
       = link_to "取引履歴",""
       .br
       商品発送済み:
+      = @order.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
       -
       Visa（下4けたが
-      1111
+      =@order.payments[-4,4]
       ）：¥
       = (@order.total + @order.total_shippingcost).to_s(:delimited)
     .ordertopbox__bottombox__total
