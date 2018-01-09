@@ -63,7 +63,7 @@
           .paybox__title
             支払い方法
           .paybox__editlink
-            =link_to "変更",""
+            =link_to "変更",confirm_orders_path
           .paybox__creditmark
             - if @payment == "Cash"
               代金引換
@@ -128,7 +128,7 @@
             .orderbox__leftwindow__itembox__leftbox__items__quantity
               数量：
               = cart.quantity
-              = link_to "変更",""
+              = link_to "変更",carts_path
             .orderbox__leftwindow__itembox__leftbox__items__seller
               販売：
               Amazon Japan G.K.
@@ -155,8 +155,7 @@
           - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
             = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
           - else
-            %b{style: "color: red;"}
-              クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
+            クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
         - else
           = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
       .orderbox__rightwindow__orderbox__title
@@ -196,8 +195,7 @@
           - if (@totalitemyen + @totalshipyen) > 49 && (@totalitemyen + @totalshipyen) < 10000000
             = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
           - else
-            %b{style: "color: red;"}
-              クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
+            クレジットカードは、50円〜1千万円未満の決済に利用可能です。他の支払い方法をご利用ください。
         - else
           = link_to "注文を確定する", orders_path, method: :create, class: "orderbtn"
 .bottommessage
