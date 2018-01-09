@@ -30,6 +30,9 @@ class OrdersController < ApplicationController
 
   def show
     # 個別ユーザ：注文詳細画面
+    @order = Order.find(params[:id])
+    @orderdetails = @order.orderdetails
+    @user = current_user
   end
 
 

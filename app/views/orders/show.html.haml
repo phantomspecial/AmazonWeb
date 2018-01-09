@@ -1,2 +1,127 @@
-/ = render "shared/header"
-/ = render "shared/footer"
+= render "shared/header"
+.topmessagebox
+  .topmessagebox__message
+    アカウントサービス > 注文履歴 >
+    %p{style: "color bc5c20"}
+      注文の詳細
+.ordertop-message
+  .ordertop-message__title
+    注文の詳細
+  .ordertop-message__ordertime-id
+    注文日
+    = @order.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d")
+    |
+    注文番号
+    = @order.id
+  .ordertop-message__reciptbtn
+    = link_to "領収証／購入明細書","", class: "order-show-graybutton"
+.ordertopbox
+  .ordertopbox__ordertopboxover
+    .ordertopbox__ordertopboxover__leftbox
+      .ordertopbox__ordertopboxover__leftbox__title
+        お届け先住所
+      .ordertopbox__ordertopboxover__leftbox__message
+        = @user.first_name
+        = @user.last_name
+        .br
+        = @user.postal_code
+        .br
+        = @user.pref
+        = @user.city
+        = @user.street
+        .br
+        = @apartment_roomnumber
+    .ordertopbox__ordertopboxover__middlebox
+      .ordertopbox__ordertopboxover__middlebox__title
+        支払い方法
+      .ordertopbox__ordertopboxover__middlebox__message
+        - if @order.payments == "Cash" || @order.payments == "Transfer"
+          銀行振込
+        - else
+          AAA
+    .ordertopbox__ordertopboxover__rightbox
+      .ordertopbox__ordertopboxover__rightbox__title
+        注文内容
+      .ordertopbox__ordertopboxover__rightbox__message
+        .ordertopbox__ordertopboxover__rightbox__message__item
+          .ordertopbox__ordertopboxover__rightbox__message__item__label
+            商品の小計：
+          .ordertopbox__ordertopboxover__rightbox__message__item__yen
+            ¥
+            = @order.total.to_s(:delimited)
+        .ordertopbox__ordertopboxover__rightbox__message__shipcost
+          .ordertopbox__ordertopboxover__rightbox__message__shipcost__label
+            配送料・手数料：
+          .ordertopbox__ordertopboxover__rightbox__message__shipcost__yen
+            ¥
+            = @order.total_shippingcost.to_s(:delimited)
+        .ordertopbox__ordertopboxover__rightbox__message__total
+          .ordertopbox__ordertopboxover__rightbox__message__total__label
+            注文合計：
+          .ordertopbox__ordertopboxover__rightbox__message__total__yen
+            ¥
+            = (@order.total + @order.total_shippingcost).to_s(:delimited)
+        .ordertopbox__ordertopboxover__rightbox__message__demand
+          .ordertopbox__ordertopboxover__rightbox__message__demand__label
+            ご請求額：
+          .ordertopbox__ordertopboxover__rightbox__message__demand__yen
+            ¥
+            = (@order.total + @order.total_shippingcost).to_s(:delimited)
+  .ordertopbox__bottombox
+    .ordertopbox__bottombox__message
+      = link_to "取引履歴",""
+      .br
+      商品発送済み:
+      -
+      Visa（下4けたが
+      1111
+      ）：¥
+      = (@order.total + @order.total_shippingcost).to_s(:delimited)
+    .ordertopbox__bottombox__total
+      合計:
+      ¥
+      = (@order.total + @order.total_shippingcost).to_s(:delimited)
+.orderbottombox
+  .orderbottombox__totalitems
+    = @orderdetails.length
+    点の配送
+  .orderbottombox__deliverytime
+    = @order.created_at.since(1.days).in_time_zone('Tokyo').strftime("%Y/%m/%d")
+    に配達しました
+  .orderbottombox__status
+    配達またはポスト投函が完了しました
+  .orderbottombox__rightlinkbtns
+    = link_to "商品レビューを書く","", class: "order-show-graybutton"
+    .br
+    = link_to "注文を非表示にする","", class: "order-show-graybutton"
+  .orderbottombox__leftboxes
+    - @orderdetails.each do |orderdetail|
+      .orderbottombox__leftboxes__items
+        .orderbottombox__leftboxes__items__imagebox
+          = image_tag orderdetail.stock.image , width:150
+        .orderbottombox__leftboxes__items__detailbox
+          .orderbottombox__leftboxes__items__detailbox__title
+            = link_to orderdetail.stock.name,stock_path(orderdetail.stock_id)
+          .orderbottombox__leftboxes__items__detailbox__seller
+            販売: Amazon Japan G.K.
+          .orderbottombox__leftboxes__items__detailbox__returned
+            返品期間：
+            = @order.created_at.since(1.months).in_time_zone('Tokyo').strftime("%Y/%m/%d")
+          .orderbottombox__leftboxes__items__detailbox__yen
+            ¥
+            = orderdetail.sell_price.to_s(:delimited)
+          .orderbottombox__leftboxes__items__detailbox__condititon
+            %b
+              コンディション：
+            新品
+          .orderbottombox__leftboxes__items__detailbox__quantity
+            数量：
+            = orderdetail.quantity
+          .orderbottombox__leftboxes__items__detailbox__againbtn
+            = link_to "再度購入","", class: "order-show-graybutton-mini"
+
+.adtopbox
+  広告スペース１
+.adtopbox
+  広告スペース２
+= render "shared/footer"
