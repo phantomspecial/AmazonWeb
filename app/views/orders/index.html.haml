@@ -68,7 +68,8 @@
             注文番号
             = user_order.id
           .order__main__inner__over__memo__detail
-            注文の詳細  領収書／購入明細書
+            = link_to "注文の詳細",order_path(user_order.id)
+            領収書／購入明細書
       .order__main__inner__under
         .order__main__inner__under__delivery-date
           .order__main__inner__under__delivery-date__title

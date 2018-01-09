@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
     # マイストア画面
+    @user = current_user
   end
 
   def payments

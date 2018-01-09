@@ -290,8 +290,255 @@
   font-size: 14px;
   color: #0000FF;
 }
-// 注文詳細画面 show
 
+
+// 注文詳細画面 show
+.topmessagebox{
+  padding-left: 100px;
+  padding-top: 10px;
+  width: 1000px;
+  &__message{
+    font-size: 12px;
+  }
+}
+.ordertop-message{
+  padding-left: 100px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  width: 1000px;
+  &__title{
+    font-size: 24px;
+    padding-bottom: 10px;
+  }
+  &__ordertime-id{
+    font-size: 12px;
+    float: left;
+  }
+  &__reciptbtn{
+    float: right;
+  }
+}
+.ordertopbox{
+  clear: both;
+  margin-left: 100px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  width: 1000px;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #dddddd;
+  &__ordertopboxover{
+    font-size: 14px;
+    padding-bottom: 10px;
+    &__leftbox{
+      padding-right: 100px;
+      padding-left: 20px;
+      width: 300px;
+      &__title{
+        font-weight: bold;
+        padding-top: 10px;
+      }
+      &__message{
+
+      }
+    }
+    &__middlebox{
+      padding-right: 100px;
+      width: 200px;
+      &__title{
+        font-weight: bold;
+        padding-top: 10px;
+      }
+      &__message{
+
+      }
+    }
+    &__rightbox{
+      width: 200px;
+      &__title{
+        font-weight: bold;
+        padding-top: 10px;
+      }
+      &__message{
+        &__item{
+          clear: both;
+          &__label{
+            float: left;
+          }
+          &__yen{
+            float: right;
+          }
+        }
+        &__shipcost{
+          clear: both;
+          &__label{
+            float: left;
+          }
+          &__yen{
+            float: right;
+          }
+        }
+        &__total{
+          clear: both;
+          padding-top: 5px;
+          &__label{
+            float: left;
+          }
+          &__yen{
+            float: right;
+          }
+        }
+        &__demand{
+          clear: both;
+          padding-top: 5px;
+          font-weight: bold;
+          &__label{
+            float: left;
+          }
+          &__yen{
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  &__bottombox{
+    border-top: 1px solid;
+    border-color: #dddddd;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-left: 20px;
+    &__message{
+
+    }
+    &__total{
+      padding-top: 20px;
+    }
+  }
+}
+
+.ordertopbox__ordertopboxover{
+  display: flex;
+}
+
+
+.orderbottombox{
+  margin-left: 100px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 1000px;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #dddddd;
+  &__totalitems{
+    height: 30px;
+    border-bottom: 1px solid;
+    border-color: #dddddd;
+    background-color:#f1f1f1;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  &__deliverytime{
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__status{
+    padding-left: 20px;
+    font-size: 12px;
+    float: left;
+  }
+  &__rightlinkbtns{
+    float: right;
+    padding-right: 50px;
+  }
+  &__leftboxes{
+    clear: both;
+    &__items{
+      padding-bottom: 10px;
+      &__imagebox{
+        padding-top: 10px;
+        padding-left: 20px;
+      }
+      &__detailbox{
+        padding-left: 10px;
+        font-size: 14px;
+        &__title{
+        }
+        &__seller{
+
+        }
+        &__returned{
+
+        }
+        &__yen{
+          color: #a82207;
+        }
+        &__condition{
+
+        }
+        &__quantity{
+
+        }
+        &__againbtn{
+        }
+      }
+    }
+  }
+}
+
+.orderbottombox__leftboxes__items{
+  display: flex;
+}
+
+.adtopbox{
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  height: 200px;
+  width: 1000px;
+  border:1px solid;
+  border-color: #dddddd;
+}
+
+.ordertopbox__bottombox a{
+  color: #0000ff;
+  text-decoration: none;
+}
+
+.orderbottombox__leftboxes__items a{
+  color: #0000ff;
+  text-decoration: none;
+}
+
+.order-show-graybutton{
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: 0.1em 1em;
+    width: 275px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 14px;
+}
+
+.order-show-graybutton-mini{
+    display: inline-block;
+    width: 70px;
+    text-decoration: none;
+    background: #f0f0f0;/*ボタン色*/
+    border-bottom: solid 4px #f0f0f0;
+    border-radius: 4px;
+    color:#000000;
+    text-align: center;
+    font-size: 12px;
+}
 
 
 // 注文確認画面 confirm
