@@ -13,6 +13,12 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @stock = Stock.find(params[:stock_id])
+    @review = Review.find(params[:id])
+    if @review.user_id == current_user.id
+      @review.update(review_params)
+    end
+    @reviews = @stock.reviews
   end
 
   def destroy
@@ -27,7 +33,6 @@ class ReviewsController < ApplicationController
   private
   def review_params
     params.require(:review).permit(:stock_id, :title, :rate, :review)
-    # params.require(:review).permit(:title, :rate, :review).merge(stock_id: params[:stock_id])
   end
 
 end

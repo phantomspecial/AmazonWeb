@@ -18,4 +18,22 @@
       - if user_signed_in?
         - if review.user_id == current_user.id
           = link_to "削除" ,stock_review_path(@stock.id ,review.id), method: :delete, remote: true
-          = link_to "編集" , ""
+          = link_to "編集" , "" , class: "edit_review", id: "edit_review"
+.editmodal#edit-modal
+  .modal-edit
+    %h4
+      レビュー編集
+      .br
+      = form_for [@stock ,review], class: "new_review", id: "new_review", remote: true do |f|
+        %h4
+          レートを選んでください
+          = f.hidden_field :rate, value: 20
+        %h4
+          レビュータイトルを書いてください
+          .br
+          = f.text_field :title, value: "#{review.title}", class: "form-title", id: 'reviewtitle'
+        %h4
+          レビューコメントを書いてください
+          .br
+          = f.text_field :review, value: "#{review.review}", class: "form-review", id: 'reviewtext'
+        = f.submit value: "更新", class: "updbtn", id: "updbtn"
