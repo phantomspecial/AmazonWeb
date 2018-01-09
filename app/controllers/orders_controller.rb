@@ -8,12 +8,15 @@ class OrdersController < ApplicationController
     # アソシエーションを組んでいる前提
 
     # オーダ情報取得
-    @user_orders = current_user.orders
-    # オーダ詳細情報取得
-    @user_order_details = []
-    @user_orders.each do |user_order|
-      @user_order_details += Orderdetail.where(order_id: user_order.id)
+    # 期間指定があるか？ない場合は、過去30日の注文を表示する
+    if params[:period].nil? || params[:period] == "30"
+      @range = Date.current.ago(30.days).beginning_of_day..Date.current.end_of_day
+    elsif params[:period] == "6"
+      @range = Date.current.ago(6.months).beginning_of_day..Date.current.end_of_day
+    else
+      @range = DateTime.new(params[:period].to_i,1,1).beginning_of_year..DateTime.new(params[:period].to_i,12,31).end_of_year
     end
+    @user_orders = current_user.orders.where(created_at: @range)
 
     # 画面表示用
     # ユーザ登録年取得
@@ -23,7 +26,6 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
-
   end
 
   def show
@@ -46,25 +48,47 @@ class OrdersController < ApplicationController
   end
 
   def new
+    # 支払い方法の取得
+    @payment = params[:payments]
+    # クレジットカードの場合、そのカードを、デフォルトカードに設定し、@@payにCreditcardを入れる
+    # 代引きの場合、Cashを保存する
+    if @payment == "Cash"
+      @@pay = "Cash"
+    else
+      @@pay = "Creditcard"
+      @user_info = Payjp::Customer.retrieve(id: current_user.id.to_s)
+      @user_info.default_card = @payment
+      @user_info.save
+
+      # デフォルトカードの情報を、last4に変換する
+      # そのユーザのカードを取得
+      @customer_creditcards = gets_usercardinfo
+      @customer_creditcards.cards.each do |customer_creditcard|
+        if customer_creditcard.id == @payment
+          @defcardinfo = customer_creditcard
+        end
+      end
+    end
+
     # 購入確認画面
     @user = current_user
     @carts = gets_cart_items
     # 合計点数と合計金額の表示
     @totalitems = 0
     @totalitemyen = 0
-    @totalshipyen = 0
+    # 代引き手数料の設定
+    # config/initializers/constants.rbに記載
+    if @@pay == "Cash"
+      @totalshipyen = Constants::CASHDELIVERYCOMMISSION
+    else
+      @totalshipyen = 0
+    end
     @carts.each do |cart|
       @totalitems += cart.quantity
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
       @totalshipyen += shipping_cost_calc(Stock.find(cart.stock_id).shipping_cost, cart.quantity)
     end
 
-    # そのユーザにカードが登録されているかを調べる(メソッドはapplication_controller.rbに記載)
-    @existuser_flg = cardusercheck
-    if @existuser_flg == true
-      @customer_creditcards = gets_usercardinfo
-      @default_cardid = gets_userdefaultcardid
-    end
   end
 
   def create
@@ -118,21 +142,31 @@ class OrdersController < ApplicationController
 
     end
 
+    # 代引き手数料の設定
+    # config/initializers/constants.rbに記載
+    if @@pay == "Cash"
+      total_shippingcost += Constants::CASHDELIVERYCOMMISSION
+    end
+
+
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
-    @order.update(payments: "Creditcard", status: "Shipping(preparation)")
+    @order.update(payments: @@pay, status: "Shipping(preparation)")
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|
       currentorder.destroy
     end
 
-    #payjpの処理
-    Payjp::Charge.create(
-      currency: 'jpy',
-      amount: total + total_shippingcost,
-      customer: current_user.id
-    )
+    if @@pay == "Creditcard"
+      #payjpの処理
+      Payjp::Charge.create(
+        currency: 'jpy',
+        amount: total + total_shippingcost,
+        customer: current_user.id
+      )
+    end
+
 
     # 注文完了画面表示用
     @orderviews = Orderdetail.where(order_id: @order.id)

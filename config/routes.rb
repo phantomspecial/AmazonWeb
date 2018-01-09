@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       get 'payments'
       post 'creditcard_regist'
+      delete 'creditcard_destroy'
     end
   end
   resources :carts
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
     collection do
       get 'admin_category'
     end
+  resources :sub_categories
+
   end
 
   resources :carts, only: [:index, :show, :destroy, :edit, :update, :create]

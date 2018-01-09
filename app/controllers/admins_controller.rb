@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
     @stocks = Stock.all
     @stocks.each do |stock|
       if stock.current_stock <= 5
-        @limitedstocks += stock
+        @limitedstocks << stock
       end
     end
   end
