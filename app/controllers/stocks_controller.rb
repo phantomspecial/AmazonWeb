@@ -15,11 +15,13 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find(params[:id])
+    @reviews = @stock.reviews
     @current_stock_array = quantity_array_maker(@stock)
     if user_signed_in?
       quantitychecker_moveto_buylater
       @cart = current_user.carts.new
       @user = current_user
+      @review = current_user.reviews.new
     end
   end
 

@@ -1,0 +1,21 @@
+.reviews__main__boxes__box
+  .reviews__main__boxes__box__topbox
+    .reviews__main__boxes__box__topbox__avatar
+      = image_tag "face_icon.png", width:40
+    .reviews__main__boxes__box__topbox__nickname
+      = review.user.nickname
+  .reviews__main__boxes__box__middlebox
+    .reviews__main__boxes__box__middlebox__rate
+      = review.rate
+    .reviews__main__boxes__box__middlebox__title
+      = review.title
+  .reviews__main__boxes__box__bottombox
+    .reviews__main__boxes__box__bottombox__date
+      = review.updated_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
+    .reviews__main__boxes__box__bottombox__text
+      = review.review
+    .reviews__main__boxes__box__bottombox__links
+      - if user_signed_in?
+        - if review.user_id == current_user.id
+          = link_to "削除" ,review_path(review.id), method: :delete, remote: true
+          = link_to "編集" , ""

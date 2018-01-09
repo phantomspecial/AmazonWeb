@@ -308,5 +308,59 @@
     = @stock.detail
 .borderline
 / この商品を見た人-共通部品にするのでカット
-
+.reviews
+  .reviews__title
+    カスタマーレビュー
+  .reviews__ratebox
+    .reviews__ratebox__ratemark
+      ★★
+    .reviews__ratebox__ratetext
+      5つ星のうち
+      4.2
+    .reviews__ratebox__distribution
+      星5つ
+      .br
+      星4つ
+      .br
+      星3つ
+      .br
+      星2つ
+      .br
+      星1つ
+      .br
+      すべてのカスタマーレビューをみる（
+      22
+      )
+  .reviews__votebox
+    .reviews__votebox__text
+      他のお客様にも意見を伝えましょう
+    .reviews__votebox__writebtn
+      = link_to "カスタマーレビューを書く","", class: "graybutton"
+  .reviews__main
+    .reviews__main__title
+      カスタマーレビュー
+    .reviews__main__boxes
+      = render partial: "shared/review", collection: @reviews, as: :review
+  .reviews__addform
+    - if user_signed_in?
+      新規レビュー
+      .br
+      = form_for @review, class: "new_review", id: "new_review", remote: true do |f|
+        = f.hidden_field :stock_id, value: @stock.id
+        %h4
+          レートを選んでください
+          = f.hidden_field :rate, value: 20
+        %h4
+          レビュータイトルを書いてください
+          .br
+          = f.text_field :title, class: "form-title", id: 'reviewtitle'
+        %h4
+          レビューコメントを書いてください
+          .br
+          = f.text_field :review, class: "form-review", id: 'reviewtext'
+        = f.submit value: "送信", class: "btn"
+    - else
+      レビューするためには、
+      = link_to "ログイン", new_user_session_path
+      してください。
 = render "shared/footer"

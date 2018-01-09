@@ -361,6 +361,90 @@
   }
 }
 
+.reviews{
+  padding-bottom: 20px;
+  padding-left: 10px;
+  &__title{
+    padding-top: 20px;
+    color:  #d07500;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  &__ratebox{
+    font-size: 14px;
+    float: left;
+    padding-right: 150px;
+    color: #0000ff;
+    &__ratemark{
+    }
+    &__ratetext{
+    }
+    &__distribution{
+
+    }
+  }
+  &__votebox{
+    font-size: 14px;
+    &__text{
+
+    }
+    &__writebtn{
+
+    }
+  }
+  &__main{
+    clear: both;
+    padding-top: 30px;
+    &__title{
+      font-size: 16px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+    &__boxes{
+      &__box{
+        font-size: 14px;
+        padding-bottom: 20px;
+        &__topbox{
+          &__avatar{
+            float: left;
+            border-radius: 25px;
+            padding-right: 10px;
+          }
+          &__nickname{
+            padding-top: 5px;
+          }
+        }
+        &__middlebox{
+          clear: both;
+          &__rate{
+            float: left;
+            padding-right: 10px;
+          }
+          &__title{
+            font-weight: bold;
+          }
+        }
+        &__bottombox{
+          &__date{
+          }
+          &__text{
+          }
+        }
+      }
+    }
+  }
+  &__addform{
+    padding-top: 30px;
+  }
+}
+
+.form-title{
+  width: 300px;
+}
+
+.form-review{
+  width: 300px;
+}
 
 
 .borderline{
