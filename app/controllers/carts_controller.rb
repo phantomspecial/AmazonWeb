@@ -51,14 +51,34 @@ class CartsController < ApplicationController
   end
 
   def update
-    cart = Cart.find(params[:id])
-    cart.update(cart_params)
+    if params[:updflg].to_i == 1
+      # jsで数量を更新するとき
+      cart = Cart.find(params[:cartid].to_i)
+      cart.update(quantity: params[:quantity].to_i)
+    else
+      # あとで買う,カートにもどすのとき
+      cart = Cart.find(params[:id])
+      cart.update(cart_params)
+    end
     redirect_to carts_path
   end
 
   private
   def cart_params
-    params.require(:cart).permit(:quantity, :stock_id, :buylater_flg)
+    params.require(:cart).permit(:quantity, :stock_id, :buylater_flg, :updflg)
+  end
+
+  # 数量セレクトボックスの配列作成
+  def quantity_array_maker(stocks)
+    @current_stock_array = []
+    stocks.current_stock.times do |current_stock|
+      if current_stock < 10
+        @current_stock_array << [current_stock + 1,current_stock + 1]
+      else
+        break
+      end
+    end
+    return @current_stock_array
   end
 
 end

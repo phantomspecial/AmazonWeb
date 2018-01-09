@@ -23,8 +23,6 @@ $(function(){
   window.onload = function(){
     period = $('.returnperiod').val();
     document.getElementById("periodselecter").selectedIndex = period;
-    debugger;
-    // $("#periodselecter") = "6"
   }
 
 });
