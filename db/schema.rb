@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110025711) do
+ActiveRecord::Schema.define(version: 20180110065915) do
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity",     null: false
@@ -33,17 +33,19 @@ ActiveRecord::Schema.define(version: 20180110025711) do
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "stock_id"
-    t.string   "name",          null: false
-    t.string   "image",         null: false
-    t.string   "detail",        null: false
-    t.string   "maker",         null: false
-    t.integer  "unit_cost",     null: false
-    t.integer  "quantity",      null: false
-    t.integer  "sell_price",    null: false
-    t.integer  "shipping_cost", null: false
+    t.string   "name",            null: false
+    t.string   "image",           null: false
+    t.string   "detail",          null: false
+    t.string   "maker",           null: false
+    t.integer  "unit_cost",       null: false
+    t.integer  "quantity",        null: false
+    t.integer  "sell_price",      null: false
+    t.integer  "shipping_cost",   null: false
     t.integer  "item_flg"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "sub_category_id"
+    t.integer  "category_id"
     t.index ["stock_id"], name: "index_items_on_stock_id", using: :btree
   end
 
@@ -80,8 +82,8 @@ ActiveRecord::Schema.define(version: 20180110025711) do
     t.integer  "shipping_cost",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "category_id"
     t.integer  "sub_category_id"
+    t.string   "category_id"
   end
 
   create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,7 +1,8 @@
 class SubCategoriesController < ApplicationController
 
   def index
-    @sub_categories = SubCategory.all
+    category = Category.find(params[:category_id])
+    render json: category.sub_categories.select(:id, :name)
   end
 
   def new
