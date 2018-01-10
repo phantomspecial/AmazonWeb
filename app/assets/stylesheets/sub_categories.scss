@@ -1,3 +1,21 @@
-// Place all the styles related to the sub_categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.sub_category {
+  font-size: 30px;
+  margin: 10px;
+  &__list {
+    width: 100%;
+    &__all {
+      float: left;
+    }
+    &__price{
+      font-size: 10px;
+    }
+ }
+}
+
+.sub_category__list img{
+      width: 100px;
+      height: 100px;
+    }
+.sub_category__list a{
+  font-size: 10px;
+}
