@@ -380,7 +380,24 @@
     &__ratetext{
     }
     &__distribution{
+      &__five{
 
+      }
+      &__four{
+
+      }
+      &__three{
+
+      }
+      &__two{
+
+      }
+      &__one{
+
+      }
+      &__all{
+
+      }
     }
   }
   &__votebox{
@@ -425,6 +442,7 @@
           }
         }
         &__bottombox{
+          clear: both;
           &__date{
           }
           &__text{
@@ -435,8 +453,19 @@
   }
   &__addform{
     padding-top: 30px;
+    clear: both;
+    &__rate{
+      &__label{
+        font-weight: bold;
+      }
+    }
+    &__toplabel{
+      font-weight: bold;
+      font-size: 18px;
+    }
     &__title{
       clear: both;
+      font-weight: bold;
     }
     &__comment{
 
@@ -445,11 +474,12 @@
 }
 
 .form-title{
-  width: 300px;
+  width: 700px;
 }
 
 .form-review{
-  width: 300px;
+  width: 700px;
+  height: 500px;
 }
 
 

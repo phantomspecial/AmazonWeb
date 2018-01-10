@@ -23,6 +23,13 @@ class StocksController < ApplicationController
       @user = current_user
       @review = current_user.reviews.new
     end
+
+    # レビュー割合情報出力
+    @review_dist = []
+    reviewlength = @reviews.length
+    5.times do |i|
+      @review_dist[i] = (@reviews.where(rate: i + 1).length) *100 / reviewlength
+    end
   end
 
   def destroy
