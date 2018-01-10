@@ -1,5 +1,7 @@
 class SubCategory < ApplicationRecord
   belongs_to :category, optional: true
+  has_many :stocks
+  accepts_nested_attributes_for :stocks
 
   def self.import(file)
     CSV.foreach('db/Sub-categories-Sub-categories.csv') do |row|
