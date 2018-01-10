@@ -3,10 +3,11 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @review = current_user.reviews.new(review_params)
-    @review.save
+    @review = Review.create(stock_id: review_params[:stock_id], user_id: current_user.id, title: review_params[:title], rate: review_params[:rate], review: review_params[:review])
+
     @stock = Stock.find(review_params[:stock_id])
     @reviews = @stock.reviews
+
   end
 
   def edit
@@ -32,7 +33,8 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:stock_id, :title, :rate, :review)
+    params.permit(:stock_id, :title, :rate, :review)
+    # params.require(:review).permit(:stock_id, :title, :rate, :review)
   end
 
 end

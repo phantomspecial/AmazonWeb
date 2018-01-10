@@ -6,7 +6,17 @@
       = review.user.nickname
   .reviews__main__boxes__box__middlebox
     .reviews__main__boxes__box__middlebox__rate
-      = review.rate
+      - case review.rate
+        - when 1
+          .rate.rate10
+        - when 2
+          .rate.rate20
+        - when 3
+          .rate.rate30
+        - when 4
+          .rate.rate40
+        - when 5
+          .rate.rate50
     .reviews__main__boxes__box__middlebox__title
       = review.title
   .reviews__main__boxes__box__bottombox
