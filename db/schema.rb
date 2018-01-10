@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20180110025711) do
+
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity",     null: false
@@ -69,6 +71,18 @@ ActiveRecord::Schema.define(version: 20180110025711) do
     t.datetime "updated_at",         null: false
   end
 
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "stock_id"
+    t.integer  "user_id"
+    t.string   "title",                    null: false
+    t.integer  "rate",                     null: false
+    t.text     "review",     limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["stock_id"], name: "index_reviews_on_stock_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",            null: false
     t.string   "image",           null: false
@@ -121,4 +135,6 @@ ActiveRecord::Schema.define(version: 20180110025711) do
   add_foreign_key "carts", "stocks"
   add_foreign_key "carts", "users"
   add_foreign_key "items", "stocks"
+  add_foreign_key "reviews", "stocks"
+  add_foreign_key "reviews", "users"
 end

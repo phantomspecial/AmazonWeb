@@ -21,8 +21,10 @@ $(function(){
 
 
   window.onload = function(){
-    period = $('.returnperiod').val();
-    document.getElementById("periodselecter").selectedIndex = period;
+    if(period = ""){
+      period = $('.returnperiod').val();
+      document.getElementById("periodselecter").selectedIndex = period;
+    }
   }
 
 });
