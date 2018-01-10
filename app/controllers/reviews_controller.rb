@@ -3,10 +3,15 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @review = Review.create(stock_id: review_params[:stock_id], user_id: current_user.id, title: review_params[:title], rate: review_params[:rate], review: review_params[:review])
-
     @stock = Stock.find(review_params[:stock_id])
-    @reviews = @stock.reviews
+    if review_valid_test(review_params) == true
+
+      @review = Review.create(stock_id: review_params[:stock_id], user_id: current_user.id, title: review_params[:title], rate: review_params[:rate], review: review_params[:review])
+
+      @reviews = @stock.reviews
+    else
+      redirect_to stock_path(@stock.id)
+    end
 
   end
 

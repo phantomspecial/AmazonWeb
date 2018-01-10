@@ -397,7 +397,7 @@
       - if user_signed_in?
         新規レビュー
         .br
-        = form_tag(stock_reviews_path(@stock.id) , method: :post) do
+        = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true) do
           %h4
             レートを選んでください。
           .evaluation
@@ -419,8 +419,8 @@
           .reviews__addform__title
             レビュータイトルを書いてください。
             .br
-            %input.form-title#review__title{ name: "title", size: "40", type: "text", class: "form-title", id: "review__title"}
-            %input.form-review#review__text{ name: "review", size: "80", type: "text", class: "form-review", id: "review__text"}
+            %input{ name: "title", size: "40", type: "text", class: "form-title", id: "review__title"}
+            %input{ name: "review", size: "80", type: "text", class: "form-review", id: "review__text"}
             %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
             %input{ type:"submit", value:"送信", class: "btn"}
 
