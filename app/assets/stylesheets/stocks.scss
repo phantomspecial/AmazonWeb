@@ -579,10 +579,12 @@
 .rate50:after{width: 100px;}
 
 
+
+
+// Showページ--star
 .evaluation{
   display: flex;
   flex-direction: row-reverse;
-  // justify-content: center;
   float: left;
 }
 .evaluation input[type='radio']{
@@ -594,17 +596,12 @@
   cursor: pointer;
   font-size: 20px;
 }
-// .evaluation label .text{
-  // position: absolute;
-  // left: 0;
-  // top: 0;
-  // right: 0;
-  // text-align: center;
-  // font-size: 12px;
-  // color: gray;
-// }
+
 .evaluation label:hover,
 .evaluation label:hover ~ label,
 .evaluation input[type='radio']:checked ~ label{
   color: #f3a83c;
 }
+
+
+// Review-dit
