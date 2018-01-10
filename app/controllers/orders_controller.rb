@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     else
       @range = DateTime.new(params[:period].to_i,1,1).beginning_of_year..DateTime.new(params[:period].to_i,12,31).end_of_year
     end
-    @user_orders = current_user.orders.where(created_at: @range)
+    @user_orders = current_user.orders.where(created_at: @range).order(created_at: :desc)
 
     # 画面表示用
     # ユーザ登録年取得
@@ -26,10 +26,27 @@ class OrdersController < ApplicationController
     # ループ回数変数格納
     # 現在の年 ー 登録の年だけでは、ループが1回分不足するので、1回増やす
     @yearcount = @current_year - @user_regist_year + 1
+
+    @yearcountarray =[]
+    @yearcountarray << ["30","0"]
+    @yearcountarray << ["6","1"]
+    @yearcount.times do |year|
+      @yearcountarray << ["#{@current_year - year}", "#{year + 2}"]
+    end
+
+    @yearcountarray.each do |year|
+      if params[:period] == year[0]
+        @periodindex = year[1]
+      end
+    end
+
   end
 
   def show
     # 個別ユーザ：注文詳細画面
+    @order = Order.find(params[:id])
+    @orderdetails = @order.orderdetails
+    @user = current_user
   end
 
 
@@ -68,6 +85,7 @@ class OrdersController < ApplicationController
           @defcardinfo = customer_creditcard
         end
       end
+      @@cardlast4 = @defcardinfo.last4
     end
 
     # 購入確認画面
@@ -151,7 +169,7 @@ class OrdersController < ApplicationController
 
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)
-    @order.update(payments: @@pay, status: "Shipping(preparation)")
+    @order.update(payments: @@pay + @@cardlast4, status: "Shipping(preparation)")
 
     # そのユーザのカートを削除する。
     @currentorder.each do |currentorder|

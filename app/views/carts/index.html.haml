@@ -56,12 +56,10 @@
           = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
       .cartleftwindow__goodslist__quantityspace
         .cartleftwindow__goodslist__quantity
-        = form_for cart do |f|
-          .rightbox__cartbox__quantity
-            = f.label :quantity, "数量"
-            = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), selected: cart.quantity
-          .rightbox__cartbox__addcartbutton
-            = f.submit value: "更新"
+          = form_for cart do |f|
+            .rightbox__cartbox__quantity
+              / %input{ name: "cartid", type: "hidden", value: cart.id, class: 'cartid'}
+              = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), {selected: cart.quantity}, {id: "quantityselecter#{cart.id}"}
       .cartleftwindow__bottomborder
   .cartleftwindow__subtotal
     .cartleftwindow__subtotal__items
