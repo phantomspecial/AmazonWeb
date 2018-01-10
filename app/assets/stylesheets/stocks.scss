@@ -506,18 +506,18 @@
 
 
 
-.editmodal{
+#edit-modal{
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 100;
+  z-index: 2;
   display: none;
 }
 
-.modal-edit {
+.editmodal {
   position: absolute;
   top: 20%;
   left: 34%;
@@ -528,6 +528,7 @@
   height: auto;
   text-align: center;
   padding: 0 20px;
+  z-index: 3;
   form{
     .edit-field {
       width: 100%;
@@ -605,3 +606,24 @@
 
 
 // Review-dit
+.editevaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  float: left;
+}
+.editevaluation input[type='radio']{
+  display: none;
+}
+.editevaluation label{
+  // position: relative;
+  color: #dddddd;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.editevaluation label:hover,
+.editevaluation label:hover ~ label,
+.editevaluation input[type='radio']:checked ~ label{
+  color: #f3a83c;
+}
+
