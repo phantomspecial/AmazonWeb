@@ -42,4 +42,12 @@ class ReviewsController < ApplicationController
     # params.require(:review).permit(:stock_id, :title, :rate, :review)
   end
 
+  def review_valid_test(r_params)
+    if r_params[:stock_id].present? &&  r_params[:title].present? && r_params[:rate].present? && r_params[:review].present?
+      return true
+    else
+      return false
+    end
+  end
+
 end
