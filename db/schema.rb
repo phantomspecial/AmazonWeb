@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180110025711) do
     t.integer  "shipping_cost",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "category_id"
     t.integer  "sub_category_id"
   end
 

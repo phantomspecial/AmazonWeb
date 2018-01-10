@@ -8,65 +8,15 @@
         = image_tag "campaign.png"
       .nav-over__center
         .nav-over__center__content
-          .nav-over__center__content__left
-            %select.nav-over__center__content__left__searchselect
-              %option{:selected => "selected", :value => "search-alias=aps"} すべて
-              %option{:value => "search-alias=digital-text"} Kindleストア
-              %option{:value => "search-alias=instant-video"} Amazonビデオ
-              %option{:value => "search-alias=digital-music"} デジタルミュージック
-              %option{:value => "search-alias=mobile-apps"} Android アプリ
-              %option{:value => "search-alias=stripbooks"} 本
-              %option{:value => "search-alias=english-books"} 洋書
-              %option{:value => "search-alias=popular"} ミュージック
-              %option{:value => "search-alias=classical"} クラシック
-              %option{:value => "search-alias=dvd"} DVD
-              %option{:value => "search-alias=videogames"} TVゲーム
-              %option{:value => "search-alias=software"} PCソフト
-              %option{:value => "search-alias=computers"} パソコン・周辺機器
-              %option{:value => "search-alias=electronics"} 家電&amp;カメラ
-              %option{:value => "search-alias=office-products"} 文房具・オフィス用品
-              %option{:value => "search-alias=kitchen"} ホーム&amp;キッチン
-              %option{:value => "search-alias=pets"} ペット用品
-              %option{:value => "search-alias=hpc"} ドラッグストア
-              %option{:value => "search-alias=beauty"} ビューティー
-              %option{:value => "search-alias=luxury-beauty"} ラグジュアリービューティー
-              %option{:value => "search-alias=food-beverage"} 食品・飲料・お酒
-              %option{:value => "search-alias=baby"} ベビー&amp;マタニティ
-              %option{:value => "search-alias=fashion"} ファッション
-              %option{:value => "search-alias=fashion-womens"}    レディース
-              %option{:value => "search-alias=fashion-mens"}    メンズ
-              %option{:value => "search-alias=fashion-baby-kids"}    キッズ＆ベビー
-              %option{:value => "search-alias=apparel"} 服＆ファッション小物
-              %option{:value => "search-alias=shoes"} シューズ＆バッグ
-              %option{:value => "search-alias=watch"} 腕時計
-              %option{:value => "search-alias=jewelry"} ジュエリー
-              %option{:value => "search-alias=toys"} おもちゃ
-              %option{:value => "search-alias=hobby"} ホビー
-              %option{:value => "search-alias=mi"} 楽器
-              %option{:value => "search-alias=sporting"} スポーツ&amp;アウトドア
-              %option{:value => "search-alias=automotive"} カー・バイク用品
-              %option{:value => "search-alias=diy"} DIY・工具
-              %option{:value => "search-alias=appliances"} 大型家電
-              %option{:value => "search-alias=financial"} クレジットカード
-              %option{:value => "search-alias=gift-cards"} ギフト券
-              %option{:value => "search-alias=industrial"} 産業・研究開発用品
-              %option{:value => "search-alias=pantry"} Amazonパントリー
-              %option{:value => "search-alias=warehouse-deals"} Amazonアウトレット
-          .nav-over__center__content__center
-            .nav-over__center__content__center__search-field
-
-              = form_tag(search_stocks_path, method: :get) do
-                -# = autocomplete_field :stocks, :name, autocomplete_stocks_name_stocks_path
-                -# = autocomplete_field_tag 'address', '', autocomplete_stocks_name_stocks_path
-                -# = text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: autocomplete_stocks_name_stocks_path}
-                %input.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
+          = form_tag(search_stocks_path, method: :get) do
+            .nav-over__center__content__left
+              = select_tag 'category_id', options_from_collection_for_select(Category.all, "id", "name"), include_blank: 'すべてのカテゴリ', class: "nav-over__center__content__left__searchselect"
+            .nav-over__center__content__center
+              .nav-over__center__content__center__search-field
+                %input#stock_name_field.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
                 .nav-over__center__content__right
                   %span.fa.fa-search{"aria-hidden" => "true"}
                   %button.nav-over__center__content__right__search_btn{ title: "検索", type: "submit"}
-          -#     %label#nav-search-label.aok-offscreen{:for => "twotabsearchtextbox"}
-          -#     %input.nav-over__center__content__center__input{:autocomplete => "off", :dir => "auto", :name => "field-keywords", :placeholder => "", :tabindex => "6", :type => "text", :value => ""}
-          -# .nav-over__center__content__right
-          -#   %i.fa.fa-search{"aria-hidden" => "true"}
     .nav-below
       .nav-below__categoly
         = link_to categories_path do

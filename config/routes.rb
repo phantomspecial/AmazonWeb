@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  get 'stocks/autocomplete_stocks/:term' => 'stocks#autocomplete_stocks'
+
   resources :items do
     collection do
       get 'addto'
