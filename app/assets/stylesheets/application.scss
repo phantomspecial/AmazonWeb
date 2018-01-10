@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require jquery-ui
  *= require_self
  */
 @import "_reset";
@@ -24,4 +25,5 @@
 @import "order";
 @import "common";
 @import "swiper";
-@import "categories"
+@import "categories";
+@import "sub_categories"

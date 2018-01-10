@@ -6,11 +6,16 @@ class SubCategoriesController < ApplicationController
 
   def new
     @sub_category = SubCategory.new
+    @sub_category.stocks.build
   end
 
   def create
     @sub_category = SubCategory.new(new_sub_category_params)
     @sub_category.save
+  end
+
+  def show
+    find_sub_category
   end
 
 
@@ -20,6 +25,6 @@ class SubCategoriesController < ApplicationController
 
   private
   def new_sub_category_params
-    params.require(:sub_category).permit(:category_id,:name)
+    params.require(:sub_category).permit(:category_id,:name, :stocks_attributes [:id,:name,:image])
   end
 end

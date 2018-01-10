@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: [:create, :edit, :update, :destroy]
   end
+  get 'stocks/autocomplete_stocks/:term' => 'stocks#autocomplete_stocks'
+
   resources :items do
     collection do
       get 'addto'

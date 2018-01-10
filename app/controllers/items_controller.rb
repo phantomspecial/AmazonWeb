@@ -19,7 +19,7 @@ class ItemsController < AdminsController
       @item.save
 
       #Stockテーブルにレコードを作成する
-      @stock = Stock.create(name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost)
+      @stock = Stock.create(name: @item.name, image: @item.image, detail: @item.detail, maker: @item.maker, avg_unit_cost: @item.unit_cost, current_stock: @item.quantity, sell_price: @item.sell_price, shipping_cost: @item.shipping_cost, sub_category_id: @item.sub_category_id)
 
 
       # Stockテーブルのidが確定したので、その値をItemテーブルのstock_idカラムに追加して保存
@@ -101,14 +101,14 @@ class ItemsController < AdminsController
 
     # データupdate
     new_stock = @stocktarget.current_stock + item.quantity - @@old_item_dataset.quantity
-    @stocktarget.update(name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost)
+    @stocktarget.update(name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost, sub_category_id: item.sub_category_id)
 
     redirect_to action: :index
   end
 
   private
   def new_item_params
-    params.require(:item).permit(:stock_id, :name,:image,:detail,:maker,:unit_cost, :quantity, :sell_price,:shipping_cost, :item_flg)
+    params.require(:item).permit(:stock_id, :name,:image,:detail,:maker,:unit_cost, :quantity, :sell_price,:shipping_cost, :item_flg, :sub_category_id)
   end
 
 end

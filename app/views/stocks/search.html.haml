@@ -8,6 +8,7 @@
         = @stocks.total_count
         のうち
         = @search_result_count
+        件
         %span
           "
           = @search_result_string
@@ -22,185 +23,18 @@
           %option{:value => "search-alias=digital-text"} レビューの評価順
           %option{:value => "search-alias=digital-text"} 最新商品
   .content.clearfix
-    .leftNav
-      .leftNav__header
-        %h2 カテゴリ
-        .leftNav__category
-          %ul
-            %li
-              = link_to "家電＆カメラ", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-              %ul
-                %li
-                  = link_to "携帯電話・スマートフォン用USB充電器", ""
-                %li
-                  = link_to "携帯電話・スマートフォン用コネクタ", ""
-                %li
-                  = link_to "携帯電話・スマートフォン用AC充電器", ""
-                %li
-                  = link_to "無線機ケーブル・配線パーツ", ""
-                %li
-                  = link_to "携帯電話用ケース・カバー", ""
-                %li
-                  = link_to "携帯電話用ドック・スタンド", ""
-          %ul
-            %li
-              = link_to "パソコン・周辺機器", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-              %ul
-                %li
-                  = link_to "USBケーブル", ""
-                %li
-                  = link_to "USBアダプタ", ""
-                %li
-                  = link_to "変換コネクタ", ""
-                %li
-                  = link_to "タブレットPC用アダプタ・充電器・ケーブル", ""
-                %li
-                  = link_to "シリアルケーブル", ""
-                %li
-                  = link_to "タブレットPCアクセサリセット", ""
-                %li
-                  = link_to "USBハブ", ""
-                %li
-                  = link_to "DVI-HDMIアダプタ", ""
-          %ul
-            %li
-              = link_to "カー・バイク用品", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ホーム&キッチン", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "TVゲーム", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "その他すべて", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "DIY・工具", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "文房具・オフィス用品", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "スポーツ&アウトドア", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "産業・研究開発用品", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ホビー", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "おもちゃ", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ドラッグストア", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "楽器", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ビューティー", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "服＆ファッション小物", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "シューズ＆バッグ", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "Kindleストア", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "PCソフト", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "洋書", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "Android アプリ", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ジュエリー", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "ベビー&マタニティ", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "本", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-          %ul
-            %li
-              = link_to "腕時計", "", class: "leftNav__category__title"
-              %span.srSprite.rightArrow
-        %h2 絞り込み
-        .leftNav__category
-          %ul.leftNav__category__option
-            %li.leftNav__category__option__title 配送オプション
-            %li
-              = image_tag "checkbox_unselected.png"
-              = image_tag "prime_search_icon.png", width:49, height:15
-          %ul.leftNav__category__option
-            %li.leftNav__category__option__title 配達日
-            %li
-              = image_tag "checkbox_unselected.png"
-              本日中にお届け
-            %li
-              = image_tag "checkbox_unselected.png"
-              明日お届け
-            %li.leftNav__category__option__title 海外配送
-            %li
-              = image_tag "checkbox_unselected.png"
-              配送対象
-      = image_tag('sidebar_search_bnr.jpg')
+    = render 'search_sidebar'
+
     .searchResult
       %ul.searchResult__ul.clearfix
-        = render partial: 'stock', collection: @stocks, as: :stock
+        - if @search_result_count == 0
+          = render 'search_noresult', word: @search_result_string
+        - else
+          = render partial: 'stock', collection: @stocks, as: :stock
 
-      -# - unless @stocks.total_count < 30
       .text-center
         %ul.pagination.clearfix
           = paginate @stocks
-          -# %nav.pagination
-          -#   %li.first
-          -#     = link_to "" do
-          -#       %span.pagnSprite.pagnPrevArrow
-          -#       %span.pagnPrevString 前のページ
-          -#   %li.active.page-item
-          -#     = link_to "1", "", class: "page-link"
-          -#   %li.page-item
-          -#     = link_to "2", "", class: "page-link"
-          -#   %li.page-item
-          -#     = link_to "3", "", class: "page-link"
-          -#   %li.page-item.gap ...
-          -#   %li.page-item 20
-          -#   %li.next
-          -#     = link_to "" do
-          -#       %span.pagnNextString 次のページ
-          -#       %span.pagnSprite.pagnNextArrow
 
 
 = render "shared/footer"
