@@ -29,6 +29,9 @@
         = f.label :shipping_cost, "送料"
         = f.text_field :shipping_cost, placeholder: "送料を入力してください"
       .adminmainwindow__fields
+        = f.label :sub_category_id, "sub_category_id"
+        = f.text_field :sub_category_id, placeholder: "sub_category_idを入力してください"
+      .adminmainwindow__fields
         = f.hidden_field :item_flg, value:0
       .adminmainwindow__fields
         = f.submit value: "Send", class: "SendButton"
