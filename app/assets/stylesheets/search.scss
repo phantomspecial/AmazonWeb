@@ -84,7 +84,7 @@ a {
 
 // sidebar
 .leftNav {
-  width: 200px;
+  width: 240px;
   float: left;
     &__header {
       border-right: 1px solid #ddd;
@@ -107,8 +107,10 @@ a {
       }
       ul li {
         border: none;
+        display: block;
         font-size: 12px;
         padding: 0;
+        margin-bottom: 10px;
           a {
             text-decoration: none;
             margin-bottom: 5px;
@@ -135,7 +137,7 @@ a {
 
 // search result
 .searchResult {
-  width: calc(100% - 200px);
+  width: calc(100% - 240px);
   float: right;
     ul {
       margin: 0 0 25px 20px;
@@ -334,4 +336,26 @@ a {
         color: #c45500;
       }
     }
+}
+
+// Auto complete
+ul.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+li.ui-menu-item {
+  padding: 10px!important;
+  font-size: 14px;
+  list-style-image: none!important;
+  // width: 690px;
+}
+li.ui-state-focus {
+  background: #eee!important;
+}
+#jquery-ui-autocomplete label {
+    float: left;
+    margin-right: 0.5em;
+    color: black;
+    font-size: 13px;
 }

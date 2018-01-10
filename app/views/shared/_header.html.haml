@@ -13,7 +13,7 @@
               = select_tag 'category_id', options_from_collection_for_select(Category.all, "id", "name"), include_blank: 'すべてのカテゴリ', class: "nav-over__center__content__left__searchselect"
             .nav-over__center__content__center
               .nav-over__center__content__center__search-field
-                %input.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
+                %input#stock_name_field.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
                 .nav-over__center__content__right
                   %span.fa.fa-search{"aria-hidden" => "true"}
                   %button.nav-over__center__content__right__search_btn{ title: "検索", type: "submit"}

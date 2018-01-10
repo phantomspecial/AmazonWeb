@@ -36,21 +36,30 @@ class StocksController < ApplicationController
   end
 
   def search
-    # binding.pry
     if params[:keyword].empty?
       redirect_to action: 'index'
-    # elsif search_stocks.count == 0
-    #   render '_search_noresult'
     else
       @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(3)
+      @category_id = params[:category_id]
+      @all_categories = Category.all
+        if params[:category_id].empty?
+          @categories = Category.all
+        else
+          @categories = Category.find(params[:category_id])
+        end
     end
     @search_result_count = search_stocks.count
     @search_result_string = params[:keyword]
+  end
 
-    # respond_to do |format|
-    #   format.html
-    #   format.json
-    # end
+  def autocomplete_stocks
+    stocks_suggestions = Stock.autocomplete(params[:term]).pluck(:name)
+    respond_to do |format|
+      format.html
+      format.json {
+      render json: stocks_suggestions
+      }
+    end
   end
 
   private
