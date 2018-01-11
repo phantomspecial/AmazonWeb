@@ -15,13 +15,14 @@
           "
     .searchTemplate__right
       .searchTemplate__right__selectbox
-        %span 並び替え:
-        %select.searchTemplate__right__searchselect
-          %option{:selected => "selected", :value => "search-alias=aps"} キーワードに関連する商品
-          %option{:value => "search-alias=digital-text"} 価格の安い順番
-          %option{:value => "search-alias=digital-text"} 価格の高い順番
-          %option{:value => "search-alias=digital-text"} レビューの評価順
-          %option{:value => "search-alias=digital-text"} 最新商品
+        = form_tag(search_stocks_path, method: "get") do
+          %span 並び替え:
+          %select.searchTemplate__right__searchselect{ id: "sortselecter", name: "value"}
+            %option{selected: "selected", value: "1"} キーワードに関連する商品
+            %option{value: "2"} 価格の安い順番
+            %option{value: "3"} 価格の高い順番
+            %option{value: "4"} レビューの評価順
+            %option{value: "5"} 最新商品
   .content.clearfix
     = render 'search_sidebar'
 
