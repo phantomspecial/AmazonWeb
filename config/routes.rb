@@ -38,5 +38,4 @@ Rails.application.routes.draw do
     end
     resources :sub_categories
   end
-
 end

@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20180111020743) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "sub_category_id"
+    t.integer  "category_id"
+
     t.index ["stock_id"], name: "index_items_on_stock_id", using: :btree
   end
 
@@ -93,8 +95,10 @@ ActiveRecord::Schema.define(version: 20180111020743) do
     t.integer  "shipping_cost",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+
     t.integer  "category_id"
     t.integer  "sub_category_id"
+    t.string   "category_id"
   end
 
   create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

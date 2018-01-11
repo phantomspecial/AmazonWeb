@@ -30,8 +30,14 @@
         = f.label :shipping_cost, "送料"
         = f.text_field :shipping_cost, placeholder: "送料を入力してください"
       .adminmainwindow__fields
-        = f.label :sub_category_id, "sub_category_id"
-        = f.text_field :sub_category_id, placeholder: "sub_category_idを入力してください"
+        = f.label :category_id, "カテゴリー"
+        - category_options = Category.order(:id).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
+        = f.select :category_id, category_options, { include_blank: true }, class: 'select-parent'
+      .adminmainwindow__fields
+        = f.label :sub_category_id, "ジャンル"
+        - sub_categories = @item.category_id.try(:sub_categories) || []
+        - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
+        = f.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children'
       .adminmainwindow__fields
         = f.hidden_field :item_flg, value:0
       .adminmainwindow__fields
