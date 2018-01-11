@@ -1,16 +1,16 @@
 %li.searchResult__ul__li
   .searchResult__ul__li__img
-    = link_to item_path(stock) do
+    = link_to stock_path(stock) do
       = image_tag "#{stock.image}"
   .searchResult__ul__li__title
-    = link_to item_path(stock) do
+    = link_to stock_path(stock) do
       %h2
         = stock.name
   .searchResult__ul__li__brand
     %span
       = stock.maker
   .searchResult__ul__li__price
-    = link_to item_path(stock) do
+    = link_to stock_path(stock) do
       %span ￥
       %span
         = stock.sell_price.to_s(:delimited)
