@@ -475,11 +475,13 @@
 
 .form-title{
   width: 700px;
+  font-weight:normal;
 }
 
 .form-review{
   width: 700px;
   height: 500px;
+  font-weight:normal;
 }
 
 
@@ -536,7 +538,7 @@
 
 
 
-#edit-modal{
+.edit-modal{
   position: fixed;
   top: 0;
   right: 0;
@@ -611,7 +613,6 @@
 
 
 
-
 // Showページ--star
 .evaluation{
   display: flex;
@@ -657,3 +658,20 @@
   color: #f3a83c;
 }
 
+.edittitle{
+  &__rate{
+    color: #ffffff;
+  }
+  &__title{
+    clear: both;
+    color: #ffffff;
+  }
+  &__submit{
+
+  }
+}
+
+.edit-modal{
+  padding-left: 200px;
+  padding-top:  200px;
+}
