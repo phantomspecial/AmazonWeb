@@ -1,7 +1,8 @@
 .adminleftwindow
   .adminleftwindow__linkbox
     .adminleftwindow__linkbox__title
-      [商品仕入管理]
+      %h2
+        商品仕入管理
     .adminleftwindow__linkbox__links
       = link_to "仕入一覧ページ", items_path
     .adminleftwindow__linkbox__links
@@ -9,15 +10,18 @@
     .adminleftwindow__linkbox__links
       = link_to "既存商品を仕入" , addto_items_path
     .adminleftwindow__linkbox__title
-      [在庫状況管理]
+      %h2
+        在庫状況管理
     .adminleftwindow__linkbox__links
       = link_to "商品一覧ページ", stocks_path
     .adminleftwindow__linkbox__title
-      [売上状況管理]
+      %h2
+        売上状況管理
     .adminleftwindow__linkbox__links
       = link_to "Pay.jpログイン", "https://pay.jp/login"
     .adminleftwindow__linkbox__title
-      [ユーザ管理]
+      %h2
+        ユーザ管理
     .adminleftwindow__linkbox__links
       = link_to "管理者ページ", admins_path
     .adminleftwindow__linkbox__links
