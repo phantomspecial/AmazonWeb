@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20180111020743) do
     t.datetime "updated_at",      null: false
     t.integer  "sub_category_id"
     t.integer  "category_id"
-
     t.index ["stock_id"], name: "index_items_on_stock_id", using: :btree
   end
 

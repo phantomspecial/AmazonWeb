@@ -27,8 +27,10 @@ class StocksController < ApplicationController
     # レビュー割合情報出力
     @review_dist = []
     reviewlength = @reviews.length
-    5.times do |i|
-      @review_dist[i] = (@reviews.where(rate: i + 1).length) *100 / reviewlength
+    if reviewlength != 0
+      5.times do |i|
+        @review_dist[i] = (@reviews.where(rate: i + 1).length) *100 / reviewlength
+      end
     end
   end
 
