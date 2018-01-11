@@ -1,53 +1,57 @@
 = render "shared/adminheader"
-= render "shared/leftsidebar"
-.adminmainwindow
-  .adminmainwindow__boxes
-    .adminmainwindow__boxes__orders
-      .adminmainwindow__boxes__orders__title
-        [注文履歴 最新５件]
-      .adminmainwindow__boxes__orders__detail
-        %table
-          %tr
-            - if @recentorders.present?
-              %th ID
-              %th 注文金額
-              %th 合計送料
-              %th 合計金額
-            - else
-              注文はありません。
-          - @recentorders.each do |recentorder|
-            %tr
-              %td
-                = recentorder.id
-              %td
-                = recentorder.total.to_s(:delimited)
-              %td
-                = recentorder.total_shippingcost.to_s(:delimited)
-              %td
-                = (recentorder.total + recentorder.total_shippingcost).to_s(:delimited)
-    .adminmainwindow__boxes__stocks
-      .adminmainwindow__boxes__stocks__title
-        [在庫数 5未満の商品一覧]
-      .adminmainwindow__boxes__stocks__detail
-        %table
-          %tr
-            - if @limitedstocks.present?
-              %th ID
-              %th 名前
-              %th 画像
-              %th メーカー
-              %th 現在在庫
-            - else
-              在庫数5未満の商品はありません。
-          - @limitedstocks.each do |limitedstock|
-            %tr
-              = limitedstock.id
-            %tr
-              = limitedstock.name
-            %tr
-              = image_tag limitedstock.image, width:100
-            %tr
-              = limitedstock.maker
-            %tr
-              = limitedstock.current_stock.to_s(:delimited)
+.admin-wrapper
+  = render "shared/leftsidebar"
+  .admin-wrapper
+    .adminmainwindow
+      .adminmainwindow__boxes
+        .adminmainwindow__boxes__orders
+          .adminmainwindow__boxes__orders__title
+            %h3
+              注文履歴 最新５件
+          .adminmainwindow__boxes__orders__detail
+            %table
+              %tr
+                - if @recentorders.present?
+                  %th ID
+                  %th 注文金額
+                  %th 合計送料
+                  %th 合計金額
+                - else
+                  注文はありません。
+              - @recentorders.each do |recentorder|
+                %tr
+                  %td
+                    = recentorder.id
+                  %td
+                    = recentorder.total.to_s(:delimited)
+                  %td
+                    = recentorder.total_shippingcost.to_s(:delimited)
+                  %td
+                    = (recentorder.total + recentorder.total_shippingcost).to_s(:delimited)
+        .adminmainwindow__boxes__stocks
+          .adminmainwindow__boxes__stocks__title
+            %h3
+              在庫数 5未満の商品一覧
+          .adminmainwindow__boxes__stocks__detail
+            %table
+              %tr
+                - if @limitedstocks.present?
+                  %th ID
+                  %th 名前
+                  %th 画像
+                  %th メーカー
+                  %th 現在在庫
+                - else
+                  在庫数5未満の商品はありません。
+              - @limitedstocks.each do |limitedstock|
+                %tr
+                  = limitedstock.id
+                %tr
+                  = limitedstock.name
+                %tr
+                  = image_tag limitedstock.image, width:100
+                %tr
+                  = limitedstock.maker
+                %tr
+                  = limitedstock.current_stock.to_s(:delimited)
 = render "shared/adminfooter"

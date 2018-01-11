@@ -1,11 +1,15 @@
-.adminheader
+.adminheader.clearfix
   .adminheader__title
-    Amazon Website Master
-  .adminheader__username
-    ようこそ、
-    %br
-    = current_user.nickname
-    様
-  .adminheader__buttons
-    .adminheader__buttons__sitebutton
-      = link_to "トップページを表示", root_path
+    = image_tag "logo.png"
+    %h1.title
+      Website Master
+  .adminheader__right.clearfix
+    .adminheader__username
+      %span
+        ようこそ、
+        %span.currentuser_name
+          = current_user.nickname
+        様
+    .adminheader__buttons
+      .adminheader__buttons__sitebutton
+        = link_to "トップページを表示", root_path
