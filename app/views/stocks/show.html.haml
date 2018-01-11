@@ -404,43 +404,43 @@
         カスタマーレビュー
       .reviews__main__boxes
         = render partial: "shared/review", collection: @reviews, as: :review
-    .reviews__addform
-      - if user_signed_in?
-        .reviews__addform__toplabel
-          [新規レビュー]
-        .reviews__addform__rate
-          = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true, class: "revform") do
-            .reviews__addform__rate__label
-              レートを選んでください。
-            .evaluation
-              %input#star1{:name => "rate", :type => "radio", :value => 5, class: "rate"}/
-              %label{:for => "star1"}
-                ★
-              %input#star2{:name => "rate", :type => "radio", :value => 4, class: "rate"}/
-              %label{:for => "star2"}
-                ★
-              %input#star3{:name => "rate", :type => "radio", :value => 3, class: "rate"}/
-              %label{:for => "star3"}
-                ★
-              %input#star4{:name => "rate", :type => "radio", :value => 2, class: "rate"}/
-              %label{:for => "star4"}
-                ★
-              %input#star5{:name => "rate", :type => "radio", :value => 1, class: "rate"}/
-              %label{:for => "star5"}
-                ★
-            .reviews__addform__title
-              レビュータイトルを書いてください。
-              .br
-              %input{ name: "title", type: "text", class: "form-title", id: "review__title"}
-              .br
-              レビューコメントを書いてください。
-              .br
-              %textarea{ name: "review", type: "text", class: "form-review", id: "review__text"}
-              .br
-              %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
-              %input{ type:"submit", value:"送信", class: "graybutton"}
-      - else
-        レビューするためには、
-        = link_to "ログイン", new_user_session_path
-        してください。
+.reviews__addform
+  - if user_signed_in?
+    .reviews__addform__toplabel
+      [新規レビュー]
+    .reviews__addform__rate
+      = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true, class: "revform") do
+        .reviews__addform__rate__label
+          レートを選んでください。
+        .evaluation
+          %input#star1{:name => "rate", :type => "radio", :value => 5, class: "rate"}/
+          %label{:for => "star1"}
+            ★
+          %input#star2{:name => "rate", :type => "radio", :value => 4, class: "rate"}/
+          %label{:for => "star2"}
+            ★
+          %input#star3{:name => "rate", :type => "radio", :value => 3, class: "rate"}/
+          %label{:for => "star3"}
+            ★
+          %input#star4{:name => "rate", :type => "radio", :value => 2, class: "rate"}/
+          %label{:for => "star4"}
+            ★
+          %input#star5{:name => "rate", :type => "radio", :value => 1, class: "rate"}/
+          %label{:for => "star5"}
+            ★
+        .reviews__addform__title
+          レビュータイトルを書いてください。
+          .br
+          %input{ name: "title", type: "text", class: "form-title", id: "review__title"}
+          .br
+          レビューコメントを書いてください。
+          .br
+          %textarea{ name: "review", type: "text", class: "form-review", id: "review__text"}
+          .br
+          %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
+          %input{ type:"submit", value:"送信", class: "graybutton"}
+  - else
+    レビューするためには、
+    = link_to "ログイン", new_user_session_path
+    してください。
 = render "shared/footer"

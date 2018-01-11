@@ -451,25 +451,27 @@
       }
     }
   }
-  &__addform{
-    padding-top: 30px;
-    clear: both;
-    &__rate{
-      &__label{
-        font-weight: bold;
-      }
-    }
-    &__toplabel{
-      font-weight: bold;
-      font-size: 18px;
-    }
-    &__title{
-      clear: both;
-      font-weight: bold;
-    }
-    &__comment{
+}
 
+.reviews__addform{
+  padding-left: 10px;
+  padding-top: 30px;
+  clear: both;
+  &__rate{
+    &__label{
+      font-weight: bold;
     }
+  }
+  &__toplabel{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &__title{
+    clear: both;
+    font-weight: bold;
+  }
+  &__comment{
+
   }
 }
 
