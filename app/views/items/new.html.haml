@@ -2,7 +2,8 @@
 = render "shared/leftsidebar"
 .adminmainwindow
   .adminmainwindow__title
-    [新規商品仕入]
+    %h3
+      新規商品仕入
     = form_for @item do |f|
       .adminmainwindow__fields
         = f.label :name, "商品名"
