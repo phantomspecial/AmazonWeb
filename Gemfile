@@ -71,3 +71,4 @@ gem 'payjp'
 gem 'roo'
 
 gem 'kaminari'
+gem 'fog'
