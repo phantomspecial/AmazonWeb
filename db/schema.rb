@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111020743) do
+ActiveRecord::Schema.define(version: 20180109160933) do
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity",     null: false
@@ -92,12 +92,10 @@ ActiveRecord::Schema.define(version: 20180111020743) do
     t.integer  "current_stock",   null: false
     t.integer  "sell_price",      null: false
     t.integer  "shipping_cost",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-
     t.integer  "category_id"
     t.integer  "sub_category_id"
-    t.string   "category_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
