@@ -11,6 +11,8 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.integer :sell_price, null: false
       t.integer :shipping_cost, null: false
       t.integer :item_flg
+      t.integer :category_id
+      t.integer :sub_category_id
       t.timestamps
     end
   end

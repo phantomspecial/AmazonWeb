@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20180111020743) do
     t.integer  "sell_price",      null: false
     t.integer  "shipping_cost",   null: false
     t.integer  "item_flg"
+    t.integer  "category_id"
+    t.integer  "sub_category_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "sub_category_id"
-    t.integer  "category_id"
     t.index ["stock_id"], name: "index_items_on_stock_id", using: :btree
   end
 
