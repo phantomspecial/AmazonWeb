@@ -22,3 +22,5 @@
 
 # Ignore image file
 /public/uploads*
+
+config/secrets.yml
