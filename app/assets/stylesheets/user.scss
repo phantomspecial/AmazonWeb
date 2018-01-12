@@ -149,6 +149,7 @@
   width: 1200px;
   &__title{
     font-size: 32px;
+    margin-bottom: 30px;
   }
   &__topboxleft{
     float: left;
@@ -201,7 +202,7 @@
   height: 80px;
   &__boximage{
     float: left;
-    padding-left: 10px;
+    padding-left: 20px;
   }
 }
 .unit2{
@@ -213,7 +214,7 @@
   height: 80px;
   &__boximage{
     float: left;
-    padding-left: 10px;
+    padding-left: 25px;
   }
 }
 
@@ -237,6 +238,19 @@
   border-radius: 4px;
   padding:  10px 0 10px 20px;
   margin: 30px 30px 30px 0;
+}
+.unit_boxname {
+  margin-left: 140px;
+}
+.unit_box > div:hover {
+  background: #eee;
+}
+.unit__boxname > span {
+  color: #000;
+}
+.unit__boxdetail {
+  color: #aaa;
+  font-size: 14px;
 }
 
 .mainwindow a{

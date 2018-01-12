@@ -291,6 +291,18 @@ header {
         position:absolute;
         width:0;
       }
+      &__admin {
+        position: absolute;
+        left: -130px;
+        top: 7px;
+        display: inline-block;
+        padding: 8px;
+        border: 1px solid #242f3e;
+      }
+      &__admin:hover {
+        border: 1px solid #55606d;
+        border-radius: 2px;
+      }
       &__account {
       width: 150px;
       height: 40px;

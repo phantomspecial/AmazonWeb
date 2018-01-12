@@ -74,6 +74,8 @@
         .nav-below__amazonpoint__gift     ギフト券
 
       .nav-below__tools
+        - if user_signed_in?
+          = link_to "管理者の方はこちら", admins_path, class: "nav-below__tools__admin"
         .nav-below__tools__account
           = link_to users_path, :class => "nav-below__tools__account__link" do
             %span.nav-below__tools__account__nickname

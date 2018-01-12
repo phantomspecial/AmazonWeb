@@ -259,25 +259,6 @@
   }
 }
 
-.admin{
-  padding: 10px 0 10px 0;
-  background-color: #141a22;
-  width: 100vw;
-  height: 30px;
-  text-align: center;
-  a {
-    text-decoration: none;
-    color: white;
-    // margin: 50%;
-    font-family: arial;
-    }
-  // &__admin{
-  //   color: #ffffff;
-  //   font-size: 10px;
-  //   padding-left: 250px;
-  // }
-}
-
 // 管理者ページ
 // ヘッダー
 .adminheader{
@@ -467,6 +448,10 @@ td {
         }
       }
       &__detail{
+        td {
+          padding: 10px 20px;
+          text-align: center;
+        }
       }
     }
     &__users{

@@ -44,14 +44,14 @@
                 - else
                   在庫数5未満の商品はありません。
               - @limitedstocks.each do |limitedstock|
-                %tr
+                %td
                   = limitedstock.id
-                %tr
+                %td
                   = limitedstock.name
-                %tr
+                %td
                   = image_tag limitedstock.image, width:100
-                %tr
+                %td
                   = limitedstock.maker
-                %tr
+                %td
                   = limitedstock.current_stock.to_s(:delimited)
 = render "shared/adminfooter"
