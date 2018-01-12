@@ -96,8 +96,3 @@
     = image_tag "logo.png"
   .icp-button#icp-touch-link-country
   .icp-button#icp-touch-link-language
-
-.admin
-  - if user_signed_in?
-    - if current_user.admin_flg == true
-      = link_to 'admin', admins_path

@@ -3,50 +3,62 @@
   .mainwindow__title
     アカウントサービス
   .mainwindow__topboxleft
-    .unit1
-      .unit1__boximage
-        =image_tag "orders.png", width: 96 , height: 54
-      .unit1__boxname
-        = link_to "注文履歴", orders_path
-      .unit1__boxdetail
-        = link_to "配送状況の確認・返品手続き", orders_path
-    .unit2
-      .unit2__boximage
-        =image_tag "addresses.png", width: 96 , height: 72
-      .unit2__boxname
-        アドレス帳
-      .unit2__boxdetail
-        登録住所の追加・変更
+    = link_to orders_path, class: "clearfix unit_box" do
+      .unit1
+        .unit1__boximage
+          =image_tag "orders.png", width: 96 , height: 54
+        .unit_boxname
+          .unit__boxname
+            %span 注文履歴
+          .unit__boxdetail
+            %span 配送状況の確認・返品手続き
+    = link_to orders_path, class: "clearfix unit_box" do
+      .unit2
+        .unit2__boximage
+          =image_tag "addresses.png", width: 87 , height: 68
+        .unit_boxname
+          .unit__boxname
+            %span アドレス帳
+          .unit__boxdetail
+            %span 登録住所の追加・変更
   .mainwindow__topboxcenter
-    .unit1
-      .unit1__boximage
-        =image_tag "security.png", width: 96 , height: 72
-      .unit1__boxname
-        サインインとセキュリティ
-      .unit1__boxdetail
-        アカウント情報の変更
-    .unit2
-      .unit2__boximage
-        =image_tag "payments.png", width: 96 , height: 54
-      .unit2__boxname
-        = link_to "お支払い方法", payments_users_path
-      .unit2__boxdetail
-        = link_to "お支払い方法の追加・変更", payments_users_path
+    = link_to orders_path, class: "clearfix unit_box" do
+      .unit1
+        .unit1__boximage
+          =image_tag "security.png", width: 96 , height: 72
+        .unit_boxname
+          .unit__boxname
+            %span サインインとセキュリティ
+          .unit__boxdetail
+            %span アカウント情報の変更
+    = link_to payments_users_path, class: "clearfix unit_box" do
+      .unit2
+        .unit1__boximage
+          =image_tag "payments.png", width: 80 , height: 54
+        .unit_boxname
+          .unit__boxname
+            %span お支払い方法
+          .unit__boxdetail
+            %span お支払い方法の追加・変更
   .mainwindow__topboxright
-    .unit1
-      .unit1__boximage
-        =image_tag "prime.png", width: 96 , height: 72
-      .unit1__boxname
-        プライム
-      .unit1__boxdetail
-        会員特典とお支払い方法の確認
-    .unit2
-      .unit2__boximage
-        =image_tag "giftcard.png", width: 96 , height: 54
-      .unit2__boxname
-        Amazonギフト券
-      .unit2__boxdetail
-        残高の確認・ギフト券の登録
+    = link_to orders_path, class: "clearfix unit_box" do
+      .unit1
+        .unit1__boximage
+          =image_tag "prime.png", width: 96 , height: 72
+        .unit_boxname
+          .unit__boxname
+            %span プライム
+          .unit__boxdetail
+            %span 会員特典とお支払い方法の確認
+    = link_to orders_path, class: "clearfix unit_box" do
+      .unit2
+        .unit2__boximage
+          =image_tag "giftcard.png", width: 82 , height: 54
+        .unit_boxname
+          .unit__boxname
+            %span Amazonギフト券
+          .unit__boxdetail
+            %span 残高の確認・ギフト券の登録
   .mainwindow__borderline
   .mainwindow__middleboxleft
     .unit3
