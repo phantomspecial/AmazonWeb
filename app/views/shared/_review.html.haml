@@ -1,0 +1,64 @@
+.reviews__main__boxes__box
+  .reviews__main__boxes__box__topbox
+    .reviews__main__boxes__box__topbox__avatar
+      = image_tag "face_icon.png", width:40
+    .reviews__main__boxes__box__topbox__nickname
+      = review.user.nickname
+  .reviews__main__boxes__box__middlebox
+    .reviews__main__boxes__box__middlebox__rate
+      - case review.rate
+        - when 1
+          .rate.rate10
+        - when 2
+          .rate.rate20
+        - when 3
+          .rate.rate30
+        - when 4
+          .rate.rate40
+        - when 5
+          .rate.rate50
+    .reviews__main__boxes__box__middlebox__title
+      = review.title
+  .reviews__main__boxes__box__bottombox
+    .reviews__main__boxes__box__bottombox__date
+      = review.updated_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
+    .reviews__main__boxes__box__bottombox__text
+      = review.review
+    .reviews__main__boxes__box__bottombox__links
+      - if user_signed_in?
+        - if review.user_id == current_user.id
+          = link_to "削除" ,stock_review_path(@stock.id ,review.id), method: :delete, remote: true
+          = link_to "編集" ,edit_stock_review_path(@stock.id, review.id), method: :patch, remote: true , class: "editreview#{review.id}", id: "editreview#{review.id}"
+          %input{id: "selectedstar#{review.id}", type: "hidden", value: review.rate, class: 'selectedstar#{review.id}'}
+
+
+
+.edit-modal{id: "editrev#{review.id}"}
+  .edittitle
+    = form_tag(stock_review_path(@stock.id, review.id), method: :patch, remote: true , id: "target#{review.id}") do
+      .edittitle__rate
+        レートを選んでください。
+      .editevaluation
+        %input{id: "editstar#{review.id}_1", :name => "rate", :type => "radio", :value => 5}/
+        %label{:for => "editstar#{review.id}_1"}
+          ★
+        %input{id: "editstar#{review.id}_2", :name => "rate", :type => "radio", :value => 4}/
+        %label{:for => "editstar#{review.id}_2"}
+          ★
+        %input{id: "editstar#{review.id}_3", :name => "rate", :type => "radio", :value => 3}/
+        %label{:for => "editstar#{review.id}_3"}
+          ★
+        %input{id: "editstar#{review.id}_4", :name => "rate", :type => "radio", :value => 2}/
+        %label{:for => "editstar#{review.id}_4"}
+          ★
+        %input{id: "editstar#{review.id}_5", :name => "rate", :type => "radio", :value => 1}/
+        %label{:for => "editstar#{review.id}_5"}
+          ★
+      .edittitle__title
+        レビュータイトルを書いてください。
+        .br
+        %input{ name: "title", size: "40", type: "text", class: "form-title", id: "edit_review__title", value: "#{review.title}"}
+        %textarea{ name: "review", type: "text", class: "form-review", id: "edit_review__text"}#{review.review}
+      .edittitle__submit
+        %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
+        %input{ type:"submit", value:"送信", class: "graybutton", id: "graybutton"}

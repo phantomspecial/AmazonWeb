@@ -1,0 +1,4 @@
+$('.revform')[0].reset();
+$('.reviews__main__boxes').html(
+  "<%= j(render partial: 'shared/review', collection: @reviews) %>"
+);

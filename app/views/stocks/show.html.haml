@@ -19,6 +19,33 @@
       = @stock.name
     .goodsbox__textbox__maker
       = link_to @stock.maker, ""
+    .goodsbox__textbox__rate
+      - if @stock.reviews.present?
+        - case review_rate_calc(@stock.id)
+          - when "00"
+            .rate.rate00
+          - when "05"
+            .rate.rate05
+          - when "10"
+            .rate.rate10
+          - when "15"
+            .rate.rate15
+          - when "20"
+            .rate.rate20
+          - when "25"
+            .rate.rate25
+          - when "30"
+            .rate.rate30
+          - when "35"
+            .rate.rate35
+          - when "40"
+            .rate.rate40
+          - when "45"
+            .rate.rate45
+          -else
+            .rate.rate50
+        = @reviews.length
+        件のカスタマーレビュー
     .goodsbox__textbox__reviewlink
       =link_to "カスタマーレビューを書きませんか？", ""
     .borderline
@@ -308,5 +335,112 @@
     = @stock.detail
 .borderline
 / この商品を見た人-共通部品にするのでカット
-
+- if @reviews.present?
+  .reviews
+    .reviews__title
+      カスタマーレビュー
+    .reviews__ratebox
+      .reviews__ratebox__ratemark
+        - if @stock.reviews.present?
+          - case review_rate_calc(@stock.id)
+            - when "00"
+              .rate.rate00
+            - when "05"
+              .rate.rate05
+            - when "10"
+              .rate.rate10
+            - when "15"
+              .rate.rate15
+            - when "20"
+              .rate.rate20
+            - when "25"
+              .rate.rate25
+            - when "30"
+              .rate.rate30
+            - when "35"
+              .rate.rate35
+            - when "40"
+              .rate.rate40
+            - when "45"
+              .rate.rate45
+            -else
+              .rate.rate50
+        = @reviews.length
+      .reviews__ratebox__ratetext
+        5つ星のうち
+        = Review.where(stock_id: @stock.id).average(:rate).round(1).to_f
+      .reviews__ratebox__distribution
+        .reviews__ratebox__distribution__five
+          星5つ
+          = @review_dist[4]
+          #{"%"}
+        .reviews__ratebox__distribution__four
+          星4つ
+          = @review_dist[3]
+          #{"%"}
+        .reviews__ratebox__distribution__three
+          星3つ
+          = @review_dist[2]
+          #{"%"}
+        .reviews__ratebox__distribution__two
+          星2つ
+          = @review_dist[1]
+          #{"%"}
+        .reviews__ratebox__distribution__one
+          星1つ
+          = @review_dist[0]
+          #{"%"}
+        .reviews__ratebox__distribution__all
+          すべてのカスタマーレビューをみる（
+          = @reviews.length
+          )
+    .reviews__votebox
+      .reviews__votebox__text
+        他のお客様にも意見を伝えましょう
+      .reviews__votebox__writebtn
+        = link_to "カスタマーレビューを書く","", class: "graybutton"
+    .reviews__main
+      .reviews__main__title
+        カスタマーレビュー
+      .reviews__main__boxes
+        = render partial: "shared/review", collection: @reviews, as: :review
+.reviews__addform
+  - if user_signed_in?
+    .reviews__addform__toplabel
+      [新規レビュー]
+    .reviews__addform__rate
+      = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true, class: "revform") do
+        .reviews__addform__rate__label
+          レートを選んでください。
+        .evaluation
+          %input#star1{:name => "rate", :type => "radio", :value => 5, class: "rate"}/
+          %label{:for => "star1"}
+            ★
+          %input#star2{:name => "rate", :type => "radio", :value => 4, class: "rate"}/
+          %label{:for => "star2"}
+            ★
+          %input#star3{:name => "rate", :type => "radio", :value => 3, class: "rate"}/
+          %label{:for => "star3"}
+            ★
+          %input#star4{:name => "rate", :type => "radio", :value => 2, class: "rate"}/
+          %label{:for => "star4"}
+            ★
+          %input#star5{:name => "rate", :type => "radio", :value => 1, class: "rate"}/
+          %label{:for => "star5"}
+            ★
+        .reviews__addform__title
+          レビュータイトルを書いてください。
+          .br
+          %input{ name: "title", type: "text", class: "form-title", id: "review__title"}
+          .br
+          レビューコメントを書いてください。
+          .br
+          %textarea{ name: "review", type: "text", class: "form-review", id: "review__text"}
+          .br
+          %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
+          %input{ type:"submit", value:"送信", class: "graybutton"}
+  - else
+    レビューするためには、
+    = link_to "ログイン", new_user_session_path
+    してください。
 = render "shared/footer"

@@ -361,6 +361,130 @@
   }
 }
 
+.reviews{
+  padding-bottom: 20px;
+  padding-left: 10px;
+  &__title{
+    padding-top: 20px;
+    color:  #d07500;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  &__ratebox{
+    font-size: 14px;
+    float: left;
+    padding-right: 150px;
+    color: #0000ff;
+    &__ratemark{
+    }
+    &__ratetext{
+    }
+    &__distribution{
+      &__five{
+
+      }
+      &__four{
+
+      }
+      &__three{
+
+      }
+      &__two{
+
+      }
+      &__one{
+
+      }
+      &__all{
+
+      }
+    }
+  }
+  &__votebox{
+    font-size: 14px;
+    &__text{
+
+    }
+    &__writebtn{
+
+    }
+  }
+  &__main{
+    clear: both;
+    padding-top: 30px;
+    &__title{
+      font-size: 16px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+    &__boxes{
+      &__box{
+        font-size: 14px;
+        padding-bottom: 20px;
+        &__topbox{
+          &__avatar{
+            float: left;
+            border-radius: 25px;
+            padding-right: 10px;
+          }
+          &__nickname{
+            padding-top: 5px;
+          }
+        }
+        &__middlebox{
+          clear: both;
+          &__rate{
+            float: left;
+            padding-right: 10px;
+          }
+          &__title{
+            font-weight: bold;
+          }
+        }
+        &__bottombox{
+          clear: both;
+          &__date{
+          }
+          &__text{
+          }
+        }
+      }
+    }
+  }
+}
+
+.reviews__addform{
+  padding-left: 10px;
+  padding-top: 30px;
+  clear: both;
+  &__rate{
+    &__label{
+      font-weight: bold;
+    }
+  }
+  &__toplabel{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &__title{
+    clear: both;
+    font-weight: bold;
+  }
+  &__comment{
+
+  }
+}
+
+.form-title{
+  width: 700px;
+  font-weight:normal;
+}
+
+.form-review{
+  width: 700px;
+  height: 500px;
+  font-weight:normal;
+}
 
 
 .borderline{
@@ -412,4 +536,144 @@
 
 .rightbox__bottommessage__marketplacebutton a{
   color: #000000;
+}
+
+
+
+.edit-modal{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  display: none;
+}
+
+.editmodal {
+  position: absolute;
+  top: 20%;
+  left: 34%;
+  background-color: #e6ecf0;
+  padding: 20px 0 40px;
+  border-radius: 10px;
+  width: 450px;
+  height: auto;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 3;
+  form{
+    .edit-field {
+      width: 100%;
+}
+    .btn {
+      margin-top: 20px;
+      float: right;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+.rate {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  font-size: 20px;
+}
+.rate:before, .rate:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+}
+.rate:before {
+  color: #ddd; /*星色*/
+}
+.rate:after {
+  color: #ffa500;
+  overflow: hidden;
+  white-space: nowrap; /*重要*/
+}
+
+.rate00:after{width: 0;}
+.rate05:after{width: 10px;}
+.rate10:after{width: 20px;}
+.rate15:after{width: 30px;}
+.rate20:after{width: 40px;}
+.rate25:after{width: 50px;}
+.rate30:after{width: 60px;}
+.rate35:after{width: 70px;}
+.rate40:after{width: 80px;}
+.rate45:after{width: 90px;}
+.rate50:after{width: 100px;}
+
+
+
+// Showページ--star
+.evaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  float: left;
+}
+.evaluation input[type='radio']{
+  display: none;
+}
+.evaluation label{
+  // position: relative;
+  color: #dddddd;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.evaluation label:hover,
+.evaluation label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+  color: #f3a83c;
+}
+
+
+// Review-dit
+.editevaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  float: left;
+}
+.editevaluation input[type='radio']{
+  display: none;
+}
+.editevaluation label{
+  // position: relative;
+  color: #dddddd;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.editevaluation label:hover,
+.editevaluation label:hover ~ label,
+.editevaluation input[type='radio']:checked ~ label{
+  color: #f3a83c;
+}
+
+.edittitle{
+  &__rate{
+    color: #ffffff;
+  }
+  &__title{
+    clear: both;
+    color: #ffffff;
+  }
+  &__submit{
+
+  }
+}
+
+.edit-modal{
+  padding-left: 200px;
+  padding-top:  200px;
 }

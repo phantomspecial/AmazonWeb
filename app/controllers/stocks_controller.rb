@@ -15,11 +15,22 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find(params[:id])
+    @reviews = @stock.reviews
     @current_stock_array = quantity_array_maker(@stock)
     if user_signed_in?
       quantitychecker_moveto_buylater
       @cart = current_user.carts.new
       @user = current_user
+      @review = current_user.reviews.new
+    end
+
+    # レビュー割合情報出力
+    @review_dist = []
+    reviewlength = @reviews.length
+    if reviewlength != 0
+      5.times do |i|
+        @review_dist[i] = (@reviews.where(rate: i + 1).length) *100 / reviewlength
+      end
     end
   end
 
@@ -36,10 +47,30 @@ class StocksController < ApplicationController
   end
 
   def search
+    # キーワードが空か入っているか
     if params[:keyword].empty?
       redirect_to action: 'index'
     else
       @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(3)
+
+      # 価格の高い順等取得・表示
+      if params[:value] == "1"
+        set_search
+      elsif params[:value] == "2"
+        @stocks = set_search.order('sell_price ASC')
+      elsif params[:value] == "3"
+        @stocks = set_search.order('sell_price DESC')
+      elsif params[:value] == "5"
+        @stocks = set_search.order('created_at DESC')
+      else
+      end
+
+      respond_to do |format|
+        format.html
+        format.json { render 'stock', json: @stocks }
+      end
+
+      # サイドバーにカテゴリーを表示させる
       @category_id = params[:category_id]
       @all_categories = Category.all
         if params[:category_id].empty?
@@ -52,6 +83,7 @@ class StocksController < ApplicationController
     @search_result_string = params[:keyword]
   end
 
+  # 検索窓でStockテーブルからオートサジェストさせる
   def autocomplete_stocks
     stocks_suggestions = Stock.autocomplete(params[:term]).pluck(:name)
     respond_to do |format|
@@ -85,13 +117,18 @@ class StocksController < ApplicationController
     return @current_stock_array
   end
 
+  # Stockテーブルから曖昧検索する
+  def set_search
+    Stock.where('name LIKE(?)', "%#{params[:keyword]}%")
+  end
+
+  # カテゴリーを含めて検索する
   def search_stocks
     @category = params[:category_id]
-    input = params[:keyword]
     if @category.empty?
-      Stock.where('name LIKE(?)', "%#{input}%")
+      set_search
     else
-      Stock.where('name LIKE(?)', "%#{input}%").where(category_id: @category)
+      set_search.where(category_id: @category)
     end
   end
 end
