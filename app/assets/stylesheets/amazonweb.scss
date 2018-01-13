@@ -508,6 +508,8 @@ table, td, th{
   height: 60px;
   background-color: #232f3e;
   color: #FFFFFF;
+  position: relative;
+  bottom: 0;
     &__title{
       position: relative;
       top: 50%;
