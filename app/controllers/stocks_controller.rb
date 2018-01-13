@@ -51,7 +51,7 @@ class StocksController < ApplicationController
     if params[:keyword].empty?
       redirect_to action: 'index'
     else
-      @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(3)
+      @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(25)
 
       # 価格の高い順等取得・表示
       if params[:value] == "1"

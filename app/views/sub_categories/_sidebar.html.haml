@@ -1,0 +1,51 @@
+.leftNav
+  .leftNav__header
+    %h2 カテゴリ
+    .leftNav__category
+      -# - if @category_id.empty?
+      -#   %ul
+      -#     - @categories.each do |category|
+      -#       %li.leftNav__category__title
+      -#         = category.name
+      -#         %span.srSprite.rightArrow
+      -# - else
+      %ul
+        %li
+          = link_to "#{@categories.name}", "", class: "leftNav__category__title"
+          %span.srSprite.rightArrow
+          %ul
+            - @categories.sub_categories.each do |category|
+              %li
+                = link_to "#{category.name}", category_sub_category_path(@categories, category)
+            - @all_categories.each do |category|
+              %ul
+                %li
+                  = link_to "#{category.name}", "", class: "leftNav__category__title"
+                  %span.srSprite.rightArrow
+      -# - unless @category_id.empty?
+      -#   - @all_categories.each do |category|
+      -#     %ul
+      -#       %li
+      -#         = link_to "#{category.name}", "", class: "leftNav__category__title"
+      -#         %span.srSprite.rightArrow
+
+    %h2 絞り込み
+    .leftNav__category
+      %ul.leftNav__category__option
+        %li.leftNav__category__option__title 配送オプション
+        %li
+          = image_tag "checkbox_unselected.png"
+          = image_tag "prime_search_icon.png", width:49, height:15
+      %ul.leftNav__category__option
+        %li.leftNav__category__option__title 配達日
+        %li
+          = image_tag "checkbox_unselected.png"
+          本日中にお届け
+        %li
+          = image_tag "checkbox_unselected.png"
+          明日お届け
+        %li.leftNav__category__option__title 海外配送
+        %li
+          = image_tag "checkbox_unselected.png"
+          配送対象
+  = image_tag('sidebar_search_bnr.jpg')

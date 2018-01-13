@@ -17,6 +17,8 @@ class SubCategoriesController < ApplicationController
 
   def show
     find_sub_category
+    @categories = Category.find(params[:category_id])
+    @all_categories = Category.all
   end
 
 

@@ -1,12 +1,46 @@
 = render "shared/header"
-.sub_category
-  = @sub_category.name
-  .sub_category__list.clearfix
-    - @sub_category.stocks.each do |stock|
-      .sub_category__list__all
-        = link_to image_tag(stock.image), stock_path(stock)
-        .sub_category__list__name
-          = link_to stock.name, stock_path(stock)
-        .sub_category__list__price
-          = stock.sell_price
+.wrapper
+  .content.clearfix
+    = render "sidebar"
+    .sub_category__list.clearfix
+      .searchResult
+        .sub_category
+          %h2
+            = @sub_category.name
+        %ul.searchResult__ul.clearfix
+          - @sub_category.stocks.each do |stock|
+            %li.searchResult__ul__li
+              .searchResult__ul__li__img
+                = link_to stock_path(stock) do
+                  = image_tag "#{stock.image}"
+              .searchResult__ul__li__title
+                = link_to stock_path(stock) do
+                  %h2
+                    = stock.name
+              .searchResult__ul__li__brand
+                %span
+                  = stock.maker
+              .searchResult__ul__li__price
+                = link_to stock_path(stock) do
+                  %span ￥
+                  %span
+                    = stock.sell_price.to_s(:delimited)
+                = image_tag "prime_search_icon.png", width:49, height:15
+                .searchResult__ul__li__day
+                  %span.color-success 明日中
+                  %span にお届け
+              .searchResult__ul__li__review
+                = link_to "" do
+                  %span.review_stars
+                  %span.review_number 10
+
+
+
+
+            -# .sub_category__list__all
+            -#   = link_to image_tag(stock.image), stock_path(stock)
+            -#   .sub_category__list__name
+            -#     = link_to stock.name, stock_path(stock)
+            -#   .sub_category__list__price
+            -#     = stock.sell_price
 = render "shared/footer"

@@ -1,21 +1,6 @@
 .sub_category {
-  font-size: 30px;
-  margin: 10px;
-  &__list {
-    width: 100%;
-    &__all {
-      float: left;
-    }
-    &__price{
-      font-size: 10px;
-    }
+  h2 {
+    font-size: 24px;
+    margin: 15px 0 0 35px;
+  }
  }
-}
-
-.sub_category__list img{
-      width: 100px;
-      height: 100px;
-    }
-.sub_category__list a{
-  font-size: 10px;
-}
