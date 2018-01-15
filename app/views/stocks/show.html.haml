@@ -1,346 +1,26 @@
 = render "shared/header"
-.topadlink
-  = link_to root_path do
-    = image_tag "wintersale_officeitems.png"
-.topcategory
-  文房具・オフィス用品 > 手帳・カレンダー
-.goodsbox
-  .goodsbox__images
-    .goodsbox__images__imagethumbnail
-      .goodsbox__images__imagethumbnail__imgtag
-        = image_tag @stock.image, width:64, height:48
-    .goodsbox__images__topimagebox
-      .goodsbox__images__topimagebox__imgtag
-        = image_tag @stock.image, width:400
-      .goodsbox__images__topimagebox__imagemessage
-        画像にマウスを合わせると拡大されます
-  .goodsbox__textbox
-    .goodsbox__textbox__title
-      = @stock.name
-    .goodsbox__textbox__maker
-      = link_to @stock.maker, ""
-    .goodsbox__textbox__rate
-      - if @stock.reviews.present?
-        - case review_rate_calc(@stock.id)
-          - when "00"
-            .rate.rate00
-          - when "05"
-            .rate.rate05
-          - when "10"
-            .rate.rate10
-          - when "15"
-            .rate.rate15
-          - when "20"
-            .rate.rate20
-          - when "25"
-            .rate.rate25
-          - when "30"
-            .rate.rate30
-          - when "35"
-            .rate.rate35
-          - when "40"
-            .rate.rate40
-          - when "45"
-            .rate.rate45
-          -else
-            .rate.rate50
-        = @reviews.length
-        件のカスタマーレビュー
-    .goodsbox__textbox__reviewlink
-      =link_to "カスタマーレビューを書きませんか？", ""
-    .borderline
-    .goodsbox__textbox__referenceprice
-      参考価格:¥
-      = @stock.sell_price.to_s(:delimited)
-    .goodsbox__textbox__price
-      価格:
-      %b{style: "color: #a82207;"}
-        ¥
-        = @stock.sell_price.to_s(:delimited)
-    .goodsbox__textbox__off
-      OFF:¥
-      = (@stock.sell_price - @stock.sell_price).to_s(:delimited)
-      (
-      %b{style: "color: #a82207;"}
-        0.00%
-      )
-    .goodsbox__textbox__creditcardlink
-      %i.fa.fa-info
-      入会特典をこの商品に利用した場合
-      = amazoncreditcard(@stock.sell_price).to_s(:delimited)
-      円に 。
-      .br
-      = link_to "Amazonクラシックカード", ""
-      新規ご入会で5,000ポイント
-      = link_to "今すぐチェック",""
-    .goodsbox__textbox__stockbox
-      .goodsbox__textbox__stockbox__stock-status
-        - if @stock.current_stock > 5
-          .status-green
-            在庫あり。
-        - elsif @stock.current_stock == 0
-          .status-red
-            在庫切れ。入荷予定あり
-        - else
-          .status-red
-            残り
-            = @stock.current_stock
-            点。ご注文はお早めに。
-      .goodsbox__textbox__stockbox__stock-notice
-        = link_to "在庫状況について", ""
-    .goodsbox__textbox__primedelivery
-      -if @stock.current_stock > 0
-        = Time.current.since(1.days).in_time_zone('Tokyo').strftime("%m/%d")
-        にお届けするには、今から
-        12時間30分
-        以内に
-        = link_to "お急ぎ便", ""
-        を選択して注文を確定してください（有料オプション。
-        = link_to "Amazon プライム会員", ""
-        は無料）
-    .goodsbox__textbox__seller-shipping
-      この商品は、
-      =link_to "Amazon.co.jp", "/"
-      が販売、発送します。ギフトラッピングを利用できます。
-    .goodsbox__textbox__markets
-      = link_to "新品の出品：1", ""
-      ¥
-      = @stock.sell_price.to_s(:delimited)
-      より
-    .goodsbox__textbox__detail
-      ・TESTTEST
-      .br
-      ・AAAAAAAA
-      = link_to "> もっと見る",""
-      / 下部へ移動する
-    .goodsbox__textbox__opinionform
-      %i.fa.fa-comment-o.fa-flip-horizontal
-      =link_to "不正確な製品情報を報告。",""
-    .borderline
-    .goodsbox__textbox__adbox
-      .goodsbox__textbox__adbox__image
-        = image_tag "regi_saleimage.png", width:80
-      .goodsbox__textbox__adbox__text
-        【レジで割引】WINTER SALE 文房具・オフィス用品
-        .br
-        文房具やオフィス機器・オフィス家具・事務用品などがお買い得。30%OFFも。
-        = link_to "特設会場はこちら",""
-.rightbox
-  .rightbox__snsbox
-    = link_to "シェアする",""
-    %i.fa.fa-envelope-o
-    %i.fa.fa-facebook-official
-    %i.fa.fa-twitter
-    %i.fa.fa-pinterest-square
-  .rightbox__cartbox
-    - if user_signed_in?
-      = form_for @cart do |f|
-        - if @stock.current_stock > 0
-          .rightbox__cartbox__quantity
-            = f.label :quantity, "数量"
-            = f.select :quantity, @current_stock_array
-          .rightbox__cartbox__addcartbutton
-            = f.hidden_field :stock_id, value: params[:id]
-            = f.hidden_field :buylater_flg, value: false
-            = f.submit value: "カートに入れる", class: "  AddCartButton"
-            / カートのマークをボタン左側に表示する
-          .borderline
-        .rightbox__cartbox__oneclickorder
-          = link_to "1-Click 注文を有効にしてください。",""
-        .borderline
-        .rightbox__cartbox__delivery
-          %b
-            お届け先住所
-          .br
-          =@user.first_name
-          =@user.last_name
-          =@user.pref
-          =@user.postal_code
-        .borderline
-        .rightbox__cartbox__wantbutton
-          = link_to "ほしい物リストに追加する","", class: "wantbutton"
-        .rightbox__cartbox__virtualdashlink
-          = link_to "バーチャルダッシュに追加する",""
-    - else
-      - if @stock.current_stock > 0
-        .rightbox__cartbox__quantity
-          数量
-          %select
-            - @current_stock_array.length.times do |i|
-              %option{ value: "#{i+1}"}#{i+1}
-        .rightbox__cartbox__addcartbutton
-          = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
-          / カートのマークをボタン左側に表示する
-      .borderline
-      .rightbox__cartbox__oneclickorder
-        = link_to new_user_session_path do
-          1-Click 注文を有効にするためには
-          .br
-          ログインしてください。
-      .borderline
-      .rightbox__cartbox__delivery
-        %b
-          お届け先住所を表示するためには
-          .br
-          = link_to "ログイン", new_user_session_path
-          してください
-      .borderline
-      .rightbox__cartbox__wantbutton
-        = link_to "ほしい物リストに追加する","", class: "wantbutton"
-      .rightbox__cartbox__virtualdashlink
-        = link_to "バーチャルダッシュに追加する",""
-  .rightbox__marketplacebox
-    .rightbox__marketplacebox__label
-      こちらからもご購入いただけます
-    .rightbox__marketplacebox__shoplist
-      .rightbox__marketplacebox__shoplist__price
-        ¥
-        = (@stock.sell_price * 1.1).round.to_s(:delimited)
-        / 仮に、amazonの1.1倍の価格とする
-      .rightbox__marketplacebox__shoplist__addcartbuttonmini
-        / = f.submit value: "カートに入れる", class: "  AddCartButton"
-        = link_to "カートに入れる","", class: "AddCartButtonMini"
-      .rightbox__marketplacebox__shoplist__shipping-cost
-        +
-        =@stock.shipping_cost.to_s(:delimited)
-        関東への配送料
-      .rightbox__marketplacebox__shoplist__seller
-        発売元:
-        TESTSELLER
-    .rightbox__marketplacebox__sellerlist
-      = link_to "新品の出品：1",""
-      = @stock.sell_price.to_s(:delimited)
-      より
-  .rightbox__bottommessage
-    .rightbox__bottommessage__text
-      この商品をお持ちですか？
-    .rightbox__bottommessage__marketplacebutton
-      =link_to "マーケットプレイスに出品する","", class: "marketplacebutton"
-
-.borderline
-.campaignbox
-  .title
-    キャンペーンおよび追加情報
-  .campaignbox__links
-    %ui
-      %li
-        =link_to "【プライム会員限定】WINTER SALE 文房具・オフィス用品:", ""
-        筆記具やオフィス家具、オフィス機器など各種お買い得。50%OFFも。
-        = link_to "特設会場はこちら",""
-      %li
-        = link_to "【レジで割引】WINTER SALE 文房具・オフィス用品:", ""
-        筆記具やオフィス家具、オフィス機器など各種お買い得。30%OFFも。
-        = link_to "特設会場はこちら",""
-      %li
-        =link_to "【文房具・オフィス用品 バーゲンページ】:",""
-        日替わりタイムセールや、お得なクーポン情報が満載の
-        = link_to "文房具・オフィス用品 バーゲンページ",""
-      %li
-        入会特典をこの商品に利用した場合
-        = @stock.sell_price.to_s(:delimited)
-        円が
-        = amazoncreditcard(@stock.sell_price).to_s(:delimited)
-        円に！
-        = link_to "Amazonクラシックカード",""
-        新規ご入会で、
-        %b{style: "color: #a82207;"}
-          5,000円分
-        のポイントプレゼント。プライム会員なら、Amazonでのお買い物は
-        %b{style: "color: #a82207;"}
-          2%
-        ポイント貯まる。
-        =link_to "今すぐチェック",""
-.borderline
-.sponsoredproduct
-  .title
-    この商品に関するスポンサーの商品
-  .sponsoredproduct__images
-    - 4.times do |i|
-      = image_tag "recommenditems.png", width: 250 ,height: 250
-.borderline
-.iteminfomation
-  .title
-    商品の情報
-  .iteminfomation__leftbox
-    .iteminfomation__leftbox__detailbox
-      .iteminfomation__leftbox__detailbox__title
-        詳細情報
-      .borderline
-      .iteminfomation__leftbox__detailbox__table
-        %table
-          %tr
-            %th
-              ブランド
-              %td
-                = @stock.maker
-          %tr
-            %th
-              製品型番
-              %td
-                Test-message
-  .iteminfomation__rightbox
-    .iteminfomation__rightbox__registinfo
-      .iteminfomation__rightbox__registinfo__title
-        登録情報
-      .borderline
-      .iteminfomation__rightbox__registinfo__table
-        %table
-          %tr
-            %th
-              ASIN
-              %td
-                TSTTST
-          %tr
-            %th
-              おすすめ度
-              %td
-                = link_to "この商品の最初のレビューを書き込んでください。", ""
-          %tr
-            %th
-              発送重量
-              %td
-                20.5kg
-          %tr
-            %th
-              Amazon.co.jpでの取り扱い開始日
-              %td
-                = @stock.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d")
-    .iteminfomation__rightbox__opinion
-      .iteminfomation__rightbox__opinion__title
-        ご意見ご要望
-      .borderline
-      .iteminfomation__rightbox__opinion__link
-        = link_to "さらに安い価格について知らせる",""
-.borderline
-.afterview
-  .title
-    この商品を見た後に買っているのは?
-  - 4.times do |i|
-    .afterview__items
-      .afterview__items__image
-        = image_tag "prime.png", width:80
-      .afterview__items__title
-        TEST-ITEM-TITLE
-      .afterview__items__rate
-        TEST-RATE
-      .afterview__items__price
-        ¥ 2,000
-      .afterview__items__primemark
-        = image_tag "primemark.png", width:50
-.borderline
-.itemdetailbox
-  .title
-    商品の説明
-  .itemdetailbox__detailtext
-    = @stock.detail
-.borderline
-/ この商品を見た人-共通部品にするのでカット
-- if @reviews.present?
-  .reviews
-    .reviews__title
-      カスタマーレビュー
-    .reviews__ratebox
-      .reviews__ratebox__ratemark
+.wrapper
+  .topadlink
+    = link_to root_path do
+      = image_tag "wintersale_officeitems.png"
+  .topcategory
+    文房具・オフィス用品 > 手帳・カレンダー
+  .goodsbox
+    .goodsbox__images
+      .goodsbox__images__imagethumbnail
+        .goodsbox__images__imagethumbnail__imgtag
+          = image_tag @stock.image, width:64, height:48
+      .goodsbox__images__topimagebox
+        .goodsbox__images__topimagebox__imgtag
+          = image_tag @stock.image, width:400
+        .goodsbox__images__topimagebox__imagemessage
+          画像にマウスを合わせると拡大されます
+    .goodsbox__textbox
+      .goodsbox__textbox__title
+        = @stock.name
+      .goodsbox__textbox__maker
+        = link_to @stock.maker, ""
+      .goodsbox__textbox__rate
         - if @stock.reviews.present?
           - case review_rate_calc(@stock.id)
             - when "00"
@@ -365,82 +45,403 @@
               .rate.rate45
             -else
               .rate.rate50
-        = @reviews.length
-      .reviews__ratebox__ratetext
-        5つ星のうち
-        = Review.where(stock_id: @stock.id).average(:rate).round(1).to_f
-      .reviews__ratebox__distribution
-        .reviews__ratebox__distribution__five
-          星5つ
-          = @review_dist[4]
-          #{"%"}
-        .reviews__ratebox__distribution__four
-          星4つ
-          = @review_dist[3]
-          #{"%"}
-        .reviews__ratebox__distribution__three
-          星3つ
-          = @review_dist[2]
-          #{"%"}
-        .reviews__ratebox__distribution__two
-          星2つ
-          = @review_dist[1]
-          #{"%"}
-        .reviews__ratebox__distribution__one
-          星1つ
-          = @review_dist[0]
-          #{"%"}
-        .reviews__ratebox__distribution__all
-          すべてのカスタマーレビューをみる（
           = @reviews.length
-          )
-    .reviews__votebox
-      .reviews__votebox__text
-        他のお客様にも意見を伝えましょう
-      .reviews__votebox__writebtn
-        = link_to "カスタマーレビューを書く","", class: "graybutton"
-    .reviews__main
-      .reviews__main__title
+          件のカスタマーレビュー
+      .goodsbox__textbox__reviewlink
+        =link_to "カスタマーレビューを書きませんか？", ""
+      .borderline
+      .goodsbox__textbox__referenceprice
+        参考価格:¥
+        = @stock.sell_price.to_s(:delimited)
+      .goodsbox__textbox__price
+        価格:
+        %b{style: "color: #a82207;"}
+          ¥
+          = @stock.sell_price.to_s(:delimited)
+      .goodsbox__textbox__off
+        OFF:¥
+        = (@stock.sell_price - @stock.sell_price).to_s(:delimited)
+        (
+        %b{style: "color: #a82207;"}
+          0.00%
+        )
+      .goodsbox__textbox__creditcardlink
+        %i.fa.fa-info
+        入会特典をこの商品に利用した場合
+        = amazoncreditcard(@stock.sell_price).to_s(:delimited)
+        円に 。
+        .br
+        = link_to "Amazonクラシックカード", ""
+        新規ご入会で5,000ポイント
+        = link_to "今すぐチェック",""
+      .goodsbox__textbox__stockbox
+        .goodsbox__textbox__stockbox__stock-status
+          - if @stock.current_stock > 5
+            .status-green
+              在庫あり。
+          - elsif @stock.current_stock == 0
+            .status-red
+              在庫切れ。入荷予定あり
+          - else
+            .status-red
+              残り
+              = @stock.current_stock
+              点。ご注文はお早めに。
+        .goodsbox__textbox__stockbox__stock-notice
+          = link_to "在庫状況について", ""
+      .goodsbox__textbox__primedelivery
+        -if @stock.current_stock > 0
+          = Time.current.since(1.days).in_time_zone('Tokyo').strftime("%m/%d")
+          にお届けするには、今から
+          12時間30分
+          以内に
+          = link_to "お急ぎ便", ""
+          を選択して注文を確定してください（有料オプション。
+          = link_to "Amazon プライム会員", ""
+          は無料）
+      .goodsbox__textbox__seller-shipping
+        この商品は、
+        =link_to "Amazon.co.jp", "/"
+        が販売、発送します。ギフトラッピングを利用できます。
+      .goodsbox__textbox__markets
+        = link_to "新品の出品：1", ""
+        ¥
+        = @stock.sell_price.to_s(:delimited)
+        より
+      .goodsbox__textbox__detail
+        ・TESTTEST
+        .br
+        ・AAAAAAAA
+        = link_to "> もっと見る",""
+        / 下部へ移動する
+      .goodsbox__textbox__opinionform
+        %i.fa.fa-comment-o.fa-flip-horizontal
+        =link_to "不正確な製品情報を報告。",""
+      .borderline
+      .goodsbox__textbox__adbox
+        .goodsbox__textbox__adbox__image
+          = image_tag "regi_saleimage.png", width:80
+        .goodsbox__textbox__adbox__text
+          【レジで割引】WINTER SALE 文房具・オフィス用品
+          .br
+          文房具やオフィス機器・オフィス家具・事務用品などがお買い得。30%OFFも。
+          = link_to "特設会場はこちら",""
+  .rightbox
+    .rightbox__snsbox
+      = link_to "シェアする",""
+      %i.fa.fa-envelope-o
+      %i.fa.fa-facebook-official
+      %i.fa.fa-twitter
+      %i.fa.fa-pinterest-square
+    .rightbox__cartbox
+      - if user_signed_in?
+        = form_for @cart do |f|
+          - if @stock.current_stock > 0
+            .rightbox__cartbox__quantity
+              = f.label :quantity, "数量"
+              = f.select :quantity, @current_stock_array
+            .rightbox__cartbox__addcartbutton
+              = f.hidden_field :stock_id, value: params[:id]
+              = f.hidden_field :buylater_flg, value: false
+              = f.submit value: "カートに入れる", class: "  AddCartButton"
+              / カートのマークをボタン左側に表示する
+            .borderline
+          .rightbox__cartbox__oneclickorder
+            = link_to "1-Click 注文を有効にしてください。",""
+          .borderline
+          .rightbox__cartbox__delivery
+            %b
+              お届け先住所
+            .br
+            =@user.first_name
+            =@user.last_name
+            =@user.pref
+            =@user.postal_code
+          .borderline
+          .rightbox__cartbox__wantbutton
+            = link_to "ほしい物リストに追加する","", class: "wantbutton"
+          .rightbox__cartbox__virtualdashlink
+            = link_to "バーチャルダッシュに追加する",""
+      - else
+        - if @stock.current_stock > 0
+          .rightbox__cartbox__quantity
+            数量
+            %select
+              - @current_stock_array.length.times do |i|
+                %option{ value: "#{i+1}"}#{i+1}
+          .rightbox__cartbox__addcartbutton
+            = link_to "カートに入れる(ログイン画面へ)", new_user_session_path, class: "AddCartButton"
+            / カートのマークをボタン左側に表示する
+        .borderline
+        .rightbox__cartbox__oneclickorder
+          = link_to new_user_session_path do
+            1-Click 注文を有効にするためには
+            .br
+            ログインしてください。
+        .borderline
+        .rightbox__cartbox__delivery
+          %b
+            お届け先住所を表示するためには
+            .br
+            = link_to "ログイン", new_user_session_path
+            してください
+        .borderline
+        .rightbox__cartbox__wantbutton
+          = link_to "ほしい物リストに追加する","", class: "wantbutton"
+        .rightbox__cartbox__virtualdashlink
+          = link_to "バーチャルダッシュに追加する",""
+    .rightbox__marketplacebox
+      .rightbox__marketplacebox__label
+        こちらからもご購入いただけます
+      .rightbox__marketplacebox__shoplist
+        .rightbox__marketplacebox__shoplist__price
+          ¥
+          = (@stock.sell_price * 1.1).round.to_s(:delimited)
+          / 仮に、amazonの1.1倍の価格とする
+        .rightbox__marketplacebox__shoplist__addcartbuttonmini
+          / = f.submit value: "カートに入れる", class: "  AddCartButton"
+          = link_to "カートに入れる","", class: "AddCartButtonMini"
+        .rightbox__marketplacebox__shoplist__shipping-cost
+          +
+          =@stock.shipping_cost.to_s(:delimited)
+          関東への配送料
+        .rightbox__marketplacebox__shoplist__seller
+          発売元:
+          TESTSELLER
+      .rightbox__marketplacebox__sellerlist
+        = link_to "新品の出品：1",""
+        = @stock.sell_price.to_s(:delimited)
+        より
+    .rightbox__bottommessage
+      .rightbox__bottommessage__text
+        この商品をお持ちですか？
+      .rightbox__bottommessage__marketplacebutton
+        =link_to "マーケットプレイスに出品する","", class: "marketplacebutton"
+
+  .borderline
+  .campaignbox
+    .title
+      キャンペーンおよび追加情報
+    .campaignbox__links
+      %ui
+        %li
+          =link_to "【プライム会員限定】WINTER SALE 文房具・オフィス用品:", ""
+          筆記具やオフィス家具、オフィス機器など各種お買い得。50%OFFも。
+          = link_to "特設会場はこちら",""
+        %li
+          = link_to "【レジで割引】WINTER SALE 文房具・オフィス用品:", ""
+          筆記具やオフィス家具、オフィス機器など各種お買い得。30%OFFも。
+          = link_to "特設会場はこちら",""
+        %li
+          =link_to "【文房具・オフィス用品 バーゲンページ】:",""
+          日替わりタイムセールや、お得なクーポン情報が満載の
+          = link_to "文房具・オフィス用品 バーゲンページ",""
+        %li
+          入会特典をこの商品に利用した場合
+          = @stock.sell_price.to_s(:delimited)
+          円が
+          = amazoncreditcard(@stock.sell_price).to_s(:delimited)
+          円に！
+          = link_to "Amazonクラシックカード",""
+          新規ご入会で、
+          %b{style: "color: #a82207;"}
+            5,000円分
+          のポイントプレゼント。プライム会員なら、Amazonでのお買い物は
+          %b{style: "color: #a82207;"}
+            2%
+          ポイント貯まる。
+          =link_to "今すぐチェック",""
+  .borderline
+  .sponsoredproduct
+    .title
+      この商品に関するスポンサーの商品
+    .sponsoredproduct__images
+      - 4.times do |i|
+        = image_tag "recommenditems.png", width: 250 ,height: 250
+  .borderline
+  .iteminfomation
+    .title
+      商品の情報
+    .iteminfomation__leftbox
+      .iteminfomation__leftbox__detailbox
+        .iteminfomation__leftbox__detailbox__title
+          詳細情報
+        .borderline
+        .iteminfomation__leftbox__detailbox__table
+          %table
+            %tr
+              %th
+                ブランド
+                %td
+                  = @stock.maker
+            %tr
+              %th
+                製品型番
+                %td
+                  Test-message
+    .iteminfomation__rightbox
+      .iteminfomation__rightbox__registinfo
+        .iteminfomation__rightbox__registinfo__title
+          登録情報
+        .borderline
+        .iteminfomation__rightbox__registinfo__table
+          %table
+            %tr
+              %th
+                ASIN
+                %td
+                  TSTTST
+            %tr
+              %th
+                おすすめ度
+                %td
+                  = link_to "この商品の最初のレビューを書き込んでください。", ""
+            %tr
+              %th
+                発送重量
+                %td
+                  20.5kg
+            %tr
+              %th
+                Amazon.co.jpでの取り扱い開始日
+                %td
+                  = @stock.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d")
+      .iteminfomation__rightbox__opinion
+        .iteminfomation__rightbox__opinion__title
+          ご意見ご要望
+        .borderline
+        .iteminfomation__rightbox__opinion__link
+          = link_to "さらに安い価格について知らせる",""
+  .borderline
+  .afterview
+    .title
+      この商品を見た後に買っているのは?
+    - 4.times do |i|
+      .afterview__items
+        .afterview__items__image
+          = image_tag "prime.png", width:80
+        .afterview__items__title
+          TEST-ITEM-TITLE
+        .afterview__items__rate
+          TEST-RATE
+        .afterview__items__price
+          ¥ 2,000
+        .afterview__items__primemark
+          = image_tag "primemark.png", width:50
+  .borderline
+  .itemdetailbox
+    .title
+      商品の説明
+    .itemdetailbox__detailtext
+      = @stock.detail
+  .borderline
+  / この商品を見た人-共通部品にするのでカット
+  - if @reviews.present?
+    .reviews
+      .reviews__title
         カスタマーレビュー
-      .reviews__main__boxes
-        = render partial: "shared/review", collection: @reviews, as: :review
-.reviews__addform
-  - if user_signed_in?
-    .reviews__addform__toplabel
-      [新規レビュー]
-    .reviews__addform__rate
-      = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true, class: "revform") do
-        .reviews__addform__rate__label
-          レートを選んでください。
-        .evaluation
-          %input#star1{:name => "rate", :type => "radio", :value => 5, class: "rate"}/
-          %label{:for => "star1"}
-            ★
-          %input#star2{:name => "rate", :type => "radio", :value => 4, class: "rate"}/
-          %label{:for => "star2"}
-            ★
-          %input#star3{:name => "rate", :type => "radio", :value => 3, class: "rate"}/
-          %label{:for => "star3"}
-            ★
-          %input#star4{:name => "rate", :type => "radio", :value => 2, class: "rate"}/
-          %label{:for => "star4"}
-            ★
-          %input#star5{:name => "rate", :type => "radio", :value => 1, class: "rate"}/
-          %label{:for => "star5"}
-            ★
-        .reviews__addform__title
-          レビュータイトルを書いてください。
-          .br
-          %input{ name: "title", type: "text", class: "form-title", id: "review__title"}
-          .br
-          レビューコメントを書いてください。
-          .br
-          %textarea{ name: "review", type: "text", class: "form-review", id: "review__text"}
-          .br
-          %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
-          %input{ type:"submit", value:"送信", class: "graybutton"}
-  - else
-    レビューするためには、
-    = link_to "ログイン", new_user_session_path
-    してください。
+      .reviews__ratebox
+        .reviews__ratebox__ratemark
+          - if @stock.reviews.present?
+            - case review_rate_calc(@stock.id)
+              - when "00"
+                .rate.rate00
+              - when "05"
+                .rate.rate05
+              - when "10"
+                .rate.rate10
+              - when "15"
+                .rate.rate15
+              - when "20"
+                .rate.rate20
+              - when "25"
+                .rate.rate25
+              - when "30"
+                .rate.rate30
+              - when "35"
+                .rate.rate35
+              - when "40"
+                .rate.rate40
+              - when "45"
+                .rate.rate45
+              -else
+                .rate.rate50
+          = @reviews.length
+        .reviews__ratebox__ratetext
+          5つ星のうち
+          = Review.where(stock_id: @stock.id).average(:rate).round(1).to_f
+        .reviews__ratebox__distribution
+          .reviews__ratebox__distribution__five
+            星5つ
+            = @review_dist[4]
+            #{"%"}
+          .reviews__ratebox__distribution__four
+            星4つ
+            = @review_dist[3]
+            #{"%"}
+          .reviews__ratebox__distribution__three
+            星3つ
+            = @review_dist[2]
+            #{"%"}
+          .reviews__ratebox__distribution__two
+            星2つ
+            = @review_dist[1]
+            #{"%"}
+          .reviews__ratebox__distribution__one
+            星1つ
+            = @review_dist[0]
+            #{"%"}
+          .reviews__ratebox__distribution__all
+            すべてのカスタマーレビューをみる（
+            = @reviews.length
+            )
+      .reviews__votebox
+        .reviews__votebox__text
+          他のお客様にも意見を伝えましょう
+        .reviews__votebox__writebtn
+          = link_to "カスタマーレビューを書く","", class: "graybutton"
+      .reviews__main
+        .reviews__main__title
+          カスタマーレビュー
+        .reviews__main__boxes
+          = render partial: "shared/review", collection: @reviews, as: :review
+  .reviews__addform
+    - if user_signed_in?
+      .reviews__addform__toplabel
+        [新規レビュー]
+      .reviews__addform__rate
+        = form_tag(stock_reviews_path(@stock.id) , method: :post , remote: true, class: "revform") do
+          .reviews__addform__rate__label
+            レートを選んでください。
+          .evaluation
+            %input#star1{:name => "rate", :type => "radio", :value => 5, class: "rate"}/
+            %label{:for => "star1"}
+              ★
+            %input#star2{:name => "rate", :type => "radio", :value => 4, class: "rate"}/
+            %label{:for => "star2"}
+              ★
+            %input#star3{:name => "rate", :type => "radio", :value => 3, class: "rate"}/
+            %label{:for => "star3"}
+              ★
+            %input#star4{:name => "rate", :type => "radio", :value => 2, class: "rate"}/
+            %label{:for => "star4"}
+              ★
+            %input#star5{:name => "rate", :type => "radio", :value => 1, class: "rate"}/
+            %label{:for => "star5"}
+              ★
+          .reviews__addform__title
+            レビュータイトルを書いてください。
+            .br
+            %input{ name: "title", type: "text", class: "form-title", id: "review__title"}
+            .br
+            レビューコメントを書いてください。
+            .br
+            %textarea{ name: "review", type: "text", class: "form-review", id: "review__text"}
+            .br
+            %input{ name: "stock_id", type: "hidden", value: @stock.id, class: 'stock_id'}
+            %input{ type:"submit", value:"送信", class: "graybutton"}
+    - else
+      レビューするためには、
+      = link_to "ログイン", new_user_session_path
+      してください。
 = render "shared/footer"
