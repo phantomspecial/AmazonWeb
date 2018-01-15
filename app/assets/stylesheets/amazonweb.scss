@@ -104,7 +104,60 @@
     a {
       margin-right: 20px;
     }
+    &__ad {
+      &__left {
+        width: 50%;
+        border-right: 1px solid #eee;
+        text-align: center;
+          img {
+          min-width: 440px;
+          height: 200px;
+          }
+      }
+      &__right {
+        width: 50%;
+        text-align: center;
+          img {
+          min-width: 440px;
+          height: 200px;
+          }
+      }
+    }
+    &__toppage-content-ad {
+      text-align: center;
+      margin-bottom: 50px;
+        img {
+        width: 970px;
+        height: 250px;
+        }
+    }
   }
+}
+.category-list {
+  display: flex;
+  height: 235px;
+  padding-top: 10px;
+   .category {
+     height: 200px;
+     float: left;
+     display: block;
+     margin-right: 20px;
+      img {
+        min-width: 200px;
+        min-height: 200px;
+        border-radius: 50%;
+      }
+      span {
+        display: block;
+        text-align: center;
+        background-color: #FFF;
+        position: relative;
+        top: -40px;
+        height: 50px;
+        padding-top: 10px;
+        font-weight: bold;
+      }
+   }
 }
 
 // Top page Side bar

@@ -45,56 +45,53 @@
   .btfContent-wrapper.clearfix
     .btfContent1
       .btfContent1__image-shoveler-ns
-        Winter Sale 家電、日用品ほか50%OFFも
+        各カテゴリーからあなたへのおすすめ商品
       .btfContent1__uber-widget-ns-images
-        = link_to image_tag("wintersale.jpg"), "/", width:200, height:200
-        = link_to image_tag("camera.png"), "/", width:200, height:200
-        = link_to image_tag("pc_items.png"), "/", width:200, height:200
-        = link_to image_tag("home_kitchen.png"), "/", width:200, height:200
-        = link_to image_tag("audio_visuals.png"), "/", width:200, height:200
-        = link_to image_tag("wintersale.jpg"), "/", width:200, height:200
-        = link_to image_tag("camera.png"), "/", width:200, height:200
-      .btfContent1__uber-widget-ns1
-      .btfContent1__desktop-billboard1
-      .btfContent1__desktop-billboard2
-
-      .btfContent1__image-shoveler-ns
-        クリスマスギフトガイド
-      .btfContent1__uber-widget-ns-images
-        = link_to image_tag("wintersale.jpg"), "/", width:200, height:200
-        = link_to image_tag("pc_items.png"), "/", width:200, height:200
-        = link_to image_tag("home_kitchen.png"), "/", width:200, height:200
-        = link_to image_tag("audio_visuals.png"), "/", width:200, height:200
-        = link_to image_tag("camera.png"), "/", width:200, height:200
-        = link_to image_tag("wintersale.jpg"), "/", width:200, height:200
-        = link_to image_tag("pc_items.png"), "/", width:200, height:200
-      .btfContent1__uber-widget-ns1
-      .btfContent1__desktop-billboard1
-      .btfContent1__desktop-billboard2
-
-      .btfContent1__image-shoveler-ns
-        あなたのお買い物傾向から
-      .btfContent1__uber-widget-ns-images
-        = link_to image_tag("home_kitchen.png"), "/", width:200, height:200
-        = link_to image_tag("camera.png"), "/", width:200, height:200
-        = link_to image_tag("wintersale.jpg"), "/", width:200, height:200
-        = link_to image_tag("audio_visuals.png"), "/", width:200, height:200
-        = link_to image_tag("pc_items.png"), "/", width:200, height:200
-        = link_to image_tag("home_kitchen.png"), "/", width:200, height:200
-        = link_to image_tag("camera.png"), "/", width:200, height:200
-
-      .btfContent1__uber-widget-ns1
-      .btfContent1__desktop-billboard1
-      .btfContent1__desktop-billboard2
-
-      .btfContent1__image-shoveler-ns
-        商品ラインアップ
-      .btfContent1__uber-widget-ns-images
-        - @stocks.each do |stock|
+        - @stocks.shuffle.first(15).each do |stock|
           = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+
+      .btfContent1__image-shoveler-ns
+        カテゴリ別一覧
+      .btfContent1__uber-widget-ns-images.category-list
+        - @rndm_subcategory.zip(@rndm_subcategory_img).shuffle.first(15).each do |stock, stock_image|
+          .category-list.category
+            = link_to image_tag(stock_image.image), category_sub_category_path(stock.category_id, stock.id)
+            %span
+              = stock.name
+
+      .btfContent1__image-shoveler-ns
+        プライム会員は、お得な会員特典がたくさん
+      .btfContent1__uber-widget-ns-images
+        = link_to image_tag("prime_category_img_1.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_2.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_3.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_4.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_5.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_6.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_7.png"), "/", width:200, height:200
+        = link_to image_tag("prime_category_img_8.png"), "/", width:200, height:200
+      .btfContent1__uber-widget-ns1
       .btfContent1__desktop-billboard1
       .btfContent1__desktop-billboard2
 
+      .btfContent1__image-shoveler-ns
+      .btfContent1__uber-widget-ns-images
+        .btfContent1__uber-widget-ns-images__ad__left
+          = image_tag "toppage_ad_1.png"
+        .btfContent1__uber-widget-ns-images__ad__right
+          = image_tag "toppage_ad_2.png"
+
+      - if @rndm_stock_img.present?
+        .btfContent1__image-shoveler-ns
+          = @rndm_category.name
+          のおすすめ商品
+        .btfContent1__uber-widget-ns-images
+          - @rndm_stock_img.shuffle.first(15).each do |stock|
+            = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+
+      .btfContent1__image-shoveler-ns
+      .btfContent1__uber-widget-ns-images__toppage-content-ad
+        = image_tag "toppage_content_ad.jpg"
 
     .btfContentright
       .btfContentright-one
@@ -133,38 +130,5 @@
         -# =image_tag "kaden_ranking.png"
       .btfContentright-theee
       .btfContetnright-four
-
-  / .btnContent2
-  /   .btnContent2__desktop-billboard3
-  /     プライム会員セール
-  /   .btnContent2__desktop-billboard4
-  /     タイムセール
-  /   .btnContent2__uber-widget-ns4
-  /     これにも注目
-  /   .btnContent2__uber-widget-ns5
-  /     この商品を見たお客様はこれも見ています
-  /   .btnContent2__desktop-billboard5
-  /     audible
-  /   .btnContent2__desktop-billboard6
-  /     prime:)
-  /   .btnContent2__uber-widget-ns6
-  /     閲覧履歴からおすすめ
-
-  / .sidebar-top
-
-  / .rhf-frame
-  /   最近閲覧した商品とおすすめ商品
-  /   .rhf-shoveler
-  /   .rhf-header
-  /   .rhf-source-title
-  /   .a-carousel-col
-  /     a-carousel-left
-  /   .a-carousel
-  /   .a-carousel-col
-  /     a-carousel-right
-  /   .rvi-container
-
-  / .navFooterBackToTopText
-  /   トップへ戻る
 
 = render "shared/footer"

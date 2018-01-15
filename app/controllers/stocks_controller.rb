@@ -1,9 +1,10 @@
 class StocksController < ApplicationController
 
   before_action :permission_check, except: [:index, :show]
-  before_action :authenticate_user! , except: [:index, :show]
+  before_action :authenticate_user! , except: [:index, :show, :search]
 
   def index
+    # binding.pry
     @stocks = Stock.all
     if user_signed_in?
       quantitychecker_moveto_buylater
@@ -11,6 +12,14 @@ class StocksController < ApplicationController
       range = Date.current.ago(14.days).beginning_of_day..Date.current.end_of_day
       @recentorders = current_user.orders.where(created_at: range).length
     end
+
+    # ランダムにカテゴリーidを取得
+    @rndm_category = Category.where( 'id >= ?', rand(Category.first.id..Category.last.id) ).first
+    @rndm_stock_img = Stock.where(category_id: @rndm_category.id)
+    # ランダムにサブカテゴリーの値を取得
+    @rndm_subcategory = SubCategory.limit(15)
+    @rndm_subcategory_img = Stock.where(category_id: @rndm_subcategory.ids).select('image')
+    # @rndm_subcategory = SubCategory.joins(categories: :name).where( 'id >= ?', rand(SubCategory.first.id..SubCategory.last.id) )
   end
 
   def show

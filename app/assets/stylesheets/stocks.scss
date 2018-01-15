@@ -4,6 +4,7 @@
 
 .topcategory{
   font-size: 12px;
+  margin-left: 20px;
 }
 
 .goodsbox{
@@ -32,7 +33,7 @@
     }
   }
   &__textbox{
-    width: 700px;
+    width: calc(100% - 860px);
     float: left;
     &__title{
       font-size: 20px;
