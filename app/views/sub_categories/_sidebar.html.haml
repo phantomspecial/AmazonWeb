@@ -2,33 +2,19 @@
   .leftNav__header
     %h2 カテゴリ
     .leftNav__category
-      -# - if @category_id.empty?
-      -#   %ul
-      -#     - @categories.each do |category|
-      -#       %li.leftNav__category__title
-      -#         = category.name
-      -#         %span.srSprite.rightArrow
-      -# - else
       %ul
         %li
-          = link_to "#{@categories.name}", "", class: "leftNav__category__title"
+          = link_to "#{@category.name}", "", class: "leftNav__category__title"
           %span.srSprite.rightArrow
           %ul
-            - @categories.sub_categories.each do |category|
+            - @category.sub_categories.each do |sub_category|
               %li
-                = link_to "#{category.name}", category_sub_category_path(@categories, category)
+                = link_to "#{sub_category.name}", category_sub_category_path(@category,sub_category.id)
             - @all_categories.each do |category|
               %ul
                 %li
                   = link_to "#{category.name}", "", class: "leftNav__category__title"
                   %span.srSprite.rightArrow
-      -# - unless @category_id.empty?
-      -#   - @all_categories.each do |category|
-      -#     %ul
-      -#       %li
-      -#         = link_to "#{category.name}", "", class: "leftNav__category__title"
-      -#         %span.srSprite.rightArrow
-
     %h2 絞り込み
     .leftNav__category
       %ul.leftNav__category__option

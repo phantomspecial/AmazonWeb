@@ -3,7 +3,11 @@
   = link_to root_path do
     = image_tag "wintersale_officeitems.png"
 .topcategory
-  文房具・オフィス用品 > 手帳・カレンダー
+  .topcategory__category
+    = @category.name
+    >
+  .topcategory__subcategory
+    = link_to @sub_category.name, category_sub_category_path(@category, @sub_category)
 .goodsbox
   .goodsbox__images
     .goodsbox__images__imagethumbnail
