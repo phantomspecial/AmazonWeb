@@ -17,13 +17,14 @@ class SubCategoriesController < ApplicationController
 
   def show
     find_sub_category
-    @categories = Category.find(params[:category_id])
+    @category = Category.find(params[:category_id])
     @all_categories = Category.all
+    @sub_category = SubCategory.find(params[:id])
   end
 
 
   def find_sub_category
-    @sub_category = SubCategory.find(params[:id])
+    @sub_categories = SubCategory.where(category_id: params[:category_id])
   end
 
   private

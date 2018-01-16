@@ -3,8 +3,16 @@
 }
 
 .topcategory{
-  font-size: 12px;
-  margin-left: 20px;
+  &__category{
+  margin-left: 10px;
+  font-size: 5px;
+  display: inline;
+  }
+  &__subcategory{
+  font-size: 5px;
+  position: right;
+  display: inline;
+  }
 }
 
 .goodsbox{

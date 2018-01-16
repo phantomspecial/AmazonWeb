@@ -25,6 +25,10 @@ class StocksController < ApplicationController
   def show
     @stock = Stock.find(params[:id])
     @reviews = @stock.reviews
+    category_id = @stock[:category_id]
+    @category = Category.find(category_id)
+    sub_category_id = @stock[:sub_category_id]
+    @sub_category = SubCategory.find(sub_category_id)
     @current_stock_array = quantity_array_maker(@stock)
     if user_signed_in?
       quantitychecker_moveto_buylater
@@ -140,4 +144,5 @@ class StocksController < ApplicationController
       set_search.where(category_id: @category)
     end
   end
+
 end
