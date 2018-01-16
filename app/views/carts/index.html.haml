@@ -1,164 +1,173 @@
 = render "shared/header"
-.cartleftwindow
-  .cartleftwindow__ad
-    広告スペース
-  .cartleftwindow__title
-    .cartleftwindow__title__left
-      ショッピングカート
-    .cartleftwindow__title__right
-      ご利用可能なAmazonポイントは
-      n
-      pt です。
-      .br
-      カートの商品はAmazonポイントの対象外です
-  .cartleftwindow__topborder
-    .cartleftwindow__topborder__pricetext
-      価格
-    .cartleftwindow__topborder__quantitytext
-      数量
-    .cartleftwindow__topborder__line
-  .cartleftwindow__goodslist
-    - @carts.each do |cart|
-      .cartleftwindow__goodslist__detail
-        .cartleftwindow__goodslist__detail__image
-          = image_tag Stock.find(cart.stock_id).image, width:200
-        .cartleftwindow__goodslist__detail__title
-          = Stock.find(cart.stock_id).name
-        .cartleftwindow__goodslist__detail__maker
-          = Stock.find(cart.stock_id).maker
-        .cartleftwindow__goodslist__detail__stockcheck
-          - if Stock.find(cart.stock_id).current_stock > 5
-            .status-green
-              在庫あり。
-          - elsif Stock.find(cart.stock_id).current_stock == 0
-            .status-red
-              在庫切れ。入荷予定あり
-          - else
-            .status-red
-              残り
-              = Stock.find(cart.stock_id).current_stock
-              点。ご注文はお早めに。
-        .cartleftwindow__goodslist__detail__primemark
-          = image_tag "primemark.png" , width: 50 ,height: 20
-        .cartleftwindow__goodslist__detail__giftbox
-          / = check_tox_tag("")
-          ギフトの設定（贈り主名の表示に必要です）
-          = link_to "詳細", ""
-        .cartleftwindow__goodslist__detail__destroy
-          = link_to "削除", cart_path(cart.id), method: :delete
-        .cartleftwindow__goodslist__detail__buylater
-          = form_for cart do |f|
-            = f.hidden_field :buylater_flg, value: true
-            = f.submit value: "あとで買う", class: "btntolink"
-      .cartleftwindow__goodslist__pricespace
-        .cartleftwindow__goodslist__pricespace__price
-          ¥
-          = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
-      .cartleftwindow__goodslist__quantityspace
-        .cartleftwindow__goodslist__quantity
-          = form_for cart do |f|
-            .rightbox__cartbox__quantity
-              / %input{ name: "cartid", type: "hidden", value: cart.id, class: 'cartid'}
-              = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), {selected: cart.quantity}, {id: "quantityselecter#{cart.id}"}
-      .cartleftwindow__bottomborder
-  .cartleftwindow__subtotal
-    .cartleftwindow__subtotal__items
-      小計 (
-      = @totalitems.to_s(:delimited)
-      )点：
-    .cartleftwindow__subtotal__total
-      ¥
-      = @totalyen.to_s(:delimited)
-  .cartleftwindow__points
-    この注文での獲得ポイント：
-    n
-    pt
-  - if @buylaters.length > 0
-    .cartleftwindow__buylatertitle
-      .cartleftwindow__buylatertitle__left
-        「あとで買う」に入っている商品（
-        = @buylaters.length
-        点）
-    .cartleftwindow__bottomborder
-    .cartleftwindow__buylatergoodslist
-      - @buylaters.each do |buylater|
-        .cartleftwindow__buylatergoodslist__detail
-          .cartleftwindow__buylatergoodslist__detail__image
-            = image_tag Stock.find(buylater.stock_id).image, width:200
-          .cartleftwindow__buylatergoodslist__detail__title
-            = Stock.find(buylater.stock_id).name
-          .cartleftwindow__buylatergoodslist__detail__maker
-            = Stock.find(buylater.stock_id).maker
-          .cartleftwindow__buylatergoodslist__detail__stockcheck
-            - if Stock.find(buylater.stock_id).current_stock > 5
+.wrapper.clearfix
+  .cartleftwindow
+    = link_to "" do
+      .cartleftwindow__ad
+        .cartleftwindow__ad__card
+          = image_tag "cart_ad_1.png", width:138, height:87
+        .cartleftwindow__ad__new
+          %p.card-title オリコカードTHE POINT新規ご入会者様限定キャンペーン
+          %p.card-content ご入会とご利用で最大8,000円相当のオリコポイントをプレゼント！
+          %p.card-detail 還元率常時1%！入会後6ヶ月は2%にアップ！
+        .cartleftwindow__ad__btn
+          = image_tag "cart_ad_2.png", width:125, height:34
+    .cartleftwindow__title
+      .cartleftwindow__title__left
+        ショッピングカート
+      .cartleftwindow__title__right
+        ご利用可能なAmazonポイントは
+        n
+        pt です。
+        .br
+        カートの商品はAmazonポイントの対象外です
+    .cartleftwindow__topborder
+      .cartleftwindow__topborder__pricetext
+        価格
+      .cartleftwindow__topborder__quantitytext
+        数量
+      .cartleftwindow__topborder__line
+    .cartleftwindow__goodslist
+      - @carts.each do |cart|
+        .cartleftwindow__goodslist__detail
+          .cartleftwindow__goodslist__detail__image
+            = image_tag Stock.find(cart.stock_id).image, width:200
+          .cartleftwindow__goodslist__detail__title
+            = Stock.find(cart.stock_id).name
+          .cartleftwindow__goodslist__detail__maker
+            = Stock.find(cart.stock_id).maker
+          .cartleftwindow__goodslist__detail__stockcheck
+            - if Stock.find(cart.stock_id).current_stock > 5
               .status-green
                 在庫あり。
-            - elsif Stock.find(buylater.stock_id).current_stock == 0
+            - elsif Stock.find(cart.stock_id).current_stock == 0
               .status-red
                 在庫切れ。入荷予定あり
             - else
               .status-red
                 残り
-                = Stock.find(buylater.stock_id).current_stock
+                = Stock.find(cart.stock_id).current_stock
                 点。ご注文はお早めに。
-          .cartleftwindow__buylatergoodslist__detail__primemark
+          .cartleftwindow__goodslist__detail__primemark
             = image_tag "primemark.png" , width: 50 ,height: 20
-          .cartleftwindow__buylatergoodslist__detail__destroy
-            = link_to "削除", cart_path(buylater.id), method: :delete
-          - if buylater.quantity <= Stock.find(buylater.stock_id).current_stock
-            .cartleftwindow__buylatergoodslist__detail__movetocart
-              = form_for buylater do |f|
-                = f.hidden_field :buylater_flg, value: false
-                = f.submit value: "カートに戻す", class: "btntolink"
-        .cartleftwindow__buylatergoodslist__pricespace
-          .cartleftwindow__buylatergoodslist__pricespace__price
+          .cartleftwindow__goodslist__detail__giftbox
+            / = check_tox_tag("")
+            ギフトの設定（贈り主名の表示に必要です）
+            = link_to "詳細", ""
+          .cartleftwindow__goodslist__detail__destroy
+            = link_to "削除", cart_path(cart.id), method: :delete
+          .cartleftwindow__goodslist__detail__buylater
+            = form_for cart do |f|
+              = f.hidden_field :buylater_flg, value: true
+              = f.submit value: "あとで買う", class: "btntolink"
+        .cartleftwindow__goodslist__pricespace
+          .cartleftwindow__goodslist__pricespace__price
             ¥
-            = Stock.find(buylater.stock_id).sell_price.to_s(:delimited)
+            = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
+        .cartleftwindow__goodslist__quantityspace
+          .cartleftwindow__goodslist__quantity
+            = form_for cart do |f|
+              .rightbox__cartbox__quantity
+                / %input{ name: "cartid", type: "hidden", value: cart.id, class: 'cartid'}
+                = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), {selected: cart.quantity}, {id: "quantityselecter#{cart.id}"}
         .cartleftwindow__bottomborder
-  .cartleftwindow__message
-    Amazon.co.jp での商品価格や在庫状況は変更される場合があります。カートに追加した時と在庫状況や価格が異なることがあります。カート内で表示されている価格は最新の価格となります。
-    .br
-    未登録のAmazonギフト券やクーポンは、お支払い方法選択画面や注文確定画面で入力できます。
-.cartrightwindow
-  - if @totalyen > 0
-    .cartrightwindow__totalbox
-      .cartrightwindow__totalbox__subtotaltext
-        小計(
+    .cartleftwindow__subtotal
+      .cartleftwindow__subtotal__items
+        小計 (
         = @totalitems.to_s(:delimited)
-        点)：
-        %b{style: "color: #A82207;"}
-          ￥
-          = @totalyen.to_s(:delimited)
-      .cartrightwindow__totalbox__points
-        この注文での獲得ポイント：
-        n
-        pt
-      .cartrightwindow__totalbox__giftsettings
-        / = check_tox_tag("")
-        ギフトの設定（贈り主名の表示に必要です）
-      .cartrightwindow__totalbox__registarbtn
-        .registerbtn
-          = link_to "レジに進む",confirm_orders_path
-      .cartrightwindow__totalbox__bordertext
-        または
-      .cartrightwindow__totalbox__oneclicklinks
-        = link_to "サインイン"
-        して1-ClickをONにする
-  .cartrightwindow__sponsoredgoodslink
-    .cartrightwindow__sponsoredgoodslink__title
-      カート内の商品に関連するスポンサープロダクト
-    .cartrightwindow__sponsoredgoodslink__items
-      .cartrightwindow__sponsoredgoodslink__items__image
-        = image_tag "prime.png" , width: 96, height: 72
-      .cartrightwindow__sponsoredgoodslink__items__goodsname
-        SPONSORDGOODSNAME
-      .cartrightwindow__sponsoredgoodslink__items__rate
-        RATE1
-      .cartrightwindow__sponsoredgoodslink__items__price
-        ¥1,000
-      .cartrightwindow__sponsoredgoodslink__items__primemark
-        = image_tag "primemark.png"
-      .cartrightwindow__sponsoredgoodslink__items__allitems
-        .showbtn__mini
-          = link_to "すべての出品を見る",""
+        )点：
+      .cartleftwindow__subtotal__total
+        ¥
+        = @totalyen.to_s(:delimited)
+    .cartleftwindow__points
+      この注文での獲得ポイント：
+      n
+      pt
+    - if @buylaters.length > 0
+      .cartleftwindow__buylatertitle
+        .cartleftwindow__buylatertitle__left
+          「あとで買う」に入っている商品（
+          = @buylaters.length
+          点）
+      .cartleftwindow__bottomborder
+      .cartleftwindow__buylatergoodslist
+        - @buylaters.each do |buylater|
+          .cartleftwindow__buylatergoodslist__detail
+            .cartleftwindow__buylatergoodslist__detail__image
+              = image_tag Stock.find(buylater.stock_id).image, width:200
+            .cartleftwindow__buylatergoodslist__detail__title
+              = Stock.find(buylater.stock_id).name
+            .cartleftwindow__buylatergoodslist__detail__maker
+              = Stock.find(buylater.stock_id).maker
+            .cartleftwindow__buylatergoodslist__detail__stockcheck
+              - if Stock.find(buylater.stock_id).current_stock > 5
+                .status-green
+                  在庫あり。
+              - elsif Stock.find(buylater.stock_id).current_stock == 0
+                .status-red
+                  在庫切れ。入荷予定あり
+              - else
+                .status-red
+                  残り
+                  = Stock.find(buylater.stock_id).current_stock
+                  点。ご注文はお早めに。
+            .cartleftwindow__buylatergoodslist__detail__primemark
+              = image_tag "primemark.png" , width: 50 ,height: 20
+            .cartleftwindow__buylatergoodslist__detail__destroy
+              = link_to "削除", cart_path(buylater.id), method: :delete
+            - if buylater.quantity <= Stock.find(buylater.stock_id).current_stock
+              .cartleftwindow__buylatergoodslist__detail__movetocart
+                = form_for buylater do |f|
+                  = f.hidden_field :buylater_flg, value: false
+                  = f.submit value: "カートに戻す", class: "btntolink"
+          .cartleftwindow__buylatergoodslist__pricespace
+            .cartleftwindow__buylatergoodslist__pricespace__price
+              ¥
+              = Stock.find(buylater.stock_id).sell_price.to_s(:delimited)
+          .cartleftwindow__bottomborder
+    .cartleftwindow__message
+      Amazon.co.jp での商品価格や在庫状況は変更される場合があります。カートに追加した時と在庫状況や価格が異なることがあります。カート内で表示されている価格は最新の価格となります。
+      .br
+      未登録のAmazonギフト券やクーポンは、お支払い方法選択画面や注文確定画面で入力できます。
+  .cartrightwindow
+    - if @totalyen > 0
+      .cartrightwindow__totalbox
+        .cartrightwindow__totalbox__subtotaltext
+          小計(
+          = @totalitems.to_s(:delimited)
+          点)：
+          %b{style: "color: #A82207;"}
+            ￥
+            = @totalyen.to_s(:delimited)
+        .cartrightwindow__totalbox__points
+          この注文での獲得ポイント：
+          n
+          pt
+        .cartrightwindow__totalbox__giftsettings
+          / = check_tox_tag("")
+          ギフトの設定（贈り主名の表示に必要です）
+        .cartrightwindow__totalbox__registarbtn
+          .registerbtn
+            = link_to "レジに進む",confirm_orders_path
+        .cartrightwindow__totalbox__bordertext
+          または
+        .cartrightwindow__totalbox__oneclicklinks
+          = link_to "サインイン"
+          して1-ClickをONにする
+    .cartrightwindow__sponsoredgoodslink
+      .cartrightwindow__sponsoredgoodslink__title
+        カート内の商品に関連するスポンサープロダクト
+      .cartrightwindow__sponsoredgoodslink__items
+        .cartrightwindow__sponsoredgoodslink__items__image
+          = image_tag "prime.png" , width: 96, height: 72
+        .cartrightwindow__sponsoredgoodslink__items__goodsname
+          SPONSORDGOODSNAME
+        .cartrightwindow__sponsoredgoodslink__items__rate
+          RATE1
+        .cartrightwindow__sponsoredgoodslink__items__price
+          ¥1,000
+        .cartrightwindow__sponsoredgoodslink__items__primemark
+          = image_tag "primemark.png"
+        .cartrightwindow__sponsoredgoodslink__items__allitems
+          .showbtn__mini
+            = link_to "すべての出品を見る",""
 = render "shared/footer"

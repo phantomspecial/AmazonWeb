@@ -21,8 +21,8 @@ $(function(){
 
 
   window.onload = function(){
-    if(period = ""){
-      period = $('.returnperiod').val();
+    var period = $('.returnperiod').val();
+    if(period >= 0){
       document.getElementById("periodselecter").selectedIndex = period;
     }
   }

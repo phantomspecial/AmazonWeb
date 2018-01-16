@@ -5,7 +5,6 @@
 .topcategory{
   &__category{
   margin-left: 10px;
-  font-size: 12px;
   font-size: 5px;
   display: inline;
   }
@@ -42,7 +41,7 @@
     }
   }
   &__textbox{
-    width: 700px;
+    width: calc(100% - 860px);
     float: left;
     &__title{
       font-size: 20px;
