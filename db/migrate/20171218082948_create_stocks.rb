@@ -11,6 +11,7 @@ class CreateStocks < ActiveRecord::Migration[5.0]
       t.integer :shipping_cost, null: false
       t.integer :category_id
       t.integer :sub_category_id
+      t.string  :avg_review
       t.timestamps
     end
   end

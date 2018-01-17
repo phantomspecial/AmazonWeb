@@ -346,7 +346,7 @@
     .reviews__ratebox
       .reviews__ratebox__ratemark
         - if @stock.reviews.present?
-          - case review_rate_calc(@stock.id)
+          - case review_rate_calc(@stock.avg_review)
             - when "00"
               .rate.rate00
             - when "05"
@@ -667,7 +667,7 @@
       .reviews__ratebox
         .reviews__ratebox__ratemark
           - if @stock.reviews.present?
-            - case review_rate_calc(@stock.id)
+            - case review_rate_calc(@stock.avg_review)
               - when "00"
                 .rate.rate00
               - when "05"
@@ -693,7 +693,7 @@
           = @reviews.length
         .reviews__ratebox__ratetext
           5つ星のうち
-          = Review.where(stock_id: @stock.id).average(:rate).round(1).to_f
+          = @stock.avg_review
         .reviews__ratebox__distribution
           .reviews__ratebox__distribution__five
             星5つ

@@ -163,7 +163,8 @@ a {
           color: #0066c0;
           display: inline-block;
           position: relative;
-          top: -2px;
+          top: -5px;
+          margin-left: 5px;
         }
         &__img img {
           max-width: 300px;
@@ -199,12 +200,12 @@ a {
           top: -5px;
         }
         &__review {
-          span.review_stars {
+          .review_stars {
             display: inline-block;
-            background-image: image-url("ui_base.png");
             background-position: -574px 384px;
             width: 81px;
             height: 16px;
+              .rate:before, .rate:after { font-size: 16px }
 
           }
         }
@@ -214,7 +215,6 @@ a {
   // pagination
   .text-center {
     height: 40px;
-    // background: #eee;
     margin: 0 20px;
     text-align: center;
       .pagination {

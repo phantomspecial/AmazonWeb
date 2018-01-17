@@ -20,5 +20,31 @@
       %span にお届け
   .searchResult__ul__li__review
     = link_to "" do
-      %span.review_stars
-      %span.review_number 10
+      .search_result_star.review_stars
+        - case review_rate_calc(stock.avg_review)
+          - when "00"
+            .rate.rate00
+          - when nil
+            .rate.rate00
+          - when "05"
+            .rate.rate05
+          - when "10"
+            .rate.rate10
+          - when "15"
+            .rate.rate15
+          - when "20"
+            .rate.rate20
+          - when "25"
+            .rate.rate25
+          - when "30"
+            .rate.rate30
+          - when "35"
+            .rate.rate35
+          - when "40"
+            .rate.rate40
+          - when "45"
+            .rate.rate45
+          -else
+            .rate.rate50
+      %span.review_number
+        = stock.reviews.count

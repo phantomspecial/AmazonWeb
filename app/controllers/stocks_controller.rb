@@ -4,7 +4,6 @@ class StocksController < ApplicationController
   before_action :authenticate_user! , except: [:index, :show, :search]
 
   def index
-    # binding.pry
     @stocks = Stock.all
     if user_signed_in?
       quantitychecker_moveto_buylater
@@ -19,7 +18,6 @@ class StocksController < ApplicationController
     # ランダムにサブカテゴリーの値を取得
     @rndm_subcategory = SubCategory.limit(15)
     @rndm_subcategory_img = Stock.where(category_id: @rndm_subcategory.ids).select('image')
-    # @rndm_subcategory = SubCategory.joins(categories: :name).where( 'id >= ?', rand(SubCategory.first.id..SubCategory.last.id) )
   end
 
   def show
@@ -64,7 +62,7 @@ class StocksController < ApplicationController
     if params[:keyword].empty?
       redirect_to action: 'index'
     else
-      @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(25)
+      @stocks = Kaminari.paginate_array(search_stocks).page(params[:page]).per(20)
 
       # 価格の高い順等取得・表示
       if params[:value] == "1"
@@ -73,14 +71,15 @@ class StocksController < ApplicationController
         @stocks = set_search.order('sell_price ASC')
       elsif params[:value] == "3"
         @stocks = set_search.order('sell_price DESC')
+      elsif params[:value] == "4"
+        @stocks = set_search.order('avg_review DESC')
       elsif params[:value] == "5"
         @stocks = set_search.order('created_at DESC')
-      else
       end
 
       respond_to do |format|
         format.html
-        format.json { render 'stock', json: @stocks }
+        format.json
       end
 
       # サイドバーにカテゴリーを表示させる
