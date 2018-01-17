@@ -542,13 +542,10 @@
 
 
 // 注文確認画面 confirm
-.headlogo{
-  padding-top: 10px;
-  padding-left: 300px;
-}
 .deliverybox{
-  padding-left: 300px;
   width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
   &__title{
     font-size: 24px;
     padding-top: 10px;
@@ -653,8 +650,8 @@
 .paymentbox{
   clear: both;
   padding-top: 40px;
-  padding-left: 300px;
   width: 1200px;
+  margin: 0 auto;
   &__title{
     font-size: 24px;
     padding-top: 10px;
@@ -799,25 +796,6 @@
   }
 }
 
-.giftbox{
-  clear: both;
-  padding: 40px 0 40px 300px;
-  width: 1200px;
-  &__title{
-    font-size: 24px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  &__select{
-
-  }
-  &__package{
-
-  }
-  &__message{
-
-  }
-}
 
 .footermessage{
   text-align: center;
@@ -935,7 +913,7 @@
 
 // 注文確認画面 new
 .orderbox{
-  padding-left:300px;
+  margin: 0 auto;
   width: 1200px;
   &__title{
     font-size: 20px;
