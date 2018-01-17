@@ -1,7 +1,7 @@
 class StocksController < ApplicationController
 
   before_action :permission_check, except: [:index, :show]
-  before_action :authenticate_user! , except: [:index, :show, :search]
+  before_action :authenticate_user! , except: [:index, :show, :search, :autocomplete_stocks]
 
   def index
     @stocks = Stock.all
