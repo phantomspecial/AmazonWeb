@@ -40,7 +40,6 @@ class ReviewsController < ApplicationController
   private
   def review_params
     params.permit(:stock_id, :title, :rate, :review)
-    # params.require(:review).permit(:stock_id, :title, :rate, :review)
   end
 
   def average_reviews(stock)

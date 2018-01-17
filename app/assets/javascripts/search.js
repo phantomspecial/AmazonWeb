@@ -48,7 +48,6 @@ $(document).on('turbolinks:load', function() {
               '<div class="searchResult__ul__li__review">' +
               '<a href="/stocks/' + stock.id + '">' +
               '<div class ="search_result_star review_stars ' + stock.id + '">' +
-                // review_rate_calc(stock.reviews_stars) +
               '</div>' +
               '<span class="review_number">' + stock.reviews_count + '</span>' +
               '</div>' +
@@ -57,11 +56,8 @@ $(document).on('turbolinks:load', function() {
 }
 
   function review_rate_calc(data){
-    // console.log(data.reviews_stars);
-    // var star_html = '';
     var star_avg = data.reviews_stars
     var container = $('.search_result_star.review_stars.' + data.id)
-    // console.log(data.id)
 
     if (star_avg == null) {
       container.append('<div class="rate rate00"></div>');
@@ -96,41 +92,6 @@ $(document).on('turbolinks:load', function() {
     else {
       container.append('<div class="rate rate50"></div>');
     }
-    // container.append(star_html);
-    // switch (data){
-    //   case 'null':
-    //     $('.search_result_star.review_stars').append('<div class="rate rate00"></div>');
-    //     break;
-    //   case "3.0":
-    //     $('.search_result_star.review_stars').append('<div class="rate rate30"></div>');
-    //     break;
-
-  // }
-
-//   // '<% when "00" %>' +
-//   //   '<div class="rate rate00">' + '</div>' +
-//   // '<% when nil %>' +
-//   //   '<div class="rate rate00">' + '</div>' +
-//   // '<% when "05" %>' +
-//   //   '<div class="rate rate05">' + '</div>' +
-//   // '<% when "10" %>' +
-//   //   '<div class="rate rate10">' + '</div>' +
-//   // '<% when "15" %>' +
-//   //   '<div class="rate rate15">' + '</div>' +
-//   // '<% when "20" %>' +
-//   //   '<div class="rate rate20">' + '</div>' +
-//   // '<% when "25" %>' +
-//   //   '<div class="rate rate25">' + '</div>' +
-//   // '<% when "30" %>' +
-//   //   '<div class="rate rate30">' + '</div>' +
-//   // '<% when "35" %>' +
-//   //   '<div class="rate rate35">' + '</div>' +
-//   // '<% when "40" %>' +
-//   //   '<div class="rate rate40">' + '</div>' +
-//   // '<% when "45" %>' +
-//   //   '<div class="rate rate45">' + '</div>' +
-//   // '<% else %>' +
-//   //   '<div class="rate rate50">' + '</div>' +
 }
 
 
@@ -141,15 +102,10 @@ $(document).on('turbolinks:load', function() {
       dataType: 'json',
     })
     .done(function(data){
-      // console.log(data);
       $('.searchResult__ul__li').remove();
       data.stocks.forEach(function(stock) {
-      // console.log(stock)
       buildHTML(stock);
-        // console.log(stock)
-      // review_rate_calc(stock.reviews_stars);
       review_rate_calc(stock);
-      // console.log(stock.reviews_stars)
       });
     })
     .fail(function(){

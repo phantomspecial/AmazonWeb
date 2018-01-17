@@ -25,7 +25,7 @@
       = link_to @stock.maker, ""
     .goodsbox__textbox__rate
       - if @stock.reviews.present?
-        - case review_rate_calc(@stock.id)
+        - case review_rate_calc(@stock.avg_review)
           - when "00"
             .rate.rate00
           - when "05"
