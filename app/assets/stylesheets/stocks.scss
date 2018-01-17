@@ -614,6 +614,20 @@
 .rate45:after{width: 90px;}
 .rate50:after{width: 100px;}
 
+// 検索結果の星
+.search_result_star {
+  .rate00:after{width: 0;}
+  .rate05:after{width: 9px;}
+  .rate10:after{width: 16px;}
+  .rate15:after{width: 24px;}
+  .rate20:after{width: 32px;}
+  .rate25:after{width: 40px;}
+  .rate30:after{width: 48px;}
+  .rate35:after{width: 57px;}
+  .rate40:after{width: 63px;}
+  .rate45:after{width: 72px;}
+  .rate50:after{width: 88px;}
+}
 
 
 // Showページ--star
