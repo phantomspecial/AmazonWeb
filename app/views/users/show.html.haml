@@ -27,7 +27,11 @@
         お客様のご注文
       .br
       %span
-        n件の最近のご注文
+        - if user_signed_in?
+          = @recentorders
+        - else
+          0
+        件の最近のご注文
       .br
       = link_to "詳細を表示",""
     .mystoresecondheader__prime
