@@ -28,8 +28,6 @@
               = creditcard.brand
               下4桁
               = creditcard.last4
-              / - if creditcard.id == @default_cardid
-              /   [デフォルト]
             .credit__limit
               = creditcard.exp_month
               #{"/"}
@@ -60,7 +58,6 @@
               = @user.telnumber
               .br
               = link_to "削除",creditcard_destroy_users_path(@user, params: creditcard ), method: :delete ,class: "card-graybutton-mini"
-              = link_to "編集", "", id:"credit-modal-open" , class: "card-graybutton-mini"
     .payoption__rightbox__toptitle
       残高
     .payoption__rightbox__giftcardbox
@@ -154,10 +151,6 @@
           =link_to "続行","" , class: "addpaymentcarrierbutton"
       .payoption__rightbox__cellphone__rightboxmark
         =image_tag "carrier_brand.png", width:50
-
-#modal-main
-  .aaa
-    TEST
 
 
 =render "shared/footer"

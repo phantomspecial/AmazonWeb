@@ -66,11 +66,17 @@ class OrdersController < ApplicationController
 
   def new
     # 支払い方法の取得
-    @payment = params[:payments]
+    # 選択されていない場合はもう一度confirmを呼び出す
+    if params[:payments].present?
+      @payment = params[:payments]
+    else
+      redirect_to action: :confirm and return
+    end
     # クレジットカードの場合、そのカードを、デフォルトカードに設定し、@@payにCreditcardを入れる
-    # 代引きの場合、Cashを保存する
-    if @payment == "Cash"
-      @@pay = "Cash"
+    # 振込の場合、Transferを保存する
+    if @payment == "Transfer"
+      @@pay = "Transfer"
+      @@cardlast4 = ""
     else
       @@pay = "Creditcard"
       @user_info = Payjp::Customer.retrieve(id: current_user.id.to_s)
@@ -94,13 +100,9 @@ class OrdersController < ApplicationController
     # 合計点数と合計金額の表示
     @totalitems = 0
     @totalitemyen = 0
+    @totalshipyen = 0
     # 代引き手数料の設定
     # config/initializers/constants.rbに記載
-    if @@pay == "Cash"
-      @totalshipyen = Constants::CASHDELIVERYCOMMISSION
-    else
-      @totalshipyen = 0
-    end
     @carts.each do |cart|
       @totalitems += cart.quantity
       @totalitemyen += cart.quantity * Stock.find(cart.stock_id).sell_price
@@ -161,13 +163,6 @@ class OrdersController < ApplicationController
       @stock.update(current_stock: @stock.current_stock)
 
     end
-
-    # 代引き手数料の設定
-    # config/initializers/constants.rbに記載
-    if @@pay == "Cash"
-      total_shippingcost += Constants::CASHDELIVERYCOMMISSION
-    end
-
 
     # オーダーテーブルの残ったカラムへの値の書き込み
     @order.update(total: total, total_shippingcost: total_shippingcost)

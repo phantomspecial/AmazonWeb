@@ -35,7 +35,7 @@
       .ordertopbox__ordertopboxover__middlebox__title
         支払い方法
       .ordertopbox__ordertopboxover__middlebox__message
-        - if @order.payments == "Cash" || @order.payments == "Transfer"
+        - if @order.payments == "Transfer"
           銀行振込
         - else
           = image_tag "visa_mark.gif",width:30
@@ -75,11 +75,15 @@
       .br
       商品発送済み:
       = @order.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
-      -
-      Visa（下4けたが
-      =@order.payments[-4,4]
-      ）：¥
-      = (@order.total + @order.total_shippingcost).to_s(:delimited)
+      - if @order.payments == "Transfer"
+        銀行振込受付
+        ¥
+        = (@order.total + @order.total_shippingcost).to_s(:delimited)
+      - else
+        Visa（下4けたが
+        =@order.payments[-4,4]
+        ）：¥
+        = (@order.total + @order.total_shippingcost).to_s(:delimited)
     .ordertopbox__bottombox__total
       合計:
       ¥
