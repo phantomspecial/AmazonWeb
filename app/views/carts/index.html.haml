@@ -16,7 +16,7 @@
         ショッピングカート
       .cartleftwindow__title__right
         ご利用可能なAmazonポイントは
-        n
+        0
         pt です。
         .br
         カートの商品はAmazonポイントの対象外です
@@ -80,7 +80,7 @@
         = @totalyen.to_s(:delimited)
     .cartleftwindow__points
       この注文での獲得ポイント：
-      n
+      0
       pt
     - if @buylaters.length > 0
       .cartleftwindow__buylatertitle
@@ -140,7 +140,7 @@
             = @totalyen.to_s(:delimited)
         .cartrightwindow__totalbox__points
           この注文での獲得ポイント：
-          n
+          0
           pt
         .cartrightwindow__totalbox__giftsettings
           / = check_tox_tag("")

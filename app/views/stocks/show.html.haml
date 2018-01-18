@@ -51,7 +51,7 @@
         = @reviews.length
         件のカスタマーレビュー
     .goodsbox__textbox__reviewlink
-      =link_to "カスタマーレビューを書きませんか？", ""
+      =link_to "カスタマーレビューを書きませんか？", "#reviewaddf"
     .borderline
     .goodsbox__textbox__referenceprice
       参考価格:¥
@@ -112,10 +112,7 @@
       = @stock.sell_price.to_s(:delimited)
       より
     .goodsbox__textbox__detail
-      ・TESTTEST
-      .br
-      ・AAAAAAAA
-      = link_to "> もっと見る",""
+      = link_to "> もっと見る", "#moreinfo"
       / 下部へ移動する
     .goodsbox__textbox__opinionform
       %i.fa.fa-comment-o.fa-flip-horizontal
@@ -311,7 +308,7 @@
             %span.review_number
               = stock.reviews.count
 .borderline
-.iteminfomation
+.iteminfomation#moreinfo
   .title
     商品の情報
   .iteminfomation__leftbox
@@ -326,11 +323,6 @@
               ブランド
               %td
                 = @stock.maker
-          %tr
-            %th
-              製品型番
-              %td
-                Test-message
   .iteminfomation__rightbox
     .iteminfomation__rightbox__registinfo
       .iteminfomation__rightbox__registinfo__title
@@ -342,17 +334,12 @@
             %th
               ASIN
               %td
-                TSTTST
+                73284691732449172
           %tr
             %th
               おすすめ度
               %td
-                = link_to "この商品の最初のレビューを書き込んでください。", ""
-          %tr
-            %th
-              発送重量
-              %td
-                20.5kg
+                = link_to "この商品の最初のレビューを書き込んでください。", "#reviewaddf"
           %tr
             %th
               Amazon.co.jpでの取り扱い開始日
@@ -379,9 +366,7 @@
           = link_to "" do
             .afterview__items__rate__stars.review_stars
               - case review_rate_calc(stock.avg_review)
-                - when "00"
-                  .rate.rate00
-                - when nil
+                - when "00" , nil
                   .rate.rate00
                 - when "05"
                   .rate.rate05
@@ -452,7 +437,7 @@
         = @reviews.length
         件のカスタマーレビュー
     .goodsbox__textbox__reviewlink
-      =link_to "カスタマーレビューを書きませんか？", ""
+      =link_to "カスタマーレビューを書きませんか？", "#reviewaddf"
   .borderline
 
 - unless @reviews.empty?
@@ -524,7 +509,7 @@
         カスタマーレビュー
       .reviews__main__boxes
         = render partial: "shared/review", collection: @reviews, as: :review
-.reviews__addform
+.reviews__addform#reviewaddf
   - if user_signed_in?
     .reviews__addform__toplabel
       [新規レビュー]
