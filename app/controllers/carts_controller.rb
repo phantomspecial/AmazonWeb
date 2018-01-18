@@ -17,6 +17,7 @@ class CartsController < ApplicationController
   end
 
   def create
+    @stocks = Stock.all
     @carts = gets_cart_items
     update_flg = 0
     @carts.each do |cartitem|
