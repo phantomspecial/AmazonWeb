@@ -233,10 +233,17 @@
 .underbox{
   clear: both;
   &__image {
-    padding-top: 30px;
+    padding-top: 15px;
     width: 150px;
     height: 150px;
     float: left;
+    text-align: center;
+      img {
+        max-width: 150px;
+        max-height: 140px;
+        width: auto;
+        height: auto;
+      }
   }
   &__info {
     padding-top: 10px;
@@ -282,13 +289,11 @@
 
 .underbox a{
   text-decoration: none;
-  color: #0000FF;
 }
 
 .reloadbutton{
   border-style: none;
   font-size: 14px;
-  color: #0000FF;
 }
 
 
@@ -1393,6 +1398,7 @@
   height: 200px;
   border-radius: 8px;
   border-color: #baddb5;
+  padding-bottom: 25px;
   &__checkicon{
     padding: 20px 20px 20px;
     font-size: 24px;
@@ -1498,6 +1504,11 @@
 .ordermessages__messagebox__links a{
   color: #0000FF;
   text-decoration: none;
+}
+.ordermessages__snsbox {
+  .content {
+    padding: 0;
+  }
 }
 
 .recommends{
