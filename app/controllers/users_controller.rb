@@ -11,6 +11,23 @@ class UsersController < ApplicationController
   def show
     # マイストア画面
     @user = current_user
+
+    # サブカテゴリー別に商品を表示させる
+    @categories = Category.all
+    @subcategories = SubCategory.all
+    @stocks = []
+      @subcategories.each do |sub_category|
+        stock = Stock.where(sub_category_id: sub_category.id)
+        @stocks << stock if stock.length != 0
+      end
+
+    # @stock_one = []
+    # @stocks.each do |t|
+    #   @stock_one << t.first
+    # end
+    # @stock_one.take(9)
+
+    # binding.pry
   end
 
   def payments

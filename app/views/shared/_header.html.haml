@@ -15,8 +15,8 @@
               .nav-over__center__content__center__search-field
                 %input#stock_name_field.nav-over__center__content__center__input{ name: "keyword", placeholder: "", type: "text", value: "" }
                 .nav-over__center__content__right
-                  %span.fa.fa-search{"aria-hidden" => "true"}
-                  %button.nav-over__center__content__right__search_btn{ title: "検索", type: "submit"}
+                  = button_tag title: "検索", type: "submit", class: "nav-over__center__content__right__search_btn" do
+                    %span.fa.fa-search{"aria-hidden" => "true"}
     .nav-below
       .nav-below__categoly
         = link_to categories_path do
