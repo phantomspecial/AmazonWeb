@@ -1,6 +1,6 @@
-.headlogo
-  = image_tag "loginlogo.png"
 .deliverybox
+  .headlogo
+    = image_tag "loginlogo.png"
   .deliverybox__title
     お届け先住所の選択
   .deliverybox__message
@@ -204,17 +204,6 @@
         / =link_to "次に進む" , new_order_path, class: "nextbtn"
       .paymentbox__rightbottombox__message
         (注文の最終確認ができます)
-
-.giftbox
-  .giftbox__title
-    ギフトの選択
-  .giftbox__select
-    ギフトを選択してください。
-  .giftbox__package
-    ギフトパッケージをお選びください
-  .giftbox__message
-    ギフトメッセージをお書きください。
-
 
 .footermessage
   .borderline

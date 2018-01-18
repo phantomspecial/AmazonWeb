@@ -30,6 +30,16 @@
         = f.label :shipping_cost, "送料"
         = f.text_field :shipping_cost, placeholder: "送料を修正してください"
       .adminmainwindow__fields
+        = f.label :category_id, "カテゴリー"
+        - category_options = Category.order(:id).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
+        = f.hidden_field :category_id, class: 'category_js'
+        = f.select :category_id, category_options, { include_blank: true }, class: 'select-parent'
+      .adminmainwindow__fields
+        = f.label :sub_category_id, "ジャンル"
+        - sub_category_options = @sub_category.map { |c| [c.name, c.id] }
+        = f.hidden_field :sub_category_id, class: 'sub_category_js'
+        = f.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children'
+      .adminmainwindow__fields
         = f.hidden_field :item_flg, value:0
       .adminmainwindow__fields
         = f.submit value: "Update" , class: "SendButton"
