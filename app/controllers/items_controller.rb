@@ -86,8 +86,6 @@ class ItemsController < AdminsController
     # new_item_paramsでもらって来た更新内容で、stockテーブルを更新する。
     # Stockテーブルからそのitem.stock_idを持ったインスタンスを取得
     @stocktarget = Stock.find(item.stock_id)
-    @@old_item_dataset = Item.find(params[:id])
-
     # 総仕入金額・総仕入数量の算出
     totalcost = 0
     totalstock = 0
