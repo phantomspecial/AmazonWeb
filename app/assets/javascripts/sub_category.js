@@ -30,5 +30,18 @@ $(document).on('turbolinks:load', function() {
     };
 
     return $('.select-parent').on({
-      'change': replaceChildrenOptions});
-});
+    'change': replaceChildrenOptions});
+    });
+
+    window.onload = function(){
+    var category = $('.select-parent').val();
+    document.getElementById('.category_js').selectedIndex = category;
+    };
+
+    window.onload = function(){
+    var subcategory = $('.select-children').val();
+    document.getElementById('.sub_category_js').selectedIndex = subcategory;
+    };
+
+
+

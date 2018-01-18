@@ -42,6 +42,8 @@ class ItemsController < AdminsController
       @item.maker = @target_item.maker
       @item.sell_price = @target_item.sell_price
       @item.shipping_cost = @target_item.shipping_cost
+      @item.category_id = @target_item.category_id
+      @item.sub_category_id = @target_item.sub_category_id
 
       # 全カラムを埋めたので、保存する
       @item.save
@@ -75,6 +77,8 @@ class ItemsController < AdminsController
 
   def edit
     @item = Item.find(params[:id])
+    @item_sub_category = @item.category_id
+    @sub_category = SubCategory.where(category_id: @item_sub_category)
     @@old_item_dataset = Item.find(params[:id])
   end
 
@@ -86,7 +90,6 @@ class ItemsController < AdminsController
     # new_item_paramsでもらって来た更新内容で、stockテーブルを更新する。
     # Stockテーブルからそのitem.stock_idを持ったインスタンスを取得
     @stocktarget = Stock.find(item.stock_id)
-
     # 総仕入金額・総仕入数量の算出
     totalcost = 0
     totalstock = 0
@@ -101,7 +104,7 @@ class ItemsController < AdminsController
 
     # データupdate
     new_stock = @stocktarget.current_stock + item.quantity - @@old_item_dataset.quantity
-    @stocktarget.update(name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost, category_id: @item.category_id, sub_category_id: item.sub_category_id)
+    @stocktarget.update(name: item.name, image: item.image, detail: item.detail, maker: item.maker, avg_unit_cost: avg_cost, current_stock: new_stock, sell_price: item.sell_price, shipping_cost: item.shipping_cost, category_id: item.category_id, sub_category_id: item.sub_category_id)
 
     redirect_to action: :index
   end
