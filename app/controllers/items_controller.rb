@@ -42,6 +42,8 @@ class ItemsController < AdminsController
       @item.maker = @target_item.maker
       @item.sell_price = @target_item.sell_price
       @item.shipping_cost = @target_item.shipping_cost
+      @item.category_id = @target_item.category_id
+      @item.sub_category_id = @target_item.sub_category_id
 
       # 全カラムを埋めたので、保存する
       @item.save
@@ -75,6 +77,8 @@ class ItemsController < AdminsController
 
   def edit
     @item = Item.find(params[:id])
+    @item_sub_category = @item.category_id
+    @sub_category = SubCategory.where(category_id: @item_sub_category)
     @@old_item_dataset = Item.find(params[:id])
   end
 
