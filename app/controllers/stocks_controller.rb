@@ -43,6 +43,9 @@ class StocksController < ApplicationController
         @review_dist[i] = (@reviews.where(rate: i + 1).length) *100 / reviewlength
       end
     end
+
+    # ランダムにstockを抽出
+    @stocks = Stock.where('rand()').limit(10)
   end
 
   def destroy

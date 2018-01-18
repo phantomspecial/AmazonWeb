@@ -11,6 +11,23 @@ class UsersController < ApplicationController
   def show
     # マイストア画面
     @user = current_user
+
+    # サブカテゴリー別に商品を表示させる
+    @categories = Category.all
+    @subcategories = SubCategory.all
+    @stocks = []
+      @subcategories.each do |sub_category|
+        stock = Stock.where(sub_category_id: sub_category.id)
+        @stocks << stock if stock.length != 0
+      end
+
+    #最近のn件の注文
+    if user_signed_in?
+      quantitychecker_moveto_buylater
+      @cart = current_user.carts.new
+      range = Date.current.ago(14.days).beginning_of_day..Date.current.end_of_day
+      @recentorders = current_user.orders.where(created_at: range).length
+    end
   end
 
   def payments
@@ -28,7 +45,7 @@ class UsersController < ApplicationController
       @customer_creditcards = gets_usercardinfo
       @default_cardid = gets_userdefaultcardid
     end
-   end
+  end
 
   def creditcard_regist
   	# pay.jpにクレジットカード情報を登録する
