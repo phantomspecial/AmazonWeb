@@ -147,5 +147,9 @@
       .unit4__boxlinks
         = link_to "Amazon定期おトク便情報の管理",""
 .historybox
-  ここに閲覧履歴とおすすめを表示します。
+  .title
+    最近閲覧した商品とおすすめ商品
+  .btfContent1__uber-widget-ns-images
+    - @stocks.shuffle.first(15).each do |stock|
+      = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
 = render "shared/footer"

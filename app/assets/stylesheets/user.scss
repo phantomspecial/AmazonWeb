@@ -188,9 +188,20 @@
   clear: both;
   width: 100%;
   height: 300px;
-  border: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
   margin-bottom: 40px;
   border-color:  #DDDDDD;
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0 20px;
+      color: #000;
+    }
+    .btfContent1__uber-widget-ns-images {
+      margin: 0 60px;
+      border: none;
+    }
 }
 
 .unit1{
@@ -254,7 +265,6 @@
 }
 
 .mainwindow a{
-  color: #0000FF;
   text-decoration: none;
 }
 

@@ -1,6 +1,6 @@
 = render "shared/header"
 .orderheader
-.ordermessages
+.ordermessages.clearfix
   .ordermessages__checkicon
     %i.fa.fa-check
   .ordermessages__messagebox
@@ -78,24 +78,36 @@
     .recommends__one__title
       この商品に関するスポンサーの商品
     .recommends__one__images
-      - 4.times do |i|
-        = image_tag "recommenditems.png", width: 250 ,height: 250
+      .btfContent1__uber-widget-ns-images
+        - @stocks.shuffle.first(15).each do |stock|
+          = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+      -# - 4.times do |i|
+      -#   = image_tag "recommenditems.png", width: 250 ,height: 250
   .recommends__two
     .recommends__two__title
       もう一度買う
     .recommends__two__images
-      - 4.times do |i|
-        = image_tag "wintersale.jpg", width: 250 ,height: 250
+      .btfContent1__uber-widget-ns-images
+        - @stocks.shuffle.first(15).each do |stock|
+          = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+      -# - 4.times do |i|
+      -#   = image_tag "wintersale.jpg", width: 250 ,height: 250
   .recommends__three
     .recommends__three__title
       この商品を買った人は、こちらの商品も買っています
     .recommends__three__images
-      - 4.times do |i|
-        = image_tag "camera.png", width: 250 ,height: 250
+      .btfContent1__uber-widget-ns-images
+        - @stocks.shuffle.first(15).each do |stock|
+          = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+      -# - 4.times do |i|
+      -#   = image_tag "camera.png", width: 250 ,height: 250
   .recommends__four
     .recommends__four__title
       この商品をチェックした人は、こちらの商品もチェックしています
     .recommends__four__images
-      - 4.times do |i|
-        = image_tag "audio_visuals.png", width: 250 ,height: 250
+      .btfContent1__uber-widget-ns-images
+        - @stocks.shuffle.first(15).each do |stock|
+          = link_to image_tag(stock.image), stock_path(stock), width:200, height:200
+      -# - 4.times do |i|
+      -#   = image_tag "audio_visuals.png", width: 250 ,height: 250
 = render "shared/footer"

@@ -82,7 +82,7 @@
           - order_orderdetails(user_order, @range).each do |order_detail|
             .underbox
               .underbox__image
-                = image_tag order_detail.stock.image, width:150
+                = image_tag order_detail.stock.image
               .underbox__info
                 .underbox__info__name
                   = link_to order_detail.stock.name, stock_path(order_detail.stock.id)

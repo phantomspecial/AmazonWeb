@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
     # アカウントサービス画面
+    @stocks = Stock.all
   end
 
   def show

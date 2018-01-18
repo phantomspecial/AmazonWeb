@@ -110,6 +110,8 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @stocks = Stock.all
+
     # 購入完了画面
     # カートテーブルから、そのユーザのレコードのうち、ショッピングカートにあるもの
     # (= buylater_flgがfalseのもの）を持ってくる
