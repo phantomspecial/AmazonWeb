@@ -1,10 +1,11 @@
 module StocksHelper
 
   def amazoncreditcard(sell_price)
-    if sell_price > 5000
-      return sell_price - 5000
+    discount = sell_price - 5000
+    if discount > 0
+      return discount
     else
-      return 5000 - sell_price
+      return 0
     end
   end
 
