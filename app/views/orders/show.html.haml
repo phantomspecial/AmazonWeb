@@ -2,7 +2,7 @@
 .topmessagebox
   .topmessagebox__message
     アカウントサービス > 注文履歴 >
-    %a{style: "color: darkorange"}
+    %a
       注文の詳細
 .ordertop-message
   .ordertop-message__title
@@ -80,7 +80,7 @@
         ¥
         = (@order.total + @order.total_shippingcost).to_s(:delimited)
       - else
-        Visa（下4けたが
+        Visa（下4桁が
         =@order.payments[-4,4]
         ）：¥
         = (@order.total + @order.total_shippingcost).to_s(:delimited)
@@ -128,7 +128,5 @@
             = link_to "再度購入","", class: "order-show-graybutton-mini"
 
 .adtopbox
-  広告スペース１
-.adtopbox
-  広告スペース２
+  = image_tag "toppage_content_ad.jpg", width:870, height:224
 = render "shared/footer"

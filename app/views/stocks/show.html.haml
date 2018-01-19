@@ -190,28 +190,6 @@
         = link_to "ほしい物リストに追加する","", class: "wantbutton"
       .rightbox__cartbox__virtualdashlink
         = link_to "バーチャルダッシュに追加する",""
-  .rightbox__marketplacebox
-    .rightbox__marketplacebox__label
-      こちらからもご購入いただけます
-    .rightbox__marketplacebox__shoplist
-      .rightbox__marketplacebox__shoplist__price
-        ¥
-        = (@stock.sell_price * 1.1).round.to_s(:delimited)
-        / 仮に、amazonの1.1倍の価格とする
-      .rightbox__marketplacebox__shoplist__addcartbuttonmini
-        / = f.submit value: "カートに入れる", class: "  AddCartButton"
-        = link_to "カートに入れる","", class: "AddCartButtonMini"
-      .rightbox__marketplacebox__shoplist__shipping-cost
-        +
-        =@stock.shipping_cost.to_s(:delimited)
-        関東への配送料
-      .rightbox__marketplacebox__shoplist__seller
-        発売元:
-        TESTSELLER
-    .rightbox__marketplacebox__sellerlist
-      = link_to "新品の出品：1",""
-      = @stock.sell_price.to_s(:delimited)
-      より
   .rightbox__bottommessage
     .rightbox__bottommessage__text
       この商品をお持ちですか？
@@ -502,7 +480,7 @@
       .reviews__votebox__text
         他のお客様にも意見を伝えましょう
       .reviews__votebox__writebtn
-        = link_to "カスタマーレビューを書く","", class: "graybutton"
+        = link_to "カスタマーレビューを書く", "#reviewaddf", class: "graybutton"
     .reviews__main
       .reviews__main__title
         カスタマーレビュー

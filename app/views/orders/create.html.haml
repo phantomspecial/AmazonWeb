@@ -24,7 +24,7 @@
       お届け日：
       = @deliverydate.in_time_zone('Tokyo').strftime("%Y年%m月%d日")
     .ordermessages__messagebox__links
-      =link_to "注文詳細を見る（注文内容の変更・領収証の印刷）","/"
+      =link_to "注文詳細を見る（注文内容の変更・領収証の印刷）", order_path(@order.id)
       |
       =link_to "購入についてのよくある質問","/"
       |
