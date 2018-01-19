@@ -366,7 +366,6 @@
 // ボタン類
 .adminheader__buttons__sitebutton{
     display: inline-block;
-    // padding: 0.5em 1em;
     text-decoration: none;
     background: linear-gradient(to bottom,#f6c88f,#ed9220);/*ボタン色*/
     box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
@@ -387,12 +386,6 @@
     border-radius: 3px;
     margin-left: 30px;
 }
-// .adminheader__buttons:active {/*ボタンを押したとき*/
-//     -ms-transform: translateY(4px);
-//     -webkit-transform: translateY(4px);
-//     transform: translateY(4px);/*下に動く*/
-//     border-bottom: none;/*線を消す*/
-// }
 
 .adminheader__buttons a{
   color: #000;

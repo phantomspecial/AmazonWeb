@@ -20,6 +20,7 @@ class SubCategoriesController < ApplicationController
     @category = Category.find(params[:category_id])
     @all_categories = Category.all
     @sub_category = SubCategory.find(params[:id])
+    @stocks = @sub_category.stocks.page(params[:page]).per(20)
   end
 
 

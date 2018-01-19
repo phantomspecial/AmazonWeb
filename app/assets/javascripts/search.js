@@ -15,6 +15,11 @@ $(document).on('turbolinks:load', function() {
     minLength: 2
   });
 
+  function addFigure(str) {
+    var num = new String(str).replace(/,/g, "");
+    while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
+    return num;
+  }
 
   var search_list = $(".searchResult__ul");
 
@@ -37,7 +42,7 @@ $(document).on('turbolinks:load', function() {
               '<div class="searchResult__ul__li__price">' +
               '<a href="/stocks/' + stock.id + '">' +
               '<span>￥</span>' +
-              '<span>' + stock.sell_price + '</span>' +
+              '<span>' + addFigure(stock.sell_price) + '</span>' +
               '</a>' +
               '<img src="/assets/prime_search_icon.png" border="0" width="49" height="15">' +
               '<div class="searchResult__ul__li__day">' +
