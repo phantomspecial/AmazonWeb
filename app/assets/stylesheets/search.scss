@@ -301,6 +301,7 @@ a {
         border: none;
       }
       li.a-size-base {
+        height: 20px;
         font-size: 12px;
         margin-top: 10px;
         padding-left: 10px;
@@ -322,6 +323,7 @@ a {
     }
     li.a-list-item {
       width: auto;
+      height: 20px;
       display: inline-block;
       border: 1px solid #aaa;
       padding: 5px 12px;
@@ -349,7 +351,6 @@ li.ui-menu-item {
   padding: 10px!important;
   font-size: 14px;
   list-style-image: none!important;
-  // width: 690px;
 }
 li.ui-state-focus {
   background: #eee!important;

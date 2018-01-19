@@ -1,4 +1,4 @@
-- unless @search_result_count == 0
+- if @search_result_count.present?
   .leftNav
     .leftNav__header
       %h2 カテゴリ
@@ -18,7 +18,7 @@
                 - @categories.sub_categories.each do |category|
                   %li
                     = link_to "#{category.name}", category_sub_category_path(@categories, category)
-        - unless @category_id.empty?
+        - if @category_id.present?
           - @all_categories.each do |category|
             %ul
               %li

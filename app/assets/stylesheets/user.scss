@@ -698,12 +698,13 @@
       text-align: center;
         a {
           display: block;
-          width: 300px;
+          width: 250px;
           overflow: hidden;
           margin: 0 auto;
           margin-top: 30px;
         }
         img {
+          max-height: 230px;
           min-height: 230px;
         }
     }

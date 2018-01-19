@@ -404,7 +404,6 @@
 .borderline
 / この商品を見た人-共通部品にするのでカット
 
--# - if @reviews.empty?
 .reviews
   .reviews__title
     カスタマーレビュー
@@ -440,7 +439,7 @@
       =link_to "カスタマーレビューを書きませんか？", "#reviewaddf"
   .borderline
 
-- unless @reviews.empty?
+- if @reviews.present?
   .reviews
     .reviews__title
       カスタマーレビュー

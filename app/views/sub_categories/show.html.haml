@@ -8,7 +8,7 @@
           %h2
             = @sub_category.name
         %ul.searchResult__ul.clearfix
-          - @sub_category.stocks.each do |stock|
+          - @stocks.each do |stock|
             %li.searchResult__ul__li
               .searchResult__ul__li__img
                 = link_to stock_path(stock) do
@@ -59,4 +59,7 @@
                         .rate.rate50
                   %span.review_number
                     = stock.reviews.count
+        .text-center
+          %ul.pagination.clearfix
+            = paginate @stocks
 = render "shared/footer"
