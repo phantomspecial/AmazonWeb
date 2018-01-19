@@ -259,7 +259,7 @@
 
 .marketplacebutton{
     display: inline-block;
-    width: 220px;
+    width: 300px;
     text-decoration: none;
     background: #f0f0f0;/*ボタン色*/
     border-bottom: solid 4px #f0f0f0;
@@ -267,6 +267,7 @@
     color:#000000;
     text-align: center;
     font-size: 12px;
+    margin-top: 10px;
 }
 
 .sponsoredproduct{
@@ -295,6 +296,7 @@
 
 .campaignbox{
   clear: both;
+  padding: 15px 0;
   &__title{
   }
   &__links{
@@ -521,8 +523,9 @@
 
 .form-review{
   width: 700px;
-  height: 500px;
+  height: calc(100vh - 250px);
   font-weight:normal;
+  margin: 15px 0 5px 0;
 }
 
 
@@ -707,19 +710,25 @@
 }
 
 .edittitle{
+  width: 710px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   &__rate{
     color: #ffffff;
   }
   &__title{
-    clear: both;
     color: #ffffff;
+    margin-top: 30px;
+      input {
+        display: block;
+      }
+      textarea {
+        display: block;
+      }
   }
   &__submit{
 
   }
-}
-
-.edit-modal{
-  padding-left: 200px;
-  padding-top:  50px;
 }

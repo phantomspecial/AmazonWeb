@@ -55,8 +55,8 @@
         %label{:for => "editstar#{review.id}_5"}
           ★
       .edittitle__title
-        レビュータイトルを書いてください。
-        .br
+        %p
+          レビュータイトルを書いてください。
         %input{ name: "title", size: "40", type: "text", class: "form-title", id: "edit_review__title", value: "#{review.title}"}
         %textarea{ name: "review", type: "text", class: "form-review", id: "edit_review__text"}#{review.review}
       .edittitle__submit

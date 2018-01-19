@@ -20,11 +20,12 @@
         pt です。
         .br
         カートの商品はAmazonポイントの対象外です
-    .cartleftwindow__topborder
-      .cartleftwindow__topborder__pricetext
-        価格
-      .cartleftwindow__topborder__quantitytext
-        数量
+    .cartleftwindow__topborder.clearfix
+      .cartleftwindow__topborder__container.clearfix
+        .cartleftwindow__topborder__pricetext
+          価格
+        .cartleftwindow__topborder__quantitytext
+          数量
       .cartleftwindow__topborder__line
     .cartleftwindow__goodslist
       - @carts.each do |cart|
@@ -60,15 +61,16 @@
               = f.hidden_field :buylater_flg, value: true
               = f.submit value: "あとで買う", class: "btntolink"
         .cartleftwindow__goodslist__pricespace
-          .cartleftwindow__goodslist__pricespace__price
-            ¥
-            = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
-        .cartleftwindow__goodslist__quantityspace
-          .cartleftwindow__goodslist__quantity
-            = form_for cart do |f|
-              .rightbox__cartbox__quantity
-                / %input{ name: "cartid", type: "hidden", value: cart.id, class: 'cartid'}
-                = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), {selected: cart.quantity}, {id: "quantityselecter#{cart.id}"}
+          .cartleftwindow__goodslist__pricespace__container
+            .cartleftwindow__goodslist__pricespace__price
+              ¥
+              = Stock.find(cart.stock_id).sell_price.to_s(:delimited)
+            .cartleftwindow__goodslist__quantityspace
+              .cartleftwindow__goodslist__quantity
+                = form_for cart do |f|
+                  .rightbox__cartbox__quantity
+                    / %input{ name: "cartid", type: "hidden", value: cart.id, class: 'cartid'}
+                    = f.select :quantity, quantity_array_maker(Stock.find(cart.stock_id)), {selected: cart.quantity}, {id: "quantityselecter#{cart.id}"}
         .cartleftwindow__bottomborder
     .cartleftwindow__subtotal
       .cartleftwindow__subtotal__items

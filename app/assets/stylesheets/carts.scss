@@ -319,7 +319,6 @@
     padding-right: 45px;
     &__pricetext{
       float: left;
-      padding-left: 800px;
     }
     &__quantitytext{
       float: left;
@@ -331,7 +330,10 @@
       border-bottom:  1px solid;
       border-color: #d8d8d8;
     }
-
+    &__container {
+      width: 270px;
+      float: right;
+    }
   }
   &__goodslist{
     padding-top: 10px;
@@ -373,8 +375,8 @@
       }
     }
     &__pricespace{
-      float: left;
-      padding-left: 70px;
+      float: right;
+      width: calc(100% - 700px);
       &__price{
         width: 150px;
         float: left;
@@ -382,6 +384,11 @@
         color: #A82207;
         font-weight: bold;
         padding-top: 20px;
+      }
+      &__container {
+        width: 300px;
+        float: right;
+        margin-right: 40px;
       }
     }
     &__quantityspace{
@@ -449,10 +456,10 @@
   }
   &__bottomborder{
     clear: both;
-    width: 1100px;
     border-bottom: 1px solid;
     border-color: #d8d8d8;
     padding-top: 20px;
+    margin-right: 40px;
   }
   &__subtotal{
     float: right;
@@ -476,7 +483,8 @@
     font-size: 12px;
   }
   &__message{
-    padding-top: 20px;
+    padding-top: 40px;
+    margin-bottom: 50px;
     font-size: 12px;
   }
 }
@@ -560,12 +568,11 @@
 .cartleftwindow a{
   display: block;
   margin-right: 70px;
-  color: #0000FF;
   text-decoration: none;
 }
 
 .btntolink{
   border-style: none;
   font-size: 12px;
-  color: #0000FF;
+  color: #0066c0;
 }
