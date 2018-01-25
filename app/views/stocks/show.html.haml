@@ -25,26 +25,26 @@
       = link_to @stock.maker, ""
     .goodsbox__textbox__rate
       - if @stock.reviews.present?
-        - case review_rate_calc(@stock.avg_review)
-          - when "00"
+        - case @stock.avg_review
+          - when nil
             .rate.rate00
-          - when "05"
+          - when ("0.0".."0.9")
             .rate.rate05
-          - when "10"
+          - when ("1.0".."1.4")
             .rate.rate10
-          - when "15"
+          - when ("1.5".."1.9")
             .rate.rate15
-          - when "20"
+          - when ("2.0".."2.4")
             .rate.rate20
-          - when "25"
+          - when ("2.5".."2.9")
             .rate.rate25
-          - when "30"
+          - when ("3.0".."3.4")
             .rate.rate30
-          - when "35"
+          - when ("3.5".."3.9")
             .rate.rate35
-          - when "40"
+          - when ("4.0".."4.4")
             .rate.rate40
-          - when "45"
+          - when ("4.5".."4.9")
             .rate.rate45
           -else
             .rate.rate50
@@ -258,28 +258,26 @@
         .searchResult__ul__li__review
           = link_to "" do
             .search_result_star.review_stars
-              - case review_rate_calc(stock.avg_review)
-                - when "00"
-                  .rate.rate00
+              - case stock.avg_review
                 - when nil
                   .rate.rate00
-                - when "05"
+                - when ("0.0".."0.9")
                   .rate.rate05
-                - when "10"
+                - when ("1.0".."1.4")
                   .rate.rate10
-                - when "15"
+                - when ("1.5".."1.9")
                   .rate.rate15
-                - when "20"
+                - when ("2.0".."2.4")
                   .rate.rate20
-                - when "25"
+                - when ("2.5".."2.9")
                   .rate.rate25
-                - when "30"
+                - when ("3.0".."3.4")
                   .rate.rate30
-                - when "35"
+                - when ("3.5".."3.9")
                   .rate.rate35
-                - when "40"
+                - when ("4.0".."4.4")
                   .rate.rate40
-                - when "45"
+                - when ("4.5".."4.9")
                   .rate.rate45
                 -else
                   .rate.rate50
@@ -343,26 +341,26 @@
         .afterview__items__rate
           = link_to "" do
             .afterview__items__rate__stars.review_stars
-              - case review_rate_calc(stock.avg_review)
-                - when "00" , nil
+              - case stock.avg_review
+                - when nil
                   .rate.rate00
-                - when "05"
+                - when ("0.0".."0.9")
                   .rate.rate05
-                - when "10"
+                - when ("1.0".."1.4")
                   .rate.rate10
-                - when "15"
+                - when ("1.5".."1.9")
                   .rate.rate15
-                - when "20"
+                - when ("2.0".."2.4")
                   .rate.rate20
-                - when "25"
+                - when ("2.5".."2.9")
                   .rate.rate25
-                - when "30"
+                - when ("3.0".."3.4")
                   .rate.rate30
-                - when "35"
+                - when ("3.5".."3.9")
                   .rate.rate35
-                - when "40"
+                - when ("4.0".."4.4")
                   .rate.rate40
-                - when "45"
+                - when ("4.5".."4.9")
                   .rate.rate45
                 -else
                   .rate.rate50
@@ -380,7 +378,6 @@
   .itemdetailbox__detailtext
     = @stock.detail
 .borderline
-/ この商品を見た人-共通部品にするのでカット
 
 .reviews
   .reviews__title
@@ -388,104 +385,72 @@
   .reviews__ratebox
     .reviews__ratebox__ratemark
       - if @stock.reviews.present?
-        - case review_rate_calc(@stock.avg_review)
-          - when "00"
+        - case @stock.avg_review
+          - when nil
             .rate.rate00
-          - when "05"
+          - when ("0.0".."0.9")
             .rate.rate05
-          - when "10"
+          - when ("1.0".."1.4")
             .rate.rate10
-          - when "15"
+          - when ("1.5".."1.9")
             .rate.rate15
-          - when "20"
+          - when ("2.0".."2.4")
             .rate.rate20
-          - when "25"
+          - when ("2.5".."2.9")
             .rate.rate25
-          - when "30"
+          - when ("3.0".."3.4")
             .rate.rate30
-          - when "35"
+          - when ("3.5".."3.9")
             .rate.rate35
-          - when "40"
+          - when ("4.0".."4.4")
             .rate.rate40
-          - when "45"
+          - when ("4.5".."4.9")
             .rate.rate45
           -else
             .rate.rate50
         = @reviews.length
-        件のカスタマーレビュー
-    .goodsbox__textbox__reviewlink
-      =link_to "カスタマーレビューを書きませんか？", "#reviewaddf"
-  .borderline
-
-- if @reviews.present?
-  .reviews
-    .reviews__title
-      カスタマーレビュー
-    .reviews__ratebox
-      .reviews__ratebox__ratemark
+        .reviews__ratebox__ratetext
+          5つ星のうち
+          = @stock.avg_review
+      - else
+        まだカスタマーレビューはありません。
+    .reviews__ratebox__distribution
+      .reviews__ratebox__distribution__five
+        星5つ
+        = @review_dist[4]
+        #{"%"}
+      .reviews__ratebox__distribution__four
+        星4つ
+        = @review_dist[3]
+        #{"%"}
+      .reviews__ratebox__distribution__three
+        星3つ
+        = @review_dist[2]
+        #{"%"}
+      .reviews__ratebox__distribution__two
+        星2つ
+        = @review_dist[1]
+        #{"%"}
+      .reviews__ratebox__distribution__one
+        星1つ
+        = @review_dist[0]
+        #{"%"}
+      .reviews__ratebox__distribution__all
         - if @stock.reviews.present?
-          - case review_rate_calc(@stock.avg_review)
-            - when "00"
-              .rate.rate00
-            - when "05"
-              .rate.rate05
-            - when "10"
-              .rate.rate10
-            - when "15"
-              .rate.rate15
-            - when "20"
-              .rate.rate20
-            - when "25"
-              .rate.rate25
-            - when "30"
-              .rate.rate30
-            - when "35"
-              .rate.rate35
-            - when "40"
-              .rate.rate40
-            - when "45"
-              .rate.rate45
-            -else
-              .rate.rate50
-        = @reviews.length
-      .reviews__ratebox__ratetext
-        5つ星のうち
-        = @stock.avg_review
-      .reviews__ratebox__distribution
-        .reviews__ratebox__distribution__five
-          星5つ
-          = @review_dist[4]
-          #{"%"}
-        .reviews__ratebox__distribution__four
-          星4つ
-          = @review_dist[3]
-          #{"%"}
-        .reviews__ratebox__distribution__three
-          星3つ
-          = @review_dist[2]
-          #{"%"}
-        .reviews__ratebox__distribution__two
-          星2つ
-          = @review_dist[1]
-          #{"%"}
-        .reviews__ratebox__distribution__one
-          星1つ
-          = @review_dist[0]
-          #{"%"}
-        .reviews__ratebox__distribution__all
           すべてのカスタマーレビューをみる（
           = @reviews.length
           )
-    .reviews__votebox
-      .reviews__votebox__text
-        他のお客様にも意見を伝えましょう
-      .reviews__votebox__writebtn
-        = link_to "カスタマーレビューを書く", "#reviewaddf", class: "graybutton"
-    .reviews__main
-      .reviews__main__title
+  .reviews__votebox
+    .reviews__votebox__text
+      他のお客様にも意見を伝えましょう
+    .reviews__votebox__writebtn
+      = link_to "カスタマーレビューを書く", "#reviewaddf", class: "graybutton"
+  .reviews__main
+    .reviews__main__title
+      - if @stock.reviews.present?
         カスタマーレビュー
-      .reviews__main__boxes
-        = render partial: "shared/review", collection: @reviews, as: :review
+    .reviews__main__boxes
+      = render partial: "shared/review", collection: @reviews, as: :review
 .reviews__addform#reviewaddf
   - if user_signed_in?
     .reviews__addform__toplabel
