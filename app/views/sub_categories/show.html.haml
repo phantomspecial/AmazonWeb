@@ -32,28 +32,26 @@
               .searchResult__ul__li__review
                 = link_to "" do
                   .search_result_star.review_stars
-                    - case review_rate_calc(stock.avg_review)
-                      - when "00"
-                        .rate.rate00
+                    - case stock.avg_review
                       - when nil
                         .rate.rate00
-                      - when "05"
+                      - when ("0.0".."0.9")
                         .rate.rate05
-                      - when "10"
+                      - when ("1.0".."1.4")
                         .rate.rate10
-                      - when "15"
+                      - when ("1.5".."1.9")
                         .rate.rate15
-                      - when "20"
+                      - when ("2.0".."2.4")
                         .rate.rate20
-                      - when "25"
+                      - when ("2.5".."2.9")
                         .rate.rate25
-                      - when "30"
+                      - when ("3.0".."3.4")
                         .rate.rate30
-                      - when "35"
+                      - when ("3.5".."3.9")
                         .rate.rate35
-                      - when "40"
+                      - when ("4.0".."4.4")
                         .rate.rate40
-                      - when "45"
+                      - when ("4.5".."4.9")
                         .rate.rate45
                       -else
                         .rate.rate50
