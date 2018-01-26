@@ -31,9 +31,11 @@
       - @carts.each do |cart|
         .cartleftwindow__goodslist__detail
           .cartleftwindow__goodslist__detail__image
-            = image_tag Stock.find(cart.stock_id).image, width:200
+            = link_to stock_path(cart.stock_id) do
+              = image_tag Stock.find(cart.stock_id).image, width:200
           .cartleftwindow__goodslist__detail__title
-            = Stock.find(cart.stock_id).name
+            = link_to stock_path(cart.stock_id) do
+              = Stock.find(cart.stock_id).name
           .cartleftwindow__goodslist__detail__maker
             = Stock.find(cart.stock_id).maker
           .cartleftwindow__goodslist__detail__stockcheck
