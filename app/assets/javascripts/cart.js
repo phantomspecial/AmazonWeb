@@ -26,10 +26,11 @@ $(function(){
         updflg : 1
       },
       datatype: "html",
-      success: function(data){
+      success: function(){
         location.reload();
       },
-      error: function(data){
+      error: function(){
+        location.reload();
       }
     });
   });
