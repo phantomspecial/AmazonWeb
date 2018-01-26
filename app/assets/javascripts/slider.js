@@ -1,4 +1,5 @@
-$(document).on('turbolinks:load', function() {
+$(function(){
+// $(document).on('turbolinks:load', function() {
   var swiper = new Swiper('.swiper-container', {
     navigation: {
       nextEl: '.swiper-button-next',

@@ -1,4 +1,5 @@
-$(document).on('turbolinks:load', function() {
+$(function(){
+// $(document).on('turbolinks:load', function() {
 
   $("#stock_name_field").autocomplete({
     source: function(req, res) {
